@@ -1,0 +1,27 @@
+{
+    "files.exclude": {
+        "**/*.aux": true,
+        "**/*.xdv": true,
+        "**/*.bbl": true,
+        "**/*.blg": true,
+        "**/*.brf": true,
+        "**/*.lof": true,
+        "**/*.log": true,
+        "**/*.lot": true,
+        "**/*.out": true,
+        "**/*.pdf": true,
+        "**/*.backup": true,
+        "**/*.toc": true,
+        "**/*~": true,
+        "**/*.nlo": true,
+        "**/*.rar": true,
+        "**/*.loa": true,
+        "**/*.gz": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.py": true,
+        "**/*.bcf": true,
+        "**/*.xml": true,
+        "**/*.pdf_tex": true
+    }
+}
