@@ -6,47 +6,66 @@
 \LoadClass{article}
 
 % Bibliography style
-\RequirePackage{apacite}
+%\RequirePackage[natbibapa]{apacite}
 \RequirePackage[spanish]{babel}
-\bibliographystyle{apacite}
+\bibliographystyle{plain}
+
 
 % Change pages style
 \RequirePackage{geometry}
 \newgeometry{
-   top = 1in,
-   left = 1in,
-   right = 1in,
-   bottom = 1in
+   top = 0in,
+   left = 0in,
+   right = 0in,
+   bottom = 0in
+}
+\newcommand{\thesisgeometry}{
+   \newgeometry{
+        top = 1in,
+        left = 1in,
+        right = 1in,
+        bottom = 1in
+    }
 }
 
 % Title
+\RequirePackage{graphicx}
 \newcommand{\advisor}[1]{\def\@advisor{#1}}
 \newcommand{\degree}[1]{\def\@degree{#1}}
 \newcommand{\faculty}[1]{\def\@faculty{#1}}
 \newcommand{\logo}[1]{\def\@logo{#1}}
 
-\def\maketitle{%
-  \thispagestyle{empty}%
-  \begin{center}
-    {\large Universidad de Orinte} \\ \@faculty \\ 
-    \vskip 0.25cm
-    %\includegraphics[width=1.75cm]{\@logo} \\
-    \vfill
-    {\large \textbf{\@title}} \\
-    \vskip 2cm
-    {\large Autor: \textbf{\@author}} \\
-    \vskip 0.5cm
-    {\large Tutores: \textbf{\@advisor}} \\
-    \vfill
-    {\large Trabajo de Diploma \\presentado en opción al título de \\ \@degree} \\
-    \vskip 1cm
-    \@date
-  \end{center}
+\def\maketitle{
+  \thispagestyle{empty}
+  % Left background of title
+   \begin{minipage}[c]{0.6\textwidth}
+      \hspace{-0.8in}\includegraphics[height=\textheight, width= 0.99\textwidth]{images/background.png}
+   \end{minipage}
+   % Content of title
+   \hspace{-0.5in}
+   \begin{minipage}[c]{0.4\textwidth}
+      \begin{center}
+         {\large Universidad de Orinte} \\ \@faculty \\ 
+         \vskip 0.25cm
+         \includegraphics[width=2in, height=0.8in]{images/logo.png} \\
+         \vskip 1cm
+         \vfill
+         {\large \textbf{\@title}} \\
+         \vskip 2cm
+         {\large Autor: \textbf{\@author}} \\
+         \vskip 0.5cm
+         {\large Tutores: \textbf{\@advisor}} \\
+         \vskip 8cm
+         \vfill 
+         {\large TESIS PRESENTADA EN OPCIÓN AL TÍTULO ACADÉMICO DE LICENCIADO EN CIENCIA DE LA COMPUTACIÓN} \\
+         \vskip 1cm
+         {21 de septiembre 2023}
+         %\@date
+      \end{center}
+   \end{minipage}
 }
-
 % Environments of thesis 
 % Front section
-
 \newenvironment{dedication}
    {
       \thispagestyle{empty}
@@ -83,6 +102,17 @@
       \addcontentsline{toc}{section}{Introducción}
       \pagenumbering{arabic}
       \section*{Introducción}
+   }
+   {}
+
+% Commands for thesis's chapters
+\newcommand{\subthesischapter}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubthesischapter}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+
+\newenvironment{thesischapter}[2]
+   {
+      \addcontentsline{toc}{section}{Capítulo #1 : #2}
+      \section*{Capítulo #1: #2}
    }
    {}
 

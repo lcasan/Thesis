@@ -1,26 +1,28 @@
 \documentclass{thesis}
-\title{Título de la tesis}
+\title{Aplicación de juego serio para la rehabilitación
+neuromuscular en pacientes con enfermedades cerebrovasculares}
 \author{\\\vspace{0.25cm}Luis Miguel Casañ González}
-\advisor{\\\vspace{0.25cm} Msc. Miguel Castañeda}
-\degree{Licenciado en Ciencia de la Computación}
+\advisor{\\\vspace{0.25cm} Msc. Miguel Castañeda Garay \\ \vspace{0.25cm} Dr.C Alberto López Delis}
 \faculty{Facultad de Ciencias Naturales y Exactas}
-%\logo{}
 \begin{document}
-    
+
     % Title
     \maketitle
+    % Set document's geometry
+    \thesisgeometry
 
     % Front section of thesis 
-    \include{front/dedication.tex}
-    \include{front/acknowledgements.tex}
+    %\include{front/dedication.tex}
+    %\include{front/acknowledgements.tex}
     \include{front/resumen.tex}
     \include{front/abstract.tex}
     \include{front/content.tex}
     
     % Main section of thesis 
     \include{main/introduction.tex}
+    \include{main/chapter1.tex}
+    \include{main/chapter2.tex}
 
     % Back section of thesis 
     \bibliography{back/references.bib}
-
 \end{document}
