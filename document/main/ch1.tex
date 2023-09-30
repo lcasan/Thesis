@@ -1,0 +1,307 @@
+\begin{thesischapter}{1} {Marco teórico}
+    En este capítulo se explican algunos de los conceptos claves utilizados en este
+    trabajo. Además, se presenta un resumido estado del arte y las herramientas que
+    dan solución a algunos de los aspectos más importantes en el sistema y se exponen
+    las principales características de estas que son de utilidad. Al final del capítulo se
+    hace un breve resumen de la metodología de trabajo para realizar el sistema.
+
+    %% Conceptos teóricos
+    \subthesischapter{Conceptos clave}
+    \subsubthesischapter{Conceptos médicos}
+
+    \vspace{10pt}
+    \textbf{Ictus: Accidente cerebrovascular}\\
+    Se define como accidente cerebrovascular (ACV) o Ictus a todo episodio de
+    instauración súbita, aguda o subaguda, en el que, a causa de una lesión primaria o
+    secundaria localizable en cualquier punto del sistema cardiovascular, se produce un
+    déficit neurológico, permanente o transitorio, en relación con la zona afectada.~\cite{ictus}
+
+    \vspace{10pt}
+    \textbf{Tipos de afectación motora y cognitiva}\\
+    Los tipos y grados de discapacidad que siguen a un derrame dependen de qué área
+    del cerebro esté dañada fig: \ref{fig: cerebralcortex}. Generalmente, el accidente cerebrovascular puede
+    causar cinco tipos de discapacidades: parálisis o problemas para controlar el movimiento;
+    Trastornos sensoriales, incluyendo dolor; Problemas en el uso o comprensión del
+    lenguaje; Problemas con el pensamiento y la memoria; Y trastornos emocionales.~\cite{post-strok} 
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.5]{images/brain.jpg}
+        \caption{Áreas funcionales de la corteza cerebral}
+        Tomado de: ~\cite{areacereabral}
+        \label{fig: cerebralcortex}
+    \end{figure}
+
+    \begin{itemize}
+        \item Parálisis o problemas para controlar el movimiento: \\
+        La parálisis es una de las discapacidades más comunes causadas por un accidente
+        cerebrovascular. Se suele dar en el lado del cuerpo opuesto al lado del cerebro dañado y
+        puede afectar a la cara, un brazo, una pierna o a todo un lado del cuerpo. Esta parálisis
+        unilateral se denomina hemiplejia (si la parálisis no es completa se denomina
+        hemiparesia). Los pacientes con hemiparesia o hemiplejia pueden tener dificultades con
+        las actividades cotidianas, como caminar o agarrar objetos.~\cite{cuidadosalpacienteadulto}
+        \item Alteraciones sensoriales, incluyendo dolor:\\
+        Los pacientes con accidente cerebrovascular pueden perder la capacidad de sentir
+        el tacto, dolor, temperatura o posición. También pueden tener dificultad para reconocer
+        objetos que están sosteniendo, e incluso pueden ser lo suficientemente graves como para
+        causar la pérdida del reconocimiento de su propia extremidad. Algunos pacientes con
+        apoplejía llegan a experimentan dolor, entumecimiento o sensaciones extrañas de
+        hormigueo o picor en las extremidades paralizadas o debilitadas, un síntoma conocido
+        como parestesias.~\cite{post-strok}
+        \item Problemas para usar o comprender el lenguaje (afasia):\\
+        Los sobrevivientes de accidentes cerebrovasculares experimentan deficiencias en el lenguaje, 
+        que involucran la capacidad de hablar, escribir y comprender el lenguaje hablado y escrito. 
+        En las personas diestras, estos accidentes cerebrovasculares generalmente involucran el lado 
+        izquierdo del cerebro. Una lesión inducida por un accidente cerebrovascular en cualquiera de 
+        los centros de control del lenguaje del cerebro puede afectar gravemente la comunicación verbal. 
+        Hay varios tipos de afasia:~\cite{post-strok}
+        \begin{itemize}
+            \item afasia expresiva , en la que las personas pierden la capacidad de hablar o escribir las palabras que están pensando y de juntar palabras en oraciones coherentes y gramaticalmente correctas.
+            \item afasia receptiva , en la que las personas tienen dificultad para comprender el lenguaje hablado o escrito y, a menudo, tienen un habla incoherente. Aunque estos individuos pueden formar oraciones gramaticalmente correctas, sus expresiones a menudo carecen de significado.
+            \item afasia global , en la que las personas pierden casi todas sus habilidades lingüísticas; no pueden entender el lenguaje o usarlo para transmitir pensamientos.  
+        \end{itemize}
+        \item Problemas con el pensamiento y la memoria:\\
+        Un accidente cerebrovascular puede causar daño a partes del cerebro responsables
+        de la memoria, el aprendizaje y la conciencia. Los pacientes pueden haber reducido
+        dramáticamente su capacidad de atención o pueden experimentar déficit en la memoria a
+        corto plazo. También pueden perder su capacidad de hacer planes, comprender el
+        significado de las cosas, aprender nuevas tareas, o participar en otras actividades mentales
+        complejas.~\cite{post-strok}
+        \item Trastornos emocionales:\\
+        Muchas personas tras sobrevivir a un derrame sienten miedo, ansiedad,
+        frustración, ira, tristeza y un sentimiento de dolor por sus pérdidas físicas y mentales.
+        Estos sentimientos son una respuesta natural al trauma psicológico del ictus. Algunos
+        trastornos emocionales y cambios de personalidad son causados por los efectos físicos
+        del daño cerebral.~\cite{post-strok} 
+    \end{itemize}
+    
+    \subsubthesischapter{Conceptos informáticos}
+
+    \vspace{10pt}
+    \textbf{Arquitectura cliente-servidor}\\
+    Según ~\cite{moyano2020arquitectura} la arquitectura Cliente - Servidor, es 
+    un modelo de una aplicación distribuida en el cual se basa en dos actores:
+    Uno con rol de proveedor de recursos y otro con rol consultor sobre los recursos.
+    \begin{itemize}
+        \item Cliente: Programa ejecutable que participa activamente en el establecimiento de las conexiones. Envía una petición al servidor y se queda
+        esperando por una respuesta. Su tiempo de vida es finito una vez que son
+        servidas sus solicitudes, termina el trabajo.
+        \item Servidor: Es un programa que ofrece un servicio que se puede obtener
+        en una red. Acepta la petición desde la red, realiza el servicio y devuelve
+        el resultado al solicitante. Al ser posible implantarlo como aplicaciones de
+        programas, puede ejecutarse en cualquier sistema donde exista TCP/IP y
+        junto con otros programas de aplicación. El servidor comienza su ejecución
+        antes de comenzar la interacción con el cliente.
+    \end{itemize}
+
+    \vspace{10pt}
+    \textbf{Motor Gráfico}
+
+    \vspace{2pt}
+    Un motor de videojuegos es una aplicación de software que ofrece
+    todas las herramientas necesarias para el diseño y desarrollo completo de un videojuego, disponiendo
+    de un motor de renderizado para gráficos 2D y 3D, detector de colisiones, sonidos, scripting,
+    animación, inteligencia artificial, redes, streaming, administración de memoria y mucho más.~\cite{arce2011desarrollo} 
+    
+    \vspace{10pt}
+    \textbf{API}\\
+    Las API son mecanismos que permiten a dos componentes de software comunicarse entre sí mediante un conjunto de 
+    definiciones y protocolos. Por ejemplo, el sistema de software del instituto de meteorología contiene datos meteorológicos 
+    diarios. La aplicación meteorológica de su teléfono “habla” con este sistema a través de las API y le muestra las actualizaciones 
+    meteorológicas diarias en su teléfono.~\cite{amazon}
+    
+    \vspace{10pt}
+    \textbf{Juegos serios}
+
+    \vspace{2pt}
+    Los videojuegos interactivos han surgido como nuevos enfoques de tratamiento en
+    la rehabilitación del accidente cerebrovascular. Estos enfoques pueden ser
+    ventajosos ya que dan la oportunidad de practicar actividades que no se pueden
+    realizar dentro del entorno clínico. Además, los programas de realidad virtual están
+    diseñados para ser más interesantes y agradables que las terapias tradicionales,
+    alentando que el paciente realice un mayor número de repeticiones de los ejercicios~\cite{laver2018virtual,alfageme2002aprendiendo}
+
+
+    \subthesischapter{Estado del arte}
+    En el área de la rehabilitación %dirigida a pacientes con afecciones cerebrovasculares 
+    existen diferentes contribuciones dirigidas a la recuperación 
+    y rehabilitación de las diferentes habilidades y competencias psicomotrices. A continuación se presentan las propuestas más relevantes 
+    que existen actualmente usando juegos serio:
+    \begin{itemize}
+        \item En el 2019, ~\cite{rodriguez2019design} presentó un juego serio para propósitos de rehabilitación a personas con ACV. El juego 
+        utiliza el software de desarrollo para entornos Unity 3D en su versión free. El sensor que realiza el seguimiento de los movimientos 
+        de la persona es el sensor Kinect. El objetivo del juego consiste en que el usuario agarre esferas de un color específico. Los puntajes 
+        alcanzados en el juego y los parámetros de configuración colocados por el kinesiólogo son almacenados junto con la información del paciente. 
+        De esta manera el fisioterapeuta puede recuperar los datos almacenados y realizar un análisis de la evaluación de la evolución de la persona 
+        en su rehabilitación.
+        \item Alberto y Edwin Daniel ~\cite{morales2019desarrollo} proponen una aplicación de juego serio para tratar de aumentar y de evaluar 
+        el límite de estabilidad de la población envejecida.Tras esta idea, se hacen uso del sensor Kinect V1 y el 
+        motor de juego Unity3D, compatible mediante el uso de la librería Kinect with MS-SDK, para poder registrar los movimientos del paciente durante 
+        la terapia. El juego basará su fundamento clínico en diversos test de evaluación del balance, como son el test Fugl-Meyer o el Choice Stepping 
+        Reaction Time, y tomará como mecánica de referencia la de uno de los clásicos de los videojuegos, el Tetris. Blocks Rehab, la adaptación clínica 
+        de este juego ochentero, consistirá en tres modalidades de juego (Bloques, Puzzle y E.T. Tris), cumpliendo cada uno de ellos una función específca. 
+        El paciente deberá desplazarse de manera frontal, lateral y mantener el equilibrio sobre una pierna para llevar a cabo los objetivos que el 
+        videojuego les plantea, con el propósito de extraer métri- cas de salida que evalúen la actuación del usuario en términos de estabilidad. 
+        \item ~\cite{doi:10.1177/1545968314535985} y colaboradores (2015), compararon el efecto de realizar el entrenamiento con un
+        soporte de brazo, combinado con ejercicios mediante un juego digital y la rehabilitación
+        convencional en pacientes con ictus.\\
+        El dispositivo que utiliza el soporte para el brazo se llama ArmeoBoom. Está compuesto de
+        un sistema de suspensión en cabestrillo elevado, que proporciona un soporte para la
+        muñeca. Este elemento proporciona un buen soporte en un espacio tridimensional
+        que te permite realizar movimientos funcionales sin ninguna restricción. El mecanismo se
+        adapta a la situación física de cada paciente. ArmeoBoom está compuesto por una webcam
+        y un ordenador portátil que permiten al usuario interaccionar con los videojuegos
+        incorporados en el ordenador portátil y jugar moviendo la extremidad afectada en un
+        ambiente tridimensional ajustado al grado de movimiento funcional de cada paciente.
+        Los movimientos, tanto en el plano horizontal como el plano vertical son controlados y
+        grabados con la finalidad de premiar con puntos dependiendo de la actuación del usuario
+        y del tiempo de ejecución.
+        
+        \vspace{2pt}
+        Entrenar con el soporte de brazo consiste en realizar los movimientos con el brazo
+        afectado, con el objetivo de maximizar la habilidad de los ejercicios usando el mínimo
+        soporte de brazo posible.
+        
+        \vspace{2pt}
+        El entrenamiento de rehabilitación convencional consiste en la realización de unos
+        ejercicios ejecutados con los brazos, dirigidos por el terapeuta, para reflejar la terapia física
+        y ocupacional.
+        El objetivo de este entrenamiento es que el paciente incremente el rango de movimiento
+        del brazo, principalmente del hombro y el codo con el mínimo soporte posible de una
+        superficie como una mesa. Todos los ejercicios son análogos en esencia y consisten en alcanzar 
+        objetos colocados en una mesa, en mover o apilar vasos, colocar discos o transportar bloques de 
+        pinzas sin la ayuda de ningún ordenador ni soporte informático. Conforme el paciente va superando los juegos
+        propuestos, los movimientos se van complicando un poco más.
+
+        \vspace{2pt}
+        Un total de 70 pacientes que habían padecido un ictus hemorrágico o isquémico en las
+        últimas 12 semanas y que estaban estables con su medicación fueron elegidos para la
+        rehabilitación. Los participantes pasaron por un programa de entrenamiento de seis
+        semanas, divididas en tres sesiones de 30 minutos cada una.
+        
+        \vspace{2pt}
+        Un grupo de 35 pacientes se formó para la rehabilitación de las extremidades superiores
+        en combinación con el soporte de brazo y el ejercicio, mientras que 33 pacientes realizaron
+        la rehabilitación con los ejercicios convencionales.
+        
+        \item En el 2014  autores como ~\cite{10.3233/NRE-141105}, comparan el efecto
+        que se produce al entrenar con un videojuego de realidad virtual Kinect Xbox 360 Paddle
+        Panic Mini Game, en pacientes que han padecido un ictus. El objetivo es mejorar el
+        movimiento de la extremidad superior, observando el hemisferio cerebral afectado de
+        estos pacientes.\\
+        La evaluación se lleva a cabo mediante la acción de beber un vaso de agua antes y después
+        de entrenar
+
+        \vspace{5pt}
+        Se seleccionaron un total de 40 participantes para realizar el estudio. El grupo inicial se
+        subdividió en cuatro grupos atendiendo a los siguientes criterios:
+        \begin{itemize}
+            \item Pacientes con afectación derecha del cerebro (hemiparesia izquierda)
+            \item Pacientes con afectación izquierda del cerebro (hemiparesia derecha)
+            \item Pacientes sanos que entrenaron con la extremidad superior derecha en el videojuego
+            \item Pacientes sanos que entrenaron con la extremidad superior izquierda en el videojuego
+        \end{itemize}
+        Los resultados del estudio muestran que los pacientes con la afectación de la extremidad
+        superior por ictus presentaron una mejoría del entrenamiento con el videojuego,
+        demostrado un incremento de la puntuación en cada jugada.
+    \end{itemize}
+
+    \vspace{5pt}
+    Las terapias con juegos serios son una alternativa complementaria a las terapias
+    tradicionales. Tanto los estudios que se apoyan en tecnologías de realidad virtual, como Kinect y
+    Nintendo, -las cuales no tienen propósitos clínicos-, como los que se centran en juegos
+    serios diseñados específicamente para la rehabilitación física de diferentes patologías,
+    indican que estos juegos tienen el potencial de mejorar el equilibrio, el control postural y
+    la condición física de los pacientes, sin embargo los estudios son pocos y demasiado
+    pequeños para llegar a una conclusión completamente fiable. La falta de eventos adversos
+    reportados (como mareos, dolor de cabeza o náuseas) sugiere que este enfoque de la
+    terapia es relativamente seguro, aunque esto puede variar dependiendo de las
+    características de la persona, el hardware y el software de la realidad virtual y la tarea. 
+
+    %%-----------------------------------------------------------
+    \subthesischapter{Tecnologías y herramientas}
+    \subsubthesischapter{Motor gráfico(Unity3D)}
+    Actualmente podemos encontrar una amplia gama de motores de videojuegos, con diferentes tipos de
+    licencias y orientados a cumplir distintos tipos de propósitos. Se puede encontrar motores comerciales
+    y gratuitos, con metodologías 2D o 3D, inclusive que brindan soluciones de juegos a variadas
+    plataformas (Windows, Linux, android, etc.).\\ 
+    Afortunadamente existe una nueva tendencia por parte de algunas empresas que desarrollan motores de 
+    videojuegos, que los impulsa a colocar en el mercado versiones gratuitas (generalmente limitadas en 
+    algún aspecto) de sus herramientas para que las personas que deseen aprender, puedan hacerlo sin tener 
+    que comprar una versión full. Entre estas empresas podemos encontrar las conocidas Epic Games
+    y Unity Technologies, las cuales ofrecen versiones gratuitas y descargables de sus famosos motores de videojuegos.~\cite{arce2011desarrollo} 
+    
+    \begin{center}
+        Diferencias generales ~\cite{chavez2021diferencias}\\
+        \includegraphics[height=5in]{images/unityvsunreal.png}
+    \end{center}
+    
+    Según lo antes expuesto podemos concluir en que los dos motores de videojuegos son pieza indispensable a la hora del desarrollo
+    de videojuego tanto en 2d, 3d o RV, cada uno de los motores poseen características únicas que los diferencian entre sí.
+    
+    \vspace{2pt}
+    Para el proposito de la tesis considero Unity como unos de los motores mas populares a la hora del desarrollo
+    de videojuegos, para las distintas plataformas, una gran ventaja que tiene unity a la hora de
+    desarrollar un videojuego para Android, es su modo de configurar el entorno, porque solo se necesita descargar los módulos de 
+    Android, y ya está listo para crear juegos.
+     
+    \vspace{5pt}
+    Principales características de este motor gráfico que son de utilidad en el sistema:~\cite{unity3d}
+    \begin{itemize}
+        \item Programación con C\#.
+        \item Soporte parcial de .NET (incluye soporte a .NET Sockets).
+        \item Soporte de plugins para código nativo.
+        \item Incluye el motor físico PhysX de Nvidia.
+        \item Carga de modelados y texturas de varios formatos de programas externos como Blender, Maya, Adobe Suite, 3D Max, Cinema 4D, entre otros.
+        \item Despliegue gratis sobre Android.
+        \item Inspector para clases personalizadas en tiempo de ejecución.
+        \item Animación a través de cinemática directa e inversa.
+    \end{itemize}
+
+    \subsubthesischapter{Visual Studio Code}
+    Visual Studio Code es un editor de código fuente desarrollado por Microsoft para
+    Windows, Linux, macOS y Web. Incluye soporte para la depuración, control
+    integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos
+    y refactorización de código, características que lo convierten en una herramienta
+    perfecta para manipular los script en unity.~\cite{vscode}
+    \subsubthesischapter{NET Framework 4.7}
+    El framework .NET provee un modelo de programación global que permite el
+    desarrollo de todo tipo de aplicaciones desde móviles a web a escritorio12.
+    Técnicamente el framework .NET es un ambiente de ejecución que administra las
+    aplicaciones que corren sobre este. En él se brinda un conjunto extensivo de
+    bibliotecas para dar solución a las principales áreas del desarrollo de software.\\
+    El framework en sí consiste de dos grandes componentes: motor de ejecución CLR
+    (por sus siglas del inglés common language runtime) el cuál se encarga de la
+    ejecución de las aplicaciones; y la biblioteca de clases (nombre en inglés .NET
+    Framework Class Library)~\cite{netframework}
+
+    \vspace{2pt}
+    Características principales:
+    \begin{itemize}
+        \item Manejo de memoria automático.
+        \item Sistema común de tipado. O sea, los tipos de datos primitivos son definidos por el framework, lo cual facilita las operaciones entre distintos lenguajes que usan este ambiente de ejecución.
+        \item Una biblioteca bien vasta para operaciones generales de bajo nivel.
+        \item Operatividad entre lenguajes. O sea, se puede acceder a rutinas y bibliotecas (dinámicas y estáticas) escritas en otros lenguajes si fueron compiladas con compiladores para esos lenguajes que soporten el framework .NET.
+        \item Gran número de lenguajes disponibles: Visual Basic, C\#, Visual F\#, C++, entre otros.
+        \item Es posible crear compilados que funcionen en múltiples plataformas de la .NET.
+    \end{itemize}
+
+    \subthesischapter{Metodología de trabajo}
+    Existen diferentes modelos y metodologías que han sido utilizados en los últimos años como 
+    herramientas de apoyo para el desarrollo del software. La interrogante principal está en 
+    conocer cuál modelo utilizar en el proceso de desarrollo de software en un proyecto.~\cite{DELGADOOLIVERA2021}
+    
+    \vspace{2pt}
+    Para el desarrollo de nuestra aplicación se hará uso del modelo RAD que permite la construcción de software basada en
+    módulos, utilizando herramientas de software que permitan de forma ágil y efectiva realizar una
+    aplicación con altos estándares de calidad en un corto período de tiempo. Esto se debe a que un sistema completamente integrado e interdependiente entre cada una de sus
+    partes era muy difícil de adaptar a los distintos cambios de requisitos. Además,
+    el diseño modular del mismo brinda la posibilidad de migrar el sistema a otras
+    tecnología distintas o más modernas, con relativa facilidad.
+    
+    \vspace{2pt}
+    El sistema se desarrollará de manera iterativa, donde en cada iteración se
+    realizará un acercamiento a una versión más definitiva de un componente o
+    módulo en específico. De esta forma siempre habrá una sección del producto
+    parcialmente terminada que podía ser mostrada, para adaptarla a las
+    sugerencia y peticiones de los usuarios.
+\end{thesischapter}
