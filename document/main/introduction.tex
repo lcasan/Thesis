@@ -12,11 +12,28 @@
     asociadas y que éstas sean de mayor gravedad.
 
     \vspace{5pt}
-    La rehabilitación cognitiva como parte de la rehabilitación neuropsicológica, consiste en la 
-    aplicación de técnicas y procedimientos para mejorar las habilidades intelectuales y perceptuales 
-    de pacientes que presentan un daño cerebral. Es un proceso sistemático enfocado principalmente a 
-    que la persona retome de manera segura e independiente, las actividades cotidianas que desarrollaba 
-    antes de una lesión, a través de la adaptación a ambientes familiares, sociales y de trabajo~\cite{regalon12019juegos}.
+    Las personas afectadas suelen presentar dificultades para realizar actividades de la vida
+    diaria como caminar. Entre los problemas motores más frecuentes que se manifiestan en
+    estas enfermedades se encuentran: rigidez muscular, espasticidad, hemiparesia,
+    parálisis, dolor muscular crónico, lentitud de los movimientos y problemas de
+    coordinación y equilibrio. Estos síntomas traen consigo alteraciones de la marcha y
+    dificultades para la activación de los músculos y la movilidad de las articulaciones en los
+    miembros inferiores y superiores. Además, a medida que se agravan aparecen
+    complicaciones respiratorias y cardiovasculares ~\cite{barbosa2015application, miner2020therapeutic}, 
+    limitando aún más la calidad de vida. Debido a ello, las investigaciones recientes se han enfocado en 
+    terapias de rehabilitación que permitan no solo restaurar las capacidades motoras, sino también,
+    disminuir los factores de riesgo prevalentes en estos pacientes ~\cite{barbosa2015application}. 
+    Los ejercicios de pedaleo se encuentran entre las terapias encaminadas a brindar tales efectos. Diversos estudios en pacientes con trastornos neurológicos han demostrado su eficacia en la 
+    recuperación del equilibrio y una mejora funcional en los parámetros espaciotemporales de la marcha
+    ~\cite{quiles2020lessons, el2021effect}. También se ha evidenciado mantenimiento del rango de movimiento (RDM) de 
+    articulaciones como la rodilla y la cadera, aumento de la fuerza muscular e incremento del consumo máximo 
+    de oxígeno, lo que contribuye a mejorar la función cardiorespiratoria~\cite{el2021effect, ashadi2016pengaruh}. Las 
+    intervenciones con ejercicios de pedaleo no solo han demostrado beneficios para la función motora, sino también a nivel del sistema nervioso
+    central (SNC)~\cite{linder2019forced, alberts2011not}; pues estimulan procesos que inducen la neuroplasticidad como la angiogénesis, la neurogénesis 
+    y la sinaptogénesis ~\cite{linder2019forced, el2021effect}. Por estos motivos se han desarrollado terapias de neurorrehabilitación que aprovechan 
+    los mecanismos neuronales y de activación muscular que se manifiestan durante los movimientos cíclicos del pedaleo. 
+    En este sentido se han aplicado los sistemas de interacción Humano-Robot; los cuales, a partir de señales de 
+    electromiografía (EMG), decodifican las intenciones motoras o cognitivas en comandos de control para dispositivos robóticos.
     
     \vspace{5pt}
     En la bibliografía científica existen diversos programas informáticos que se han empleado en la 
@@ -38,24 +55,28 @@
     
     \vspace{5pt}
     Por lo antes expuesto, los juegos serios constituyen un campo aplicado en desarrollo que requiere ser incluido 
-    como parte de un sistema de rehabilitación que favorezca la motivación del paciente y minimice el tiempo total 
+    como parte de un sistema de rehabilitación por pedaleo que favorezca la motivación del paciente y minimice el tiempo total 
     del tratamiento. La viabilidad y los beneficios de su implementación, guía al problema de investigación: 
     Ineficiente infraestructura tecnológica con aplicación de juego serio, para proveer rehabilitación neuromuscular en el tratamiento de
     enfermedades cerebrovasculares de los centros médicos cubanos . 
 
     \vspace{5pt}
-    Para dar solución al problema se plantea como objetivo general el desarrollo de una
-    aplicación de juego serio para proveer rehabilitación neuromuscular a pacientes con
-    enfermedades cerebrovasculares.
+    Para dar solución al problema se plantea como objetivo general el desarrollo de una aplicación de juego serio integrada a un sistema de 
+    rehabilitación neuromuscular para pacientes con enfermedades cerebrevasculares.
     
     \vspace{5pt}
     Para el logro del objetivo general, se requiere el cumplimiento de las siguientes tareas:
     \begin{itemize}
         \item Diseño e implementación de un modelo cliente-servidor de red que permita la
-        recepción de las señales EMG capturadas por los electrodos del pedal motorizado
+        recepción de las señales capturadas por los sensores del pedal motorizado
         y la supervisión a un cliente remoto corriendo sobre plataforma Android.
         \item  Diseño y selección conjuntamente con expertos, de las rutinas de juegos que
         puedan desarrollar las capacidades físicas: fuerza, resistencia, velocidad, y que
         permitan la supervisión del desarrollo de la rehabilitación.
+        \item Diseñar un sistema de base de datos para gestionar la información relacionada con
+        el paciente, las rutinas diseñadas por el fisioterapeuta, y el proceso de
+        rehabilitación.
+        \item Desarrollo de un modelo de inteligencia artificial para la predición de los valores de MCV
     \end{itemize}
 \end{introduction}
+
