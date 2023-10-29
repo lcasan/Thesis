@@ -1,9 +1,9 @@
 \begin{thesischapter}{1} {Marco teórico}
     En este capítulo se explican algunos de los conceptos claves utilizados en este
-    trabajo. Además, se presenta un resumido estado del arte y las herramientas que
-    dan solución a algunos de los aspectos más importantes en el sistema y se exponen
+    trabajo. Además, se presenta una revisión del estado del arte y las herramientas que
+    dan solución a algunos de los aspectos más importantes en el sistema así como se exponen
     las principales características de estas que son de utilidad. Al final del capítulo se
-    hace un breve resumen de la metodología de trabajo para realizar el sistema.
+    hace un breve resumen de la metodología de trabajo para la implementación del sistema.
 
     %% Conceptos teóricos
     \subthesischapter{Aspectos conceptuales en la Rehabilitación Muscular}
@@ -20,8 +20,8 @@
     Los tipos y grados de discapacidad que siguen a un derrame dependen de qué área
     del cerebro esté dañada fig: \ref{fig: cerebralcortex}. Generalmente, el accidente cerebrovascular puede
     causar cinco tipos de discapacidades: parálisis o problemas para controlar el movimiento;
-    Trastornos sensoriales, incluyendo dolor; Problemas en el uso o comprensión del
-    lenguaje; Problemas con el pensamiento y la memoria; Y trastornos emocionales.~\cite{post-strok} 
+    trastornos sensoriales, incluyendo dolor; problemas en el uso o comprensión del
+    lenguaje; problemas con el pensamiento y la memoria, y trastornos emocionales.~\cite{post-strok} 
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.5]{images/brain.jpg}
@@ -33,7 +33,7 @@
     \begin{itemize}
         \item Parálisis o problemas para controlar el movimiento: \\
         La parálisis es una de las discapacidades más comunes causadas por un accidente
-        cerebrovascular. Se suele dar en el lado del cuerpo opuesto al lado del cerebro dañado y
+        cerebrovascular. Se suele dar en el lado del cuerpo opuesto al lado del hemisferio   dañado y
         puede afectar a la cara, un brazo, una pierna o a todo un lado del cuerpo. Esta parálisis
         unilateral se denomina hemiplejia (si la parálisis no es completa se denomina
         hemiparesia). Los pacientes con hemiparesia o hemiplejia pueden tener dificultades con
@@ -94,15 +94,61 @@
     ~\cite{hug2009electromyographic, kautz1998relationships}
 
     \vspace{10pt}
-    \subsubthesischapter{Tecnologías de la Rehabilitación}
-    El término $"$tecnología de rehabilitación$"$ remite a las herramientas que ayudan a las personas 
-    a recuperar sus funciones después de una lesión o una enfermedad. Las "tecnologías de asistencia" 
-    pueden ser tan simples como una lupa para mejorar la visión, o tan complejas como un sistema de 
-    comunicación digital. Algunas de estas tecnologías son
+    Según~\cite{Losmúscu21} los grupos musculares que intervienen en el pedaleo son:
+
+    \begin{itemize}
+        \item \textbf{Los cuádriceps} son un grupo de cuatro músculos situados en la parte frontal del muslo. 
+        Estos músculos incluyen el recto femoral(RF), el vasto lateral(VL), el vasto intermedio(VI) y el vasto medial(VM). Durante el pedaleo, los cuádriceps se contraen para extender la pierna en 
+        la rodilla durante la fase de empuje hacia abajo del pedal. Esta acción proporciona la potencia necesaria para superar la resistencia y avanzar con eficiencia.
+        
+        \item Situados en la parte posterior del muslo, \textbf{los isquiotibiales} son otro grupo muscular clave en el pedaleo. El bíceps femoral(BF), 
+        el semitendinoso(ST) y el semimembranoso(SM) son los músculos principales de esta zona. Durante la fase de levantamiento del pedal, los isquiotibiales se activan para flexionar la pierna en la rodilla y extender 
+        la cadera. Este movimiento se encarga de levantar el pedal y preparar la siguiente fase de empuje.
+        
+        \item \textbf{Los gemelos}(GM, GL) y \textbf{el sóleo}(SOL) se encuentran en la pantorrilla y también participan en el pedaleo. Son cruciales para la flexión plantar del pie durante la fase de 
+        empuje hacia abajo del pedal. Su acción ayuda a generar potencia y proporciona estabilidad en el tobillo durante el pedaleo.
+        
+        \item Localizados en la parte frontal de la espinilla, \textbf{los tibilales anteriores}(TA) intervienen en la flexión dorsal del pie durante la fase de levantamiento del pedal. Esta acción es 
+        esencial para mantener el equilibrio y preparar la pierna para el siguiente empuje.
+        
+        \item Aunque su papel es menos evidente, los \textbf{glúteos}(G) también son importantes en el pedaleo. Tanto el glúteo mayor como el glúteo medio contribuyen a la extensión de la cadera y ayudan
+         a potenciar el movimiento durante la fase de empuje del pedal.
+    \end{itemize}
+
 
     \vspace{10pt}
-    \textbf{Rutinas de Rehabilitación} \\ 
+    La figura~\ref{fig: musculegroups} muestra detalles gráficos de los grupos musculares mencionados.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.2]{images/musculegroups.png}
+        \caption{Grupos musculares usados en pedaleo}
+        Tomado de: ~\cite{Quémúsc72}
+        \label{fig: musculegroups}
+    \end{figure}
 
+    \vspace{10pt}
+    \subsubthesischapter{Tecnologías de la Rehabilitación}
+    Las denominadas tecnologías en rehabilitación se puede concebir como el conjunto de productos y conocimientos
+    desarrollados desde avances tanto en la ingeniería de la rehabilitación como en las profesiones y disciplinas 
+    que estudian el fenómeno de la discapacidad. En este orden de ideas, la tecnología en rehabilitación estudia 
+    no sólo lo relacionado con el desarrollo y la producción de instrumentos, equipos, sistemas o dispositivos, 
+    que contribuyan a procesos de rehabilitación, sino que se interesa, además, por el impacto de estos elementos en el desempeño y la capacidad funcional de las personas con discapacidad, en el acceso
+    de estas personas y sus familias a los adelantos tecnológicos y en el nivel de uso que se les da,
+    además de lo relacionado con la accesibilidad y diseño.\cite{matheus1990tecnologia}
+
+    \vspace{10pt}
+    Un término que regularmente se utiliza en este campo es el de tecnología de asistencia, que
+    no debe equipararse al de ingeniería de la rehabilitación ni al de tecnología de la rehabilitación, ortesis o 
+    prótesis, pues no son idénticos. En esta perspectiva Bronzino y Cols.~\cite{enderle2012introduction}  mencionan que:
+
+    \begin{itemize}
+        \item  La tecnología de asistencia es la utilización de cualquier parte de un equipo o sistema productivo modificado o comercializado, para incrementar o mejorar capacidades funcionales de un individuo. Esta definición ve
+        la tecnología de asistencia como una serie de aparatos, estrategias y/o servicios, que ayudan al individuo a realizar mejor una actividad; en consecuencia, incluye desde baja
+        tecnología, que es poco costosa, hasta alta tecnología, que es costosa y con productos de compleja fabricación. Como ejemplos de baja
+        tecnología se incluyen utensilios de doble agarre, cepillos para la boca, entre otros; y de
+        alta tecnología aparatos de comunicación computarizada, máquinas lectoras con inteligencia artificial y brazos artificiales
+    \end{itemize}
+    
     \vspace{10pt}
     \textbf{Modalidades de Rehabilitación} \\ 
     La terapia con dispositivos róboticos de pedaleo se clasifica, al igual que las terapias
@@ -200,67 +246,72 @@
     \vspace{10pt}
     \subsubthesischapter{Protocolos de Comunicación TCP/IP}
     TCP/IP es un conjunto de protocolos que especifican estándares de comunicaciones entre sistemas y detallan los convenios 
-    para el direccionamiento y la interconexión de redes. TCP/IP permite las comunicaciones entre varios sistemas (llamados 
+    para el direccionamiento y la interconexión de redes. El protocolo TCP/IP permite las comunicaciones entre varios sistemas (llamados 
     sistemas principales) conectados en una red. A su vez, cada red puede estar conectada a otra para comunicarse con los 
-    sistemas principales de dicha red. Aunque existen muchos tipos de tecnologías de red, muchas de las cuales utilizan el 
+    sistemas principales de dicha red. Aunque existen muchos tipos de tecnologías de red, algunas de las cuales utilizan el 
     transporte en modalidad continua y por conmutación de paquetes, TCP/IP ofrece una ventaja importante: la independencia 
     de hardware ~\cite{protocolo-tcp-ip}.
 
     \vspace{10pt}
     \subsubthesischapter{Base de Datos}
-    Una Base de Datos (BD) consiste en una colección organizada de datos. La creación de una
-    base de datos tiene ventajas en cuanto a la mejor disponibilidad y mayor eficiencia en la
-    entrada de los datos en el sistema, mayor valor informativo, mejor documentación de la
-    información, acceso más rápido y sencillo a los usuarios finales, mayores facilidades para
-    compartir los datos y flexibilidad para atender a demandas cambiantes [32]
+    Una base de datos es una recopilación organizada de información o datos estructurados, que normalmente se almacena de forma 
+    electrónica en un sistema informático. Normalmente, una base de datos está controlada por un sistema de gestión de bases de 
+    datos (SGBD). En conjunto, los datos y el DBMS, junto con las aplicaciones asociadas a ellos, reciben el nombre de sistema 
+    de bases de datos, abreviado normalmente a simplemente base de datos.~\cite{Quéesuna68}
 
     \vspace{10pt}
     \textbf{Sistemas de gestión de Bases de Datos}\\
-    Un Sistema de Gestión de Bases de Datos (SGBD) es el software que permite el control y la
-    utilización y/o la actualización de los datos almacenados en una (o varias) base(s) de dato(s).
-    Los datos son almacenados en tablas, las cuales están organizadas en registros (filas) y
-    campos (columnas). Los sistemas actuales se le denominan relacionales, pues utilizan tablas
-    de datos relacionadas por un campo en común [32]. Un Sistema de Bases de Datos (SBD)
-    representa la interrelación entre una base de datos y el SGBD que la administra, permitiendo
-    a los usuarios acceder y modificar estos datos o archivos. Uno de los propósitos principales
-    de un sistema de bases de datos es proporcionar a los usuarios una visión abstracta de los
-    datos. Es decir, el sistema esconde ciertos detalles de cómo se almacenan y mantienen los
-    datos [44].
+    Normalmente, una base de datos requiere un programa de software de bases de datos completo, conocido como sistema de gestión de 
+    bases de datos (SGBD). Un SGBD sirve como interfaz entre la base de datos y sus programas o usuarios finales, lo que permite a los 
+    usuarios recuperar, actualizar y gestionar cómo se organiza y se optimiza la información. Un SGBD también facilita la supervisión 
+    y el control de las bases de datos, lo que permite una variedad de operaciones administrativas como la supervisión del rendimiento, 
+    el ajuste, la copia de seguridad y la recuperación.~\cite{Quéesuna68}
+
+    \vspace{10pt}
     Entre los SGBD relacionales más modernos se encuentran [33]:
-    • MySQL: Es un sistema relacional de código abierto, multihilo y multiusuario. Código
-    abierto significa que todo el mundo puede acceder a1 código fuente, es decir, a1 código de
-    programación del SGBD, en este caso MySQL [34]. Presenta como ventajas principales: alta
-    velocidad al realizar las operaciones, bajo costo en requerimientos para la elaboración de
-    bases de dato, facilidad de configuración, instalación, usabilidad y administración. MySQL
-    puede ejecutarse en la inmensa mayoría de sistemas operativos y tiene compatibilidad en su
-    mayor parte con los lenguajes de programación ANSI C y C++.
-    • Microsoft SQL Server: Es un sistema basado en el lenguaje Transact-SQL, capaz de poner
-    a disposición de muchos usuarios grandes cantidades de datos de manera simultánea. Es un
-    sistema propietario de Microsoft. Sus principales características son: soporte de
-    transacciones, alta escalabilidad, estabilidad y seguridad. Incluye también un potente entorno
-    gráfico de administración. Su principal desventaja es el precio, aunque cuenta con una
-    versión EXPRESS que permite usarlo en entornos pequeños.
-    • Oracle: Es un sistema multiplataforma fabricado por Oracle Corporation. Tradicionalmente
-    ha sido el SGBD por excelencia, considerado como el más completo y robusto; destacado
-    por su soporte de transacciones, alta estabilidad y escalabilidad. También siempre ha sido
-    considerado de los más caros, por lo que no se ha estandarizado su uso como otras
-    aplicaciones. Al igual que SQL Server, Oracle cuenta con una versión EXPRESS gratis para
-    pequeñas instalaciones o usuarios personales.
-    • Microsoft Access: Es un sistema creado por Microsoft para uso personal de pequeñas
-    organizaciones. Una posibilidad adicional es la de crear ficheros con bases de datos que
-    pueden ser consultados por otros programas. Este SGBD permite crear tablas de datos
-    indexadas, modificar tablas de datos, creación de consultas, formularios, informes, vistas de
-    diseño y consultas referencias cruzadas.
-    • PostgreSQL: Es uno de los líderes de los sistemas de gestión de base de datos (SGBD)
-    relacionales de código abierto. Este gestor de BD es uno de los almacenes de datos más rápido
-    y potente del mercado debido a sus características avanzadas (extensibilidad, seguridad y
-    estabilidad). Dado a que no tiene restricción en su entrada a datos, usa multiprocesos en vez
-    de multihilos para garantizar la seguridad del sistema, un fallo en uno de los procesos no
-    afectará el resto y el sistema continuará funcionando. Ofrece, al igual que MySQL, un sistema
-    de contraseñas y privilegios seguros mediante verificación basada en el host, y el tráfico de
-    contraseñas está cifrado al conectarse a un servidor. Además, este gestor de BD soporta gran
-    cantidad y variedad de datos y tiene compatibilidad en su mayor parte con los lenguajes de
-    programación Java, C y C++, entre otros
+    \begin{itemize}
+        \item MySQL: Es un sistema relacional de código abierto, multihilo y multiusuario. Código
+        abierto significa que todo el mundo puede acceder a1 código fuente, es decir, a1 código de
+        programación del SGBD, en este caso MySQL ~\cite{ian2003biblia}. Presenta como ventajas principales: alta
+        velocidad al realizar las operaciones, bajo costo en requerimientos para la elaboración de
+        bases de dato, facilidad de configuración, instalación, usabilidad y administración. MySQL
+        puede ejecutarse en la inmensa mayoría de sistemas operativos y tiene compatibilidad en su
+        mayor parte con los lenguajes de programación ANSI C y C++.
+        \item Microsoft SQL Server: Es un sistema basado en el lenguaje Transact-SQL, capaz de poner
+        a disposición de muchos usuarios grandes cantidades de datos de manera simultánea. Es un
+        sistema propietario de Microsoft. Sus principales características son: soporte de
+        transacciones, alta escalabilidad, estabilidad y seguridad. Incluye también un potente entorno
+        gráfico de administración. Su principal desventaja es el precio, aunque cuenta con una
+        versión EXPRESS que permite usarlo en entornos pequeños.
+        \item Oracle: Es un sistema multiplataforma fabricado por Oracle Corporation. Tradicionalmente
+        ha sido el SGBD por excelencia, considerado como el más completo y robusto; destacado
+        por su soporte de transacciones, alta estabilidad y escalabilidad. También siempre ha sido
+        considerado de los más caros, por lo que no se ha estandarizado su uso como otras
+        aplicaciones. Al igual que SQL Server, Oracle cuenta con una versión EXPRESS gratis para
+        pequeñas instalaciones o usuarios personales.
+        \item Microsoft Access: Es un sistema creado por Microsoft para uso personal de pequeñas
+        organizaciones. Una posibilidad adicional es la de crear ficheros con bases de datos que
+        pueden ser consultados por otros programas. Este SGBD permite crear tablas de datos
+        indexadas, modificar tablas de datos, creación de consultas, formularios, informes, vistas de
+        diseño y consultas referencias cruzadas.
+        \item PostgreSQL: Es uno de los líderes de los sistemas de gestión de base de datos (SGBD)
+        relacionales de código abierto. Este gestor de BD es uno de los almacenes de datos más rápido
+        y potente del mercado debido a sus características avanzadas (extensibilidad, seguridad y
+        estabilidad). Dado a que no tiene restricción en su entrada a datos, usa multiprocesos en vez
+        de multihilos para garantizar la seguridad del sistema, un fallo en uno de los procesos no
+        afectará el resto y el sistema continuará funcionando. Ofrece, al igual que MySQL, un sistema
+        de contraseñas y privilegios seguros mediante verificación basada en el host, y el tráfico de
+        contraseñas está cifrado al conectarse a un servidor. Además, este gestor de BD soporta gran
+        cantidad y variedad de datos y tiene compatibilidad en su mayor parte con los lenguajes de
+        programación Java, C y C++, entre otros
+        \item SQLite: Es una biblioteca utilizada en multitud de aplicaciones actuales ya que es open 
+        source y las consultas son muy eficientes. Las principales características de SQLite son:
+        \begin{itemize}
+            \item El tamaño, al tratarse de una biblioteca, es mucho menor que cualquier SGBD
+            \item Reúne los cuatro criterios ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad) logrando gran estabilidad
+            \item Gran portabilidad y rendimiento
+        \end{itemize}
+    \end{itemize}
 
     \vspace{10pt}
     \subthesischapter{Juegos Serios}
@@ -287,11 +338,11 @@
         motor de juego Unity3D, compatible mediante el uso de la librería Kinect with MS-SDK, para poder registrar los movimientos del paciente durante 
         la terapia. El juego basará su fundamento clínico en diversos test de evaluación del balance, como son el test Fugl-Meyer o el Choice Stepping 
         Reaction Time, y tomará como mecánica de referencia la de uno de los clásicos de los videojuegos, el Tetris. Blocks Rehab, la adaptación clínica 
-        de este juego ochentero, consistirá en tres modalidades de juego (Bloques, Puzzle y E.T. Tris), cumpliendo cada uno de ellos una función específca. 
+        de este juego de los años 80, consistirá en tres modalidades de juego (Bloques, Puzzle y E.T. Tris), cumpliendo cada uno de ellos una función específca. 
         El paciente deberá desplazarse de manera frontal, lateral y mantener el equilibrio sobre una pierna para llevar a cabo los objetivos que el 
         videojuego les plantea, con el propósito de extraer métri- cas de salida que evalúen la actuación del usuario en términos de estabilidad. 
-        \item ~\cite{doi:10.1177/1545968314535985} y colaboradores (2015), compararon el efecto de realizar el entrenamiento con un
-        soporte de brazo, combinado con ejercicios mediante un juego digital y la rehabilitación
+        \item En la revisión realizada por ~\cite{doi:10.1177/1545968314535985}, se compararó el efecto de realizar el entrenamiento con un
+        soporte de brazo, combinado con ejercicios mediante un juego de realidad virtual y la rehabilitación
         convencional en pacientes con ictus.\\
         El dispositivo que utiliza el soporte para el brazo se llama ArmeoBoom. Está compuesto de
         un sistema de suspensión en cabestrillo elevado, que proporciona un soporte para la
@@ -373,21 +424,36 @@
     licencias y orientados a cumplir distintos tipos de propósitos. Se puede encontrar motores comerciales
     y gratuitos, con metodologías 2D o 3D, inclusive que brindan soluciones de juegos a variadas
     plataformas (Windows, Linux, android, etc.).\\ 
-    Afortunadamente existe una nueva tendencia por parte de algunas empresas que desarrollan motores de 
-    videojuegos, que los impulsa a colocar en el mercado versiones gratuitas (generalmente limitadas en 
-    algún aspecto) de sus herramientas para que las personas que deseen aprender, puedan hacerlo sin tener 
-    que comprar una versión full. Entre estas empresas podemos encontrar las conocidas Epic Games
-    y Unity Technologies, las cuales ofrecen versiones gratuitas y descargables de sus famosos motores de videojuegos.~\cite{arce2011desarrollo} 
+    % Afortunadamente existe una nueva tendencia por parte de algunas empresas que desarrollan motores de 
+    % videojuegos, que los impulsa a colocar en el mercado versiones gratuitas (generalmente limitadas en 
+    % algún aspecto) de sus herramientas para que las personas que deseen aprender, puedan hacerlo sin tener 
+    % que comprar una versión full. Entre estas empresas podemos encontrar las conocidas Epic Games
+    % y Unity Technologies, las cuales ofrecen versiones gratuitas y descargables de sus famosos motores de videojuegos.~\cite{arce2011desarrollo} 
     
-    \begin{center}
-        Diferencias generales ~\cite{chavez2021diferencias}\\
-        \includegraphics[height=5in]{images/unityvsunreal.png}
-    \end{center}
+    \vspace{10pt}
+    La tabla 1 muestra detalles comparativos de los motores gráficos más usados del mercado:
+    \begin{table}[ht]
+        \centering
+        \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|}
+            \hline
+            \textbf{Motor gráfico  \& Atributos} & \textbf{Unity} & \textbf{Unreal Engine} & \textbf{GameMaker Studio} & \textbf{Godot} & \textbf{CryEngine}\\\hline
+            Orientación                 & 2D y 3D                                                       &2D y 3D                                                          & 2D                            & 2D y 3D               & 3D \\\hline
+            Sistema Operativo           & Windows, Linux, MacOS                                           & Windows                                                         & Windows                       & Windows, Linux, MacOS               & Windows, Linux, MacOS\\\hline
+            Plataformas                 & iOS, Android, Window, PS4, MacOS,  Linux, Xbox One y 360, HTML5 & iOS, Android, Window, PS4, MacOS,  Linux, Xbox One y 360, HTML5   & Windows, MacOS, Linux, HTML5, Android, iOS, Amazon Fire TV, Android TV, Universal Windows Platform, PlayStation 4, Xbox One, Nintendo Switch    & Windows, MacOS, Linux    & Windows, Linux, Nintendo Switch, Xbox One, PlayStation 4, Xbox 360, PlayStation 3, Wii U\\\hline
+            Lenguaje de Programación    & C\#                                                           & C++                                                             & Lenguaje propio GML           & Lenguaje de scripting & Programación basada en nodos \\\hline
+            Licencia                    & Gratuita                                                      & De pago                                                         & Versión gratuita limitada     & Gratuita              &  Gratuita en la versión 5\\\hline
+            Documentación               & Muy amplia                                                    & Escasa                                                          & Amplia                        & limitada              & Amplia\\\hline
+            Curva de aprendizaje        & Sencilla                                                      & Complicada                                                      & Media                         & Media                 & Media \\\hline
+            
+        \end{tabularx}
+        \label{tab: graphics-engines}
+        \caption{ Tabla comparativa de los motores gráficos \\ Adaptado de~\cite{gonjar2019desarrollo}}
+    \end{table}
     
-    Según lo antes expuesto podemos concluir en que los dos motores de videojuegos son pieza indispensable a la hora del desarrollo
-    de videojuego tanto en 2d, 3d o RV, cada uno de los motores poseen características únicas que los diferencian entre sí.
     
-    \vspace{2pt}
+    \vspace{10pt}
+    % Según lo antes expuesto podemos concluir en que cada uno de los motores poseen características únicas que los diferencian entre sí a 
+    % la hora del desarrollo de videojuego tanto en 2d, 3d o RV.
     Para el proposito de la tesis considero Unity como unos de los motores mas populares a la hora del desarrollo
     de videojuegos, para las distintas plataformas, una gran ventaja que tiene unity a la hora de
     desarrollar un videojuego para Android, es su modo de configurar el entorno, porque solo se necesita descargar los módulos de 

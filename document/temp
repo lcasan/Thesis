@@ -1,0 +1,26 @@
+
+
+    % En esta sección, se detallará el proceso de diseño de la aplicación de juego serio para la plataforma Android. Se discutirán 
+    % los requisitos funcionales específicos y cómo se integran con el dispositivo de pedaleo para crear una experiencia 
+    % interactiva y motivadora para los pacientes. Además, se explorarán las consideraciones de usabilidad y accesibilidad 
+    % para garantizar que la aplicación sea intuitiva y fácil de usar para personas con diferentes niveles de habilidad y 
+    % capacidades.
+    
+    % \subsubthesischapter{Ingienería de software}
+
+    
+
+    \vspace{10pt}
+    
+    %--------------------------------------------------------- 
+    \vspace{30pt}
+    
+\vspace{10pt}
+\textbf{Implementación de la escena de juego} \\ 
+----- detalles técnicos ----------
+
+
+\vspace{10pt}
+En el proceso de rehabilitación, es necesario detectar el grado de fatiga durante el entrenamiento para formular un plan razonable y lograr una mayor eficacia ~\cite{wang2020novel}. 
+\subsubthesischapter{Implementación de las UI}
+\subthesischapter{Conclusiones del capítulo}

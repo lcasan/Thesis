@@ -8,6 +8,7 @@
 % Bibliography style
 %\RequirePackage[natbibapa]{apacite}
 \RequirePackage[spanish]{babel}
+\RequirePackage{tabularx}
 \bibliographystyle{plain}
 
 
@@ -21,10 +22,10 @@
 }
 \newcommand{\thesisgeometry}{
    \newgeometry{
-        top = 1in,
-        left = 1in,
-        right = 1in,
-        bottom = 1in
+        top = 0.5in,
+        left = 0.5in,
+        right = 0.5in,
+        bottom = 0.5in
     }
 }
 
@@ -106,16 +107,23 @@
    {}
 
 % Commands for thesis's chapters
-\newcommand{\subthesischapter}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
-\newcommand{\subsubthesischapter}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\subthesischapter}[1]{\subsection{#1} }%\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubthesischapter}[1]{\subsubsection{#1} }%\addcontentsline{toc}{subsubsection}{#1}}
 
 \newenvironment{thesischapter}[2]
    {
       \addcontentsline{toc}{section}{Capítulo #1 : #2}
       \section*{Capítulo #1: #2}
+      \setcounter{section}{#1}
+      \setcounter{subsection}{0}
    }
    {}
 
 % Back section
-% ..... 
-
+\newenvironment{annexes}
+   {
+      \addcontentsline{toc}{section}{Anexos}
+      \pagenumbering{Roman}
+      \section*{Anexos}
+   }
+   {}
