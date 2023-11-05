@@ -1,24 +1,53 @@
 \begin{thesischapter}{2} {Análisis, diseño e implementación del Juego Serio}
-    \subthesischapter{Arquitectura del sistema}
-    Antes de adentrarnos en los aspectos técnicos de la ingeniería de software, es esencial comprender el contexto en 
-    el que se desarrolla la aplicación. En este caso, se trata de un sistema de rehabilitación neuromuscular lógicamente 
-    separado por 2 componentes autónomos e independientes, que interactúan entre si: juego serio(cliente) y pedal 
-    motorizado(servidor), ver figura \ref{fig: system}. Los dispositivos de pedaleo ofrecen ventajas significativas en la 
-    rehabilitación de pacientes con trastornos neurológicos, como la mejora de las funciones motoras y la inducción de 
-    neuroplasticidad beneficiando asi que dichos componentes se encuentran organizados hacia la realización de un objetivo, el desarrollo 
-    de la capcidad física tanto para usuarios sanos como para enférmos. A continuación se precisan las 
-    características detalladas de cada uno.
+    En este capítulo se discuten los detalles de desarrollo de los aspectos citados en el capítulo
+    anterior. Este comienza con una descripción y caracterización general del sistema, donde se  abordan 
+    cada uno de los componentes requeridos para su completo funcionamiento. Posteriormente se detallan 
+    la ingienría de software requerida en la etapa de conceptualización de la aplicación, se explica de forma 
+    detallada los aspectos teóricos y de implementación de la base de datos, el funcionamiento del protocolo de comunicación 
+    y por último los escenarios de juegos requeridos en las rutinas de entrenamiento ligero y clínico, y las estadísticas generadas 
+    por estos.
 
-    \vspace{10pt}    
-    
+    \subthesischapter{Descripción y caracterización del sistema}
+    Antes de adentrarnos en los aspectos técnicos de la ingeniería de software, es esencial comprender el contexto en 
+    el que se desarrolla la aplicación. En nuestro caso, se trata de un sistema de rehabilitación neuromuscular lógicamente 
+    separado por 2 componentes autónomos que interactúan entre si: juego serio y pedal motorizado. 
+
+    \vspace{10pt} % Descripción del sistema 
+    En la figura \ref{fig: sa} se presenta el \textbf{sistema de adquisición de datos}\footnote{Hace refenrencia al pedal motorizado}, 
+    en esta se puede observar la ubicación de los sensores MyoWare  utilizado para la medición de la activación muscular a través del potencial eléctrico, 
+    conocida como electromiografía (EMG) y un un sensor óptico SHARP modelo GP1A51HRJ00F con salida  \textbf{OPIC}\footnote{Output Photocoupler 
+    Integrated Circuit} ubicado en la biela del pedal el cual es utilizado para la obtención de la velocidad angular. Adicionalmente el sistema 
+    utiliza un microcontrolador Arduino DUE encargado de coordinar y controlar las operaciones de adquisición de 
+    datos. Su función principal es gestionar la comunicación entre los sensores de adquisición de datos y el resto del sistema.
+
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.3]{images/system.jpg}
-        \caption{Diagrama del sistema}
-        \label{fig: system}
-    \end{figure}
+        \includegraphics[scale=0.2]{images/sa.png}
+        \caption{Sistema de adquisición de datos}
+        \label{fig: sa}
+    \end{figure}    
 
-    La aplicación de juego serio (cliente) es responsable de:
+    \vspace{10pt} % Funciones de los componentes 
+    El funcionamiento del videojuego se logra por medio de dos componentes del pedal:
+    \begin{itemize}
+        \item El primer componente (sensor óptico) controla la velocidad de movimiento en el videojuego, por
+        medio de la acción de pedaleo del paciente en rehabilitación. A medida
+        que se logra una velocidad definida, se envía la orden de movimiento al videojuego y 
+        este responde con el movimiento del avatar en la escena, el cual se encuentra en una pista 
+        cuyo objetivo será alcanzar los mejores resultados de tiempo, distancia o  \textbf{MCV}\footnote{Máxima contracción voluntaria}.
+        \item El segundo componente del sistema (sensores emg) tienen la función de capturar la señal EMG obtenida en la 
+        una rutina de entrenamiento y ser usados tanto en la dificultad de los niveles de entrenamiento de la rutina clínica como para la 
+        estadística de la misma.
+    \end{itemize}
+    
+    
+    Dichos componentes tanto internos como externos se encuentran orientados hacia 
+    la realización de un objetivo común, el desarrollo de la capcidad física tanto para usuarios 
+    sanos como enférmos. A continuación se precisa un resumen de las características funcionales 
+    detalladas de cada uno, ver figura \ref{fig: system} para más detalles:
+
+    \vspace{10pt}
+    La aplicación de juego serio es responsable de:
     \begin{itemize}
         \item Recibir y procesar las señales del arduino incluido en el pedal para ser utilizadas tanto en la 
               animación de la escena como en la estadística .
@@ -28,21 +57,29 @@
     \end{itemize}
 
     \vspace{10pt}
-    El pedal motorizado (servidor) es responsable de:
+    El pedal motorizado es responsable de:
     \begin{itemize}
         \item Capturar a partir de electrodos las señales EMG del cuerpo humano correspondientes al tren inferior.
         \item Capturar la velocidad angular en los pedales.
         \item Enviar en tiempo real los datos capturados a cualquier aplicación de juego serio sincronizada.
     \end{itemize}
     
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.38]{images/system.jpg}
+        \caption{Diagrama del sistema}
+        \label{fig: system}
+    \end{figure} 
+    
+    %--------------------------------------------
     \subthesischapter{Requisitos del Juego Serio}
     Un requisito es una restricción que el sistema debe cumplir. Tiene como propósito expresar un comportamiento o propiedad que 
     el sistema debe poseer~\cite{jacobson2000uml}. El objetivo esencial de un requisito es el de definir un comportamiento específico 
     de manera clara y comprensible tanto para los intermediarios como para el equipo de desarrollo. Pueden clasificarse en funcionales 
     y no funcionales.
 
-    \subsubthesischapter{Requisitos funcionales }
-    La integración de tecnologías de pedalo en el campo de la rehabilitación neuromuscular ha abierto nuevas oportunidades 
+    \subsubthesischapter{Requisitos funcionales}
+    La integración de tecnologías de pedaleo en el campo de la rehabilitación neuromuscular ha abierto nuevas oportunidades 
     para mejorar la calidad y eficacia de las terapias. En particular, los juegos serios han demostrado ser una herramienta 
     efectiva para motivar a los pacientes durante el proceso de rehabilitación. Debido a dicha necesidad fue necesario   
     el desarrollo de una aplicación android que cumpliera con los siguientes requerimientos funcionales:
@@ -50,40 +87,35 @@
     \begin{enumerate}
         \item Iniciar sesión en el sistema
         \item Registrarse en el sistema
-        \item Eliminar cuenta de usuario en el sistema
-        \item Editar los datos del personales
-        \item Cerrar sesión
+        \item Eliminar cuenta de usuario
+        \item Editar los datos del usuario
+        \item Cerrar sesión en el sistema
         \item Enviar datos al pedal
         \item Recibir datos del pedal
         \item Establecer comunicación con el pedal
         \item Finalizar comunicación con el pedal
-        \item Detener o reanudar el juego
+        \item Iniciar rutina
+        \item Pausar o reanudar el rutina
+        \item Finalizar rutina
+        \item Mostrar estadísticas rutina
+        \item Configurar rutina
+        \item Iniciar calibración
         \item Guardar registro de comportamieto en archivo logs
-        \item Iniciar juego
     \end{enumerate}
     \subsubthesischapter{Requisitos no funcionales}
-    Los requisitos no funcionales son propiedades o cualidades que el producto debe tener. Enuncian los requisitos del sistema que no pueden ser expresados como funcionalidades en respuesta a alguna acción de un usuario. Algunas de las categorías más comunes para clasificar un requisito no funcional son las siguientes: usabilidad, desempeño o rendimiento, robustez, fiabilidad, seguridad, hardware y despliegue.
-    
-    \vspace{10pt}
+    Los requisitos no funcionales son propiedades o cualidades que el producto debe tener. Enuncian los requisitos del sistema que no pueden ser expresados como funcionalidades en respuesta a alguna acción de un usuario. 
     En nuestro caso se identificaron los siguientes requisitos no funcionales:
-    
-    \vspace{10pt}
-    \underline{Requisitos de usabilidad}
+    %Algunas de las categorías más comunes para clasificar un requisito no funcional son las siguientes: usabilidad, desempeño o rendimiento, robustez, fiabilidad, seguridad, hardware y despliegue.
+    %\vspace{10pt}
+        
     \begin{itemize}
-        \item La interfaz de trabajo del usuario con la herramienta deberá ser simple, interactiva e intuitiva y deberá notificar los diferentes errores que se produzcan durante su ejecución.
+        \item \underline{Requisitos de usabilidad}: La interfaz de trabajo del usuario con la herramienta deberá ser simple, interactiva e intuitiva y deberá notificar los diferentes errores que se produzcan durante su ejecución.
+        \item \underline{Requisitos de escalabilidad}: La aplicación debería ser capaz de escalar para manejar un aumento en el número de usuarios o la cantidad de datos sin perder rendimiento.     
+        \item \underline{Interoperabilidad}: Si la aplicación interactúa con otros sistemas, debe ser capaz de hacerlo de manera eficiente y sin problemas 
     \end{itemize}
 
-    \underline{Requisitos de escalabilidad}
-    \begin{itemize}
-        \item La aplicación debería ser capaz de escalar para manejar un aumento en el número de usuarios o la cantidad de datos sin perder rendimiento.
-    \end{itemize}
-
-    \underline{Interoperabilidad }
-    \begin{itemize}
-        \item Si la aplicación interactúa con otros sistemas, debe ser capaz de hacerlo de manera eficiente y sin problemas 
-    \end{itemize}
-
-    \subthesischapter{Definición de los casos de usos}
+    \newpage
+    \subthesischapter{Definición de los casos de uso}
     \subsubthesischapter{Identificación de los actores}
     Los actores no son parte del sistema, pero sí pueden intercambiar información con él, ellos representan un rol que juegan una o varias personas, un equipo o un sistema automatizado. En la aplicación
     de juego serio se identificaron los siguientes actores:
@@ -95,23 +127,21 @@
             \textbf{Actores} & \textbf{Descripción} \\\hline
             Usuario & Individuo que interactúa con el sistema para hacer uso de una rutina de entrenamiento
             como medio de rehabilitación, diversión o entrenamiento físico \\\hline
-            Sistema & Es la misma aplicación que en determinadas ocasiones ejecuta funcionalidades automáticamente producto de la interacción con el pedal. \\\hline
+            Sistema & Es la misma aplicación que en determinadas ocasiones ejecuta funcionalidades automáticamente producto de la interacción con el pedal motorizado. \\\hline
         \end{tabularx}
         \label{tab: actores}
         \caption{Descripción de actores}
     \end{table}
 
-
-    \vspace{100pt}
     \subsubthesischapter{Identificación de los casos de usos}    
-    El actor del sistema, o sea, quien interactúa con la aplicación, en este trabajo, es el usuario del sistema, encargado 
-    de utilizar todas las funciones del mismo. Cada forma en que los actores usan el sistema se representa con un caso de 
+    Cada forma en que los actores usan el sistema se representa con un caso de 
     uso, como fragmentos de funcionalidad que el sistema ofrece para aportar solución a la necesidad de esta aplicación. 
-    Los casos de uso que se definen para el sistema propuesto están reflejados en la cuadro: 2 con su respectivo diagrama figura: \ref{fig: use-cases}:
-    
-    \begin{table}[ht]
+    Los casos de uso que se definen para el sistema propuesto están reflejados en la cuadro: 3 con su respectivo diagrama
+    en la figura: \ref{fig: use-cases-user}, \ref{fig: use-cases-system}:
+
+    \begin{table}[h]
         \centering
-        \begin{tabularx}{0.85\textwidth}{|c|X|c|}
+        \begin{tabularx}{\textwidth}{|c|X|c|}
             \hline
             \textbf{Casos de Uso} & \textbf{Descripción} & \textbf{Requisitos}\\\hline
             Iniciar sesión & Permite al usuario acceder al sistema & RF1\\\hline
@@ -123,251 +153,675 @@
             Recibir datos del pedal & Permite a la aplicación recibir los datos provenientes del pedal & RF7\\\hline
             Establecer comunicación & Permite establecer comunicación entre el dispositivo Android y el Pedal Motorizado & RF8\\\hline
             Finalizar Comunicación & Permite finalizar comunicación entre el dispositivo Android y el Pedal Motorizado & RF9\\\hline
-            Pausar/Reanudar juego & Permite pausar la etapa actual del juego & RF10\\\hline
-            Guardar logs & Permite almacenar los hechos ocurridos en el sistema en ficheros de logs & RF11\\\hline
-            Iniciar juego & Permite dar inicio a la rutina de entrenamiento & RF12\\\hline
+            Iniciar rutina & Permite dar inicio a la rutina de entrenamiento & RF10\\\hline
+            Pausar/Reanudar rutina & Permite pausar la etapa actual de la rutina & RF11\\\hline
+            Finalizar rutina & Permite dar fin a la rutina de entrenamiento & RF12\\\hline
+            Mostrar estadística & Permite mostrar estadísticas de las rutinas de entrenamiento  al usuario& RF13\\\hline
+            Configurar rutina & Permite elegir la modalidad e insertar los parámetros de la rutina  & RF14\\\hline
+            Iniciar calibración & Permite iniciar la calibración para la modalidad clínica  & RF15\\\hline
+            Guardar logs & Permite almacenar los hechos ocurridos en el sistema en ficheros de logs & RF16\\\hline
             %Iniciar juego rutina libre & Permite dar inicio a la rutina de entrenamiento libre \\\hline
             %Iniciar juego rutina resistido & Permite dar inicio a la rutina de entrenamiento resistido \\\hline
         \end{tabularx}
         \label{tab: rf}
-        \caption{Requisitos funcionales del sistema}
+        \caption{Casos de uso del sistema}
     \end{table}
     
-    \begin{figure}[ht]
+    \vspace*{50pt}
+    \begin{figure}[h]
         \centering
-        \includegraphics[scale=0.4]{images/casosdeuso.png}
-        \caption{Diagrama de Casos de Uso}
-        \label{fig: use-cases}
+        \includegraphics[scale=0.44]{images/diagram-usecase-user.png}
+        \caption{Diagrama de Casos de Uso, actor usuario}
+        \label{fig: use-cases-user}
     \end{figure}
 
+    \vspace*{50pt}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[scale=0.44]{images/diagram-usecase-system.png}
+        \caption{Diagrama de Casos de Uso, actor sistema}
+        \label{fig: use-cases-system}
+    \end{figure}
+
+    \vspace*{100pt}
     \subthesischapter{Realización de los casos de uso}
-    La realización de los casos de uso en el análisis es una colaboración que describe cómo se lleva a cabo y ejecuta un caso de uso determinado en término de las clases del análisis y de sus objetos en interacción, por lo tanto, se centra en los requisitos funcionales. A 
-    continuación se describirán 3 de los Casos de Usos de mayor relevancia.
-    
+    La realización de los casos de uso en el análisis es una colaboración que describe cómo se lleva a cabo y ejecuta un caso de uso 
+    determinado en término de las clases del análisis y de sus objetos en interacción, por lo tanto, se centra en los requisitos funcionales. 
+    A continuación se describe el caso de uso de mayor relevancia.
     
     \begin{center}
         \begin{table}
-            \begin{tabularx}{0.95\textwidth}{|X|X|}
+            \begin{tabularx}{\textwidth}{|X|X|}
                 \hline
-                \textbf{Caso de uso:} & Establecer comunicación con el pedal \\\hline
-                \textbf{Actores:} &  Sistema \\\hline
+                \textbf{Caso de uso:} & Entrenamiento \\\hline
+                \textbf{Actores:}     & Usuario \\\hline
+                
                 \multicolumn{2}{|X|}{        
                 \begin{minipage}[t]{0.925\columnwidth}
                     \textbf{Descripción:} \\
-                    El caso de uso se inicia cuando se necesita registrar una nueva venta de producto, el dependiente introduce nombre, identificador, fecha, cantidad, importe, si es o no de donación. Se comprueba la disponibilidad de la oferta. Si no hay suficiente cantidad finaliza el caso de uso. En caso contrario, el dependiente registra datos del producto, si el producto es de donación registra los datos de la entidad que asumirá el pago (ver <<curso alterno  Registro de entidad>>)y termina caso de uso.
+                    Permite iniciar una rutina de entrenamiento seleccionando entre las modalidades disponibles en el sistema
                 \end{minipage}} \\\hline
                 
-                \textbf{Requisitos funcionales asociados:} & RF8, RF7 \\\hline
-                \textbf{Precondiciones:} & El módulo de comunicación del dispositivo móvil debe estar activado y conectado a la red wifi del pedal. \\\hline
-                \textbf{Poscondiciones:} &  \\\hline
+                \textbf{Requisitos funcionales asociados:} &  RF10, RF14\\\hline
+                \textbf{Precondiciones:} & \begin{itemize}
+                                                \item Haber iniciado sesión en el sistema
+                                                \item El módulo de comunicación del dispositivo móvil debe estar activado y conectado a la red wifi del pedal
+                                                \end{itemize}\\\hline
+                \textbf{Poscondiciones:} & Los resultados de la nueva rutina quedarán registrados en el sistema \\\hline
                 
-                1. El especialista abre la aplicación & 2. El sistema establece la conexión con el Sistema Terapéutico de Ejercicios. \\\\ &3. Termina el CU. \\\hline
+                % SECTION 1
+                \multicolumn{2}{|X|}{        
+                \begin{minipage}[t]{0.925\columnwidth}
+                    \begin{center}
+                        \textbf{Sección principal}
+                    \end{center}
+                \end{minipage}} \\\hline
+                
+                Acción del actor & Acción del sistema \\\hline
+                1. El usuario selecciona la opción de entrenamiento en la vista principal, fig \ref{display: 1}. & 2. El sistema muestra la interfaz para la selección de la modalidad. \\\hline
+                3. El especialista selecciona la opción que desea:
+                \begin{itemize}
+                    \item Caso <<Modalidad ligero>>: ir al curso alterno <<Modalidad ligero>>
+                    \item Caso <<Modalidad clínico>>: ir al curso alterno <<Modalidad clínico>>
+                \end{itemize} &  \\\hline
+                
+                % SECTION 2
+                \multicolumn{2}{|X|}{        
+                \begin{minipage}[t]{0.925\columnwidth}
+                    \begin{center}
+                        \textbf{Sección de cursos alternos}
+                    \end{center}
+                \end{minipage}} \\\hline
+                \multicolumn{2}{|X|}{        
+                \begin{minipage}[t]{0.925\columnwidth}
+                        \textbf{Curso alterno: Modalidad ligero}
+                \end{minipage}} \\\hline
+                
+                Acción del actor & Acción del sistema \\\hline
+             
+                & 
+                1. El sistema construye la interfaz con los parámetros generales de la modalidad seleccionada, fig \ref{}. \\\hline
+                2. El usuario inserta los valores de distancia y tiempo según la dificultad del entrenamiento que desee y presiona en el botón comenzar fig \ref{}. 
+                & 
+                3. El sistema muestra la escena de juego correspondiente a la modalidad elegida fig\ref{}. \\ &4. Termina el CU. \\\hline
+                
+                \multicolumn{2}{|X|}{        
+                \begin{minipage}[t]{0.925\columnwidth}
+                        \textbf{Curso alterno: Modalidad clínico}
+                \end{minipage}} \\\hline
+                
+                Acción del actor & Acción del sistema \\\hline
+                 
+                & 
+                1. El sistema construye la interfaz correspondiente a la sección de calibración, ver figura \ref{} \\\hline
+                \begin{enumerate}
+                    \item[2.] El usuario presiona en los botones iniciar medición, calcular línea base y calcular MCV siguiendo el protocol médico de calibración
+                    \item[3.] El usuario presiona en el botón de modalidad clínico
+                \end{enumerate}
+                &
+                5. El sistema construye la interfaz con los parámetros generales de la modalidad seleccionada, fig \ref{}. \\\hline
+                6. El usuario inserta los valores de distancia, tiempo y porciento de MCV según la dificultad del entrenamiento que desee y la calibración obtenida y luego presiona en el botón comenzar fig \ref{}. 
+                & 
+                7. El sistema muestra la escena de juego correspondiente a la modalidad elegida fig\ref{}. \\ &4. Termina el CU. \\\hline
+                
+
+                %% ------------------------
+                % \multicolumn{2}{|X|}{        
+                % \begin{minipage}[t]{0.925\columnwidth}
+                %     \begin{center}
+                %         \textbf{Prototipo de UI}
+                %     \end{center}                    
+                % \end{minipage}} \\\hline
+                
+                % \multicolumn{2}{|X|}{        
+                % \begin{minipage}[t]{0.925\columnwidth}
+                %     \vspace{5pt}
+                %     \begin{minipage}[t]{0.5\columnwidth}
+                %         \centering
+                %         \includegraphics[scale=0.2]{images/ui/2.jpg}
+                %         \caption{Pantalla principal}
+                %         \label{display: 1}
+                %     \end{minipage}
+                % \end{minipage}} \\\hline
+                
+
+
             \end{tabularx}
 
             \caption{Descripción del CU: Establecer comunicación con el pedal}
         \end{table}
     \end{center}
     
-    
-    
-    \subsubthesischapter{Diagrama de clases}
-
-
-
     % DATABASE --------------------------------------
+    \newpage
     \subthesischapter{Diseño de la base de datos}
-    Las bases de datos son, en esencia, estructuras de datos que funcionan según una serie de reglas que nosotros mismos 
-    definimos. Nos liberan del ajetreo de la microgestión, pero nos dan la libertad de moldear los datos según nuestras 
-    necesidades. Hay dos tipos famosos de bases de datos, uno se llama Lenguaje de Consulta Estructurado o SQL. Que coloca 
+    Hay dos tipos famosos de bases de datos, uno se llama Lenguaje de Consulta Estructurado o SQL. Que coloca 
     los datos en forma de tablas. El otro se llama No-SQL, porque no tiene tablas ni estructura, sino que almacena los 
     datos en forma de objetos. Intuitivamente, No-SQL consume más recursos que SQL, por lo tanto, para nuestra aplicaciones 
     móviles preferimos este último.
 
     \vspace{10pt}
-    SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún  
-    Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, hemos ideado una manera de utilizar las 
-    ventajas de SQLite para nuestra aplicación. 
-    
-    La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para 
-    crear implementaciones reales. Fue creada una clase de alto nivel DataBaseModel que se puede extender a otras clases, con el 
-    fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones basicas CURD: Crear, 
-    Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.4]{images/diagram-db.png}
-        \caption{Diagrama de clases Base de Datos}
-        \label{fig: diagram-db}
-    \end{figure}
-
-    \vspace{10pt}
-    \textbf{Requerimientos para la estructura de datos}\\
+    \subthesischapter{Modelo lógico}
     La descripción que surge de esta fase de diseño sirve como base para especificar la estructura conceptual de la base de datos. 
-    La siguiente lista describe los principales requisitos para la entrada de datos en el sistema:
+    La siguiente lista describe los principales requisitos para el registro de datos en el sistema:
     \begin{itemize}
-        \item Los usuarios se identifican mediante sus valores ID\_USUARIO. Del paciente se guarda sus datos de identificación, 
-        referidos en los requerimientos de registro del paciente (NOMBRE COMPLETO, GMAIL, CONTRASEÑA).
-        \item Cada usuario puede configurar y ejecutar varias rutinas de entrenamiento. Las rutinas consisten de su identificador 
-        único el tipo de ejercicio seleccionado y los parámetros configurados.    
-    \end{itemize}
+        \item Los usuarios se identifican mediante un identificador. Del usuario se guarda sus datos de identificación, 
+        referidos en los requerimientos de registro: nombre completo, correo y contraseña.
+        \item Cada usuario puede configurar varias rutinas de entrenamiento. Las rutinas consisten de su identificador 
+        único el tipo de ejercicio seleccionado y los parámetros configurados.   
+        \item Luego de terminada una rutina se almacena en el sistema los resultados obtenidos y la fecha de ejecución. 
+    \end{itemize}   
     
     \vspace{10pt}
     \textbf{Designación de los conjuntos de entidades y de relaciones}\\
-    La especificación de los requisitos de datos sirve como punto de partida para la construcción
-    del Modelo Entidad-Relación. Desde la especificación listada anteriormente se comienzan a
+    Desde la especificación listada anteriormente se comienzan a
     identificar los conjuntos de entidades y relaciones, así como sus atributos:
     \begin{itemize}
-        \item El conjunto de entidades usuario, con los atributos ID\_USUARIO, NOMBRE, GMAIL, CONTRASEÑA.
-        \item El conjunto de entidades rutina con los atributos ID\_RUTINA, TIPO, PARÁMETROS.
-        \item El conjunto de relaciones mucho a muchos de usuario a rutinas denominado tiene, es decir un usuario puede tener varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios.
+        \item El conjunto entidad usuario, con los atributos id\_usuario, nombre, correo, contraseña.
+        \item El conjunto entidad rutina con los atributos id\_rutina, modalidad, distancia, tiempo, \textbf{mcv1, mcv2, mcv3, mcv4}\footnote{mcvi: Valor porcentual definido de MCV en el canal i luego de la etapa de calibración}.
+        \item El conjunto relación mucho a mucho de usuario a rutinas denominado ejecuta, es decir un usuario puede ejecutar 
+        varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios. Dicha relación cuenta con los atributos id\_usuario, id\_rutina, resultados y fecha\_de\_ejecución. 
     \end{itemize}
     
     \vspace{10pt}
     El Diagrama de Entidad-Relación (E-R) que resulta de tales especificaciones para la descripción de los datos del sistema se presenta en la figura \ref{fig: diagram-er}.
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.4]{images/diagram-er.png}
+        \includegraphics[scale=0.5]{images/diagram-er.png}
         \caption{Diagrama Entidad Relación}
         \label{fig: diagram-er}
     \end{figure}
 
-    %COMUNICACION --------------------------------------------------------------
-    \subsubthesischapter{Comunicación con el pedal motorizado}
-    El hardware externo (pedal motorizado) posee un microcontrolador Arduino [...] programado para efectuar [....]. 
+    \subthesischapter{Modelo físico}
+    El modelo físico de la base de datos consta de tres tablas principales: USER, RUTINE y DO en las que se han definido las siguientes 
+    restricciones para mantener la integridad de los datos:
+
+    \vspace{10pt}
+    \begin{itemize}
+        \item En la tabla USER, se ha establecido un campo ID como clave primaria, que se genera automáticamente mediante autoincremento 
+        cada vez que se inserta una nueva fila. Los campos FULLNAME, EMAIL y PASSWORD almacenan la información del usuario.
+    
+        \item La tabla RUTINE contiene información sobre las rutinas de ejercicios. Se ha definido un campo ID como clave primaria con 
+        autoincremento. Los campos MODALITY, TIME, DISTANCE, MCV0, MCV1, MCV2 y MCV3 almacenan los detalles de la rutina.
+    
+        \item En la tabla DO, se ha establecido un campo ID como clave primaria con autoincremento. Los campos ID\_MODALITY y ID\_USER actúan 
+        como claves foráneas, haciendo referencia a las tablas RUTINE y USER respectivamente. El campo RESULT almacena los resultados obtenidos, 
+        y el campo DATE registra la fecha de la realización de la rutina.
+        
+    \end{itemize}
+
+    El esquema de las tablas de la base de datos, junto con las dependencias de clave primaria y las foráneas, se puede visualizar en la siguiente 
+    porción de código:
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.5]{images/database-code.png}
+        \caption{Sección de código, constructor de la clase CibiofibDb}
+        \label{fig: database-code}
+    \end{figure}
+    
+    \subthesischapter{Manipulación de los datos}
+    \vspace{10pt}
+    SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún  
+    Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, hemos ideado una manera de utilizar las 
+    ventajas de SQLite para nuestra aplicación. 
+    
+    \vspace{10pt}
+    La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para 
+    crear implementaciones reales. Fue creada una clase de alto nivel DataBaseModel que se puede extender a otras clases, con el 
+    fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones basicas CURD: Crear, 
+    Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.5]{images/diagram-db.png}
+        \caption{Diagrama de clases}
+        \label{fig: diagram-db}
+    \end{figure}
+
+    Para gestionar la información almacenada en la base de datos del sistema, se ha implementado un conjunto de funciones en C\# utilizando la biblioteca 
+    System.Data.SQLite. Estas funciones permiten realizar las operaciones CURD sobre las tablas USER, RUTINE y DO.
     
     
-    La comunicación entre la tarjeta y la aplicación se realiza siguiendo un protocolo de comunicación establecido que 
-    consta de la siguiente sintaxis: \#[COMANDO][PARÁMETROS].
+    \subsubthesischapter{Conexión con la base de datos}
+    Para establecer la conexión con la base de datos, se utiliza la función getDbCommand() que devuelve un objeto de tipo IDbCommand. Este objeto se utiliza para ejecutar las instrucciones SQL en 
+    la base de datos. Se asegura que la conexión esté establecida correctamente antes de realizar cualquier operación de manipulación de datos.
+
+    \subsubthesischapter{Inserción en la base de datos}
+    Para insertar nuevos registros en las tablas USER, RUTINE o DO, se han implementado las funciones addData(UserEntity user), addData(RutineEntity rutine) y addData(DoEntity \_do) respectivamente. 
+    Estas funciones generan y ejecutan instrucciones SQL del tipo INSERT INTO para agregar nuevos registros a las tablas. Los datos son obtenidos de objetos de las clases UserEntity, RutineEntity y DoEntity
+    definidas en Models.cs.
+
+    \subsubthesischapter{Obtención de datos}
+    Para obtener datos de la base de datos, se han implementado las funciones getDataByAtributeName<T>(string atribute, string name) y getAllData<T>(string table\_name). 
+    La primera función permite obtener datos específicos de una tabla según un atributo y un valor dado. La segunda función recupera todos los registros de una tabla específica. 
+    Ambas funciones devuelven los datos en forma de listas de objetos del tipo especificado por el tipo genérico T.
+
+    \subsubthesischapter{Eliminación de registros}
+    Para eliminar los datos de la base de datos, se han implementado las funciones deleteDataByAtributeName(string atribute, string name) y deleteAllData(string table\_name). 
+    La primera función permite eliminar datos específicos de una tabla según un atributo y un valor dado. La segunda función elimina todos los registros de una tabla específica. 
+
+    \subsubthesischapter{Edicion de atributos en la base de datos}
+    Para la edición de los datos en la base de datos, se implementó la función changeValueByAtributeName<T>(string atribute, string name, T value), que 
+    permite editar los datos de un atributo a partir de un valor genérico dado.
+
+    %------ COMUNICACION SECTION ------
+    \subthesischapter{Comunicación con el pedal motorizado}
+    Para la comunicación entre los componentes principales de nuestro sistema, juego serio y pedal motorizado,
+    fue necesaria la implementación de un protocolo de comunicación basado en sockets TCP/IP
+    que garantize una conexión confiable y efectiva. Este protocolo proporciona una interfaz que utiliza un conjunto 
+    de mensajes predefinidos, ver tablas 5, 6, 7, 8. El formato de los mensajes sigue una estructura  
+    que consta de un encabezado y un cuerpo organizados de la siguiente manera: \#[COMANDO][PARÁMETROS]. El 
+    encabezado (COMANDO) indica el tipo de mensaje y el tamaño del cuerpo, lo que facilita la interpretación de los datos recibidos.
+
+    \vspace{10pt} 
+    Para gestionar la comunicación con el pedal motorizado, se desarrolló un script en C\# llamado "Stream.cs". Este script 
+    utiliza las bibliotecas de punto Net para establecer y administrar la conexión con el pedal. 
+    La comunicación se realiza de manera asíncrona, aprovechando la programación basada en hilos (threads) para evitar bloqueos 
+    en la aplicación Unity3D mientras se establece la comunicación con el dispositivo físico
     
+    % ----- SEND SECTION -----
+    \vspace{20pt}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ |c|p{14cm}|}
+            \hline
+            \multicolumn{2}{|c|}{Entrenamiento: Mensajes enviados} \\
+            \hline
+            Comandos        &   Descripción \\\hline
+            % ----- COMMAND IG -----
+            \textbf{ig}     &   \begin{minipage}{14cm}
+                                    \vspace{2pt}
 
-    % \vspace{10pt}
-    % \textbf{Comandos enviados por la aplicación al pedal}\\
+                                    Envía la orden de iniciar mediciones del juego y sigue el esquema \#ig[modalidad][canal1],[canal2],[canal3],[canal4]
+                                    
+                                    \vspace{2pt}   
+                                \end{minipage}\\\hline 
+            % ----- COMMAND SG -----
+            \textbf{sg}     &   Envía la orden de parar mediciones del juego \\\hline   
+                                   
+        \end{tabular}
+        \label{table:send-msg-in-game}
+        \caption{Mensajes enviados en el entrenamiento}
+    \end{table}
     
+    \vspace{80pt}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ |c|p{14cm}|}
+            \hline
+            \multicolumn{2}{|c|}{Entrenamiento: Mensajes recividos} \\
+            \hline
+            Comandos        &   Descripción \\\hline
+            % ----- COMMAND AR -----
+            \textbf{ar}     &   \begin{minipage}{14cm}
+                                    \vspace{2pt}    
+                                    Recive el valor de velocidad angular y de las mediciones de los canales activos, posee el formato 
+                                    \#ar[velocidad angular][canal1][canal2][canal3][canal4]. 
+                                    \vspace{2pt}    
+                                \end{minipage}\\\hline 
+        \end{tabular}
+        \label{table:recived-msg-in-game}
+        \caption{Mensajes enviados en el entrenamiento}
+    \end{table}
+
+    \newpage
+    \vspace*{60pt}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ |c|p{14cm}|}
+            \hline
+            \multicolumn{2}{|c|}{Calibración: Mensajes enviados} \\
+            \hline
+            Comandos        &   Descripción \\\hline
+            % ----- COMMAND CH -----
+            \textbf{ch}     &   \begin{minipage}{14cm}
+                                    \vspace{1pt}
+                                    Envía la orden de activar o desactivar los canales de mediciones y sigue 
+                                    el siguiente esquema: \#ch[canal][acción], donde:
+                                    \begin{itemize}
+                                        \item \textbf{Canal}: Establece el canal sobre el que se va a realizar la acción.
+                                        \item \textbf{Acción}: Establece si se va a activar o desactivar dicho canal. 
+                                    \end{itemize}
+                                    \vspace{1pt}
+                                \end{minipage}\\\hline
+            % ----- COMMAND IM -----
+            \textbf{im}     &   \begin{minipage}{14cm}
+                                    \vspace{1pt}
+                                    Envía la orden de iniciar mediciones siguiendo el esquema 
+                                    \#im[canal1][canal2][canal3][canal4][algoritmo1][algoritmo2][algoritmo3][algoritmo4], 
+                                    donde cada canal es 1 o 0 y el algoritmo indica el algoritmo a emplear en el cálculo de la MCV.
+                                    \begin{itemize}
+                                        \item Ejemplo: \#im1,0,1,0,1,1,2,2,
+                                    \end{itemize}   
+                                    % Inicia las mediciones por los canales 1 y 3 con el algoritmo1 para el canal1 y el algoritmo2 
+                                    % para el canal3, para los canales no seleccionados se omite el tipo de algoritmo seleccionado.
+                                    \vspace{1pt}
+                                \end{minipage}\\\hline
+            % ----- COMMAND LB -----
+            \textbf{lb}     &   \begin{minipage}{14cm}
+                                    \vspace{1pt}
+                                    Establece las acciones correspondientes al trabajo con la Línea Base y sigue el siguiente esquema: \#lb[canal][acción], donde:
+                                    \begin{itemize}
+                                        \item \textbf{Canal}: Establece el canal sobre el va a realizar la acción.
+                                        \item \textbf{Acción}: Establece la acción, esta puede ser: 
+                                        \begin{itemize}
+                                            \item Iniciar interacción cálculo de Línea Base.
+                                            \item Detener iteración cálculo de Línea Base.
+                                            \item Aceptar valor de interacción del cálculo de Línea Base.
+                                            \item Rechazar valor de iteracción del cálculo de Línea Base.
+                                            \item Obtener valor final de Línea Base.
+                                        \end{itemize}
+                                    \end{itemize} 
+                                    \vspace{1pt}
+                                \end{minipage}\\\hline
+            % ----- COMMAND MCV -----
+            \textbf{mc}     &   \begin{minipage}{14cm}
+                                    \vspace{1pt}
+                                    Establece las acciones correspondientes al trabajo con la MCV y sigue el siguiente esquema: \#mc[canal][acción], donde:
+                                    \begin{itemize}
+                                        \item \textbf{Canal}: Establece el canal sobre el va a realizar la acción.
+                                        \item \textbf{Acción}: Establece la acción, esta puede ser: 
+                                        \begin{itemize}
+                                            \item Iniciar interacción cálculo de MCV.
+                                            \item Detener iteración cálculo de MCV.
+                                            \item Aceptar valor de interacción del cálculo de MCV.
+                                            \item Rechazar valor de iteracción del cálculo de MCV.
+                                            \item Obtener valor final de MCV.
+                                        \end{itemize}
+                                    \end{itemize} 
+                                    \vspace{1pt}
+                                \end{minipage}\\\hline
+            \textbf{sm}     &   Informa al pedal que se ha llegado al fin de las mediciones. \\\hline               
+
+        \end{tabular}
+        \label{table:send-msg-in-calibration}
+        \caption{Mensajes enviados en la calibración}
+    \end{table}  
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{ |c|p{14cm}|}
+            \hline
+            \multicolumn{2}{|c|}{Calibración: Mensajes recividos} \\
+            \hline
+            Comandos        &   Descripción \\\hline
+            % ----- COMMAND AR -----
+            \textbf{ar}     &   \begin{minipage}{14cm}
+                                    \vspace{2pt}    
+                                    Recive las mediciones de los canales activos, cada medición corresponde con 2 byte de información y se reciben 100 mediciones por cada canal cada 100ms, 
+                                    por lo que cada 400 valores correspoden a las mediciones con las mediciones del 1 al 4 para ese instante de tiempo.
+                                    \begin{itemize}
+                                        \item Ejemplo: si el primer comando recibido fuese fuese: \#ar031006204511 ... 16038023
+                                    \end{itemize}
+                                    Los dos primeros bytes 03 y 10 corresponden con el valor 0000001100010000$_{B}$ cuyo valor numérico  784 que sería el valor de la EMG para el canal 1 en el milisegundos 
+                                    1 de la medición.
+                                    \vspace{2pt}    
+                                \end{minipage}\\\hline    
+            % ----- COMMAND LB -----         
+            \textbf{lb}     &   \begin{minipage}{14cm}
+                                    \vspace{1pt}
+                                    Informa a la aplicación del valor de la Línea Base o iteracción de cálculo de Línea Base siguiendo el esquema: \#lb[canal][tipo][valor byte 1][valor byte 2] donde:
+                                    \begin{itemize}
+                                        \item \textbf{Canal}: Establece el canal al que corresponde el valor.
+                                        \item \textbf{Tipo} : Establece si el valor corresponde a un medición de una interacción o al valor final de la Línea Base.
+                                        \item \textbf{Valor} : Son los valores den formato byte del valor de la Línea Base.  
+                                    \end{itemize}
+                                    % PONER EJEMPLO
+                                    \vspace{1pt}
+                                \end{minipage}\\\hline 
+            % ----- COMMAND MC -----                        
+            \textbf{mc}     &   \begin{minipage}{14cm}
+                                    \vspace{1pt}
+                                    Informa a la aplicación del valor de la MCV o iteracción de cálculo de Línea Base siguiendo el esquema: \#mc[canal][tipo][valor byte 1][valor byte 2] donde:
+                                    \begin{itemize}
+                                        \item \textbf{Canal}: Establece el canal al que corresponde el valor.
+                                        \item \textbf{Tipo} : Establece si el valor corresponde a un medición de una interacción o al valor final de la Línea Base.
+                                        \item \textbf{Valor} : Son los valores den formato byte del valor de la Línea Base.  
+                                    \end{itemize}
+                                    \vspace{1pt}
+                                \end{minipage} \\\hline                        
+        \end{tabular}
+        \label{table:recive-msg-in-calibration}
+        \caption{Mensajes recividos en la calibración}
+    \end{table} 
+
+
+    \vspace{100pt}   
+    \subthesischapter{Ejemplo de comunicación}
+    En el proceso de calibración mostrado en la figura \ref{fig: diagram-protocol-in-calibration} 
+    la comunicación inicia con el envío del comando \#ch1,1 
+    correspondiente a la solicitud de activación  del canal1. El envío de mensajes se realiza 
+    a través de funciones específicas para cada tipo de mensaje.
+    Estas funciones serializan tipos de mensajes específicos en un buffer de salida. Una vez
+    codificado el mensaje en el buffer de salida, se llama a la función,
+    \textbf{send\_message()}, que se encarga de enviar el mensaje codificado en el buffer
+    de salida. Según este principio, cada función es responsable de codificar su mensaje
+    respectivo y finalmente enviar el mensaje llamando a la función. Para proteger
+    de escritura simultánea en el buffer de salida por múltiples hilos se usan mutexs entre el
+    proceso de serializar el mensaje y el envío por el socket. 
     
-    % \vspace{10pt}
-    % \textbf{Iniciar mediciones, comando << im >>}\\
-    % Envía la orden de iniciar mediciones y sigue el esquema \#im[canal1],[canal2],[canal3],[canal4],
-    % [algoritmo1],[algoritmo2],[algoritmo3],[algoritmo4], donde cada canal es 1 o 0 si este se
-    % encuentra activo y algoritmo indica el algoritmo a emplear en el cálculo de la MCV.
+    \vspace{10pt}
+    A continuación es enviado el mensaje \#im1,0,1,0,1,1,2,2 para solicitarle al pedal el inicio 
+    del proceso de mediciones en los canales 1 y 3 usando los algoritmos 1 y 2 respectivamente, el 
+    cual es respondido con un conjunto serie de mensajes de la forma \#ar0310 ... 023. La recepción 
+    de mensajes está implementada sobre un hilo distinto del principal. Cuando se 
+    recibe un mensaje este se almacena en la variable respectiva
+    asociada al tipo de mensaje y se notifica su recepción cambiando una variable de control
+    asociada a la recepción o lanzando un evento para informar al hilo principal de su
+    recepción. Para proteger el acceso a las variables que pueden tener lecturas y escrituras
+    simultáneas por ambos hilos se usan mutexs. Con el uso de mutexs se garantiza que
+    solamente un hilo acceda simultáneamente a las variables de almacenamiento. 
+
+    \vspace{10pt}
+    Durante la medición el usuario puede hacer uso de 2 funcionalidades y ejecutarlas en el orden 
+    establecido por el protocolo médico, cálculo de la Línea Base y posteriormente cálculo de la MCV.
+    Ambas funcionalidades pueden repetirse un número indefinido de veces hasta la validación del resultado 
+    obtenido. Ejemplo para el cálculo de la Línea Base:
     
-    % \vspace{10pt}
-    % Ejemplo: \#im1,0,1,0,1,1,2,2,
-    % Inicia las mediciones por los canales 1 y 3 Con el algoritmo 1 para el canal 1 y el algoritmo 2 para el canal 3, para
-    % los canales no seleccionados se omite el tipo de algoritmo seleccionado.
-    
-    % \vspace{10pt}
-    % \textbf{Parar mediciones, comando << sm >>}\\
-    % Envía la orden de parar las mediciones.
-
-    % \vspace{10pt}
-    % \textbf{Iniciar juego, comando << ig >>}\\
-    % Establece el inicio del juego y sigue el siguiente esquema: 
-    % \#ig[velocidad], [tiempo], [canal1], [canal2], [canal3], [canal4], donde:
-
-    % \vspace{5pt}
-    %  Velocidad: Establece el porciento de velocidad a la que se realizará el ejercicio. Puede tomar valores de 1 a
-    % 100.
-
-    % \vspace{5pt}
-    %  Tiempo: Establece el tiempo en minutos durante el cual se realizará el ejercicio. Puede tomar valores de 1 a 60.
-    %  Descanso: Establece el tiempo en minutos de descanso entre series. Puede tomar valores de 1 a 60.
-    %  Canal[1-4]: Establece con qué canales se va trabajar. Pueden tomar valores 0/1 siendo el valor 1 especificando que dicho canal específico estará siendo usado.
-    %  Tipo: Establece el tipo de rutina a ejecutar.
-    %  
-    % Ejemplo: \#ir50,10,5,20,1,1,0,0,1,80,0,
-
-    % En este ejemplo se establece una parametrización donde se realiza el ejercicio al 50% de velocidad, durante 10
-    % minutos, con 5 minutos de descanso entre series, se realizarán 20 series, solo se escucharán los canales 1 y 2 y la
-    % rutina será activa/asistida en un 80\%.
-
-    % \vspace{10pt}
-    % \textbf{Parar juego, comando << sg >>}\\
-    % Envía la orden de parar la ejecución de la rutina.
-    
-    % \vspace{10pt}
-    % \textbf{Pausar rutina, comando << pr >>}\\
-    % Envía la orden de pausar la rutina.
+    \vspace{10pt}
+    Se envía el mensaje \#lb1,0 para iniciar el cálculo, próximo este es enviado el mensaje  \#lb1,1 para 
+    detener el cálculo y esperar respuesta del pedal. La respuesta es enviada bajo el formato  \#lb100310. 
+    Por último es enviado el mensaje \#sm para detener la medición y luego \#lb1,2 o \#lb1,3 para aceptar 
+     o rechazarlo el valor de interacción respectiva.  
 
     
-    % \vspace{10pt}
-    % \textbf{Continuar rutina, comando << cr >>}\\
-    % Envía la orden de continuar con la ejecución de la rutina.
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.58]{images/diagram-protocol-in-calibration.png}
+        \caption{Protocol de comunicación en la calibración}
+        \label{fig: diagram-protocol-in-calibration}
+    \end{figure}
+
+    \subthesischapter{Implementación de la interfaz gráfica para la representación de datos EMG}
+    En el contexto del desarrollo de la interfaz de calibración clínica para la rehabilitación neuromuscular de pacientes con enfermedades cerebrovasculares
+    fue necesario la implementación de la clase CoordinateSystem. Esta clase, diseñada para extender VisualElement en Unity, representa el núcleo de la representación 
+    gráfica de los datos EMG en la aplicación móvil. Uno de los aspectos clave de esta implementación 
+    radica en su capacidad para generar un sistema de coordenadas dinámico y animado que se ajusta a las variaciones en los datos recibidos.
+
+    \vspace{10pt}
+    En el constructor de la clase CoordinateSystem, se establece la estructura básica del sistema de coordenadas. Se crean y configuran elementos visuales esenciales, como el 
+    marco (frame), los ejes (axes), la ventana de visualización (window), y las etiquetas de los ejes x e y (xAxisLabel y yAxisLabel). Para proporcionar contexto a los datos 
+    representados, se han desarrollado métodos para agregar etiquetas a los ejes x e y. Estas etiquetas, definidas como objetos Label, muestran los 
+    valores correspondientes a las coordenadas en el sistema. La inclusión de estas etiquetas es esencial para que los profesionales de la salud y los pacientes 
+    comprendan el significado de los datos EMG presentados, mejorando así la utilidad clínica de la interfaz. 
     
-
-    % \vspace{10pt}
-    % \textbf{Activar/Desactivar canales, comando << ch >>}
-    % Envía la orden de activar o desactivar los canales de mediciones y sigue el siguiente esquema: \#ch[canal],[acción], donde:
-    %  Canal: Establece el canal sobre el que se va a realizar la acción.
-    %  Acción: Establece si se va a activar o desactivar dicho canal.
-    
-    % \vspace{10pt}
-    % \textbf{Transmitir mediciones, comando << tm >>}
-    % Envía la orden de transmitir mediciones, se envía en caso de que la respuesta del comando correspondiente al
-    % estado del pedal sea diferente a << nada >>.
-    
-    
-    % \vspace{10pt}
-    % \textbf{Máxima contracción voluntaria, comando << mc >>}
-    % Establece las acciones correspondientes al trabajo con la MCV y sigue el siguiente esquema: \#mc[canal],
-    % [acción], donde:
-    %  Canal: Establece el canal sobre el que se va a realizar la acción.
-    %  Acción: Establece la acción, esta puede ser:
-    % o Iniciar iteración cálculo de MCV
-    % o Detener iteración Cálculo de MCV
-    % o Aceptar valor de iteración del cálculo de MCV
-    % o Rechazar valor de iteración del cálculo de MCV
-
-    % \vspace{10pt}
-    % \textbf{Línea base, comando << lb >>}
-    % Establece las acciones correspondientes al trabajo con la Línea Base y sigue el siguiente esquema: \#lb[canal],
-    % [acción], donde:
-    %  Canal: Establece el canal sobre el que se va a realizar la acción.
-    %  Acción: Establece la acción, esta puede ser:
-    % o Iniciar iteración cálculo de Línea Base
-    % o Detener iteración Cálculo de Línea Base
-    % o Aceptar valor de iteración del cálculo de Línea Base
-    % o Rechazar valor de iteración del cálculo de Línea Base
-
-    % \vspace{10pt}
-    % \textbf{Requerir valores de máxima contracción voluntaria y línea base << rv >>}\\
-    % Establece el pedido de los valores finales de máxima contracción voluntaria y línea base para los canales y sigue el
-    % siguiente esquema: \#rv[lb1],[lb2],[lb3],[lb4],[mc1],[mc2],[mc3],[mc4], donde:
-
-    % lb1-4: requiere el valor de línea base para dicho canal, puede tomar valores de 0 o 1 si se pide o no dicho valor.
-    % mc1-4: requiere el valor de máxima contracción voluntaria para dicho canal, puede tomar valores de 0 o 1 si
-    % se pide o no dicho valor.
-    % Ejemplo: \#rv1,0,0,1,0,1,1,0,
-    % Se solicitan los valores de línea base para los canales 1 y 4 y el valor de la máxima contracción voluntaria para los
-    % canales 2 y 3.
-
-    % \vspace{10pt}
-    % \textbf{Parada general, comando << sg >>}
-    % Envía la orden de parada general al pedal. Usado como parda de emergencia.
-    
-    % \vspace{10pt}
-    % \textbf{Estadísticas, comando << es >>}
-    % Pide al Sistema Terapéutico de Ejercicios las estadísticas del ejercicio realizado
-
-
-
-    % \vspace{20pt}
-    % Para lograr el funcionamiento del software en tiempo real donde se pudiera mantener la
-    % comunicación con la tarjeta y a la vez atender los eventos de los botones de la interfaz cada
-    % vez que son oprimidos, fue necesario funciones avanzadas de Labwindows que permitieran
-    % crear y habilitar un hilo paralelo independiente de la función principal ver figura \ref{fig: diagram-protocol}.
+    \vspace{5pt}
+    Estos elementos son fundamentales para la presentación adecuada de los datos EMG en el contexto clínico, pero además, se aplican estilos USS a estos, definidos en archivos específicos (SystemCoordinateUSS.uss), para asegurar una 
+    presentación visual coherente y atractiva, ver figura \ref{fig: graph-emg}.
 
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.32]{images/diagram-protocol.png}
-        \caption{a)~Diagrama de flujo del protocolo de comunicación b)~Protocolo de inicialización}
-        \label{fig: diagram-protocol}
+        \includegraphics[scale=0.38]{images/graph.png}
+        \caption{Gráfico de representación de datos EMG}
+        \label{fig: graph-emg}
     \end{figure}
 
-    \subsubthesischapter{Entornos de entrenamiento}
-    Se crearon distintos entornos de entrenamiento correspondientes a las modalidad Ligero y Clínico. Para cada uno de 
-    estos se tuvieron las siguientes consideraciones.
+    \vspace{10pt}
+    Adicional a lo anteriormente mencionado la clase proporciona métodos para trazar puntos y funciones en el sistema de coordenadas. A través de los métodos PlotPoint() y PlotFunction(), se espera que la 
+    aplicación pueda representar los datos EMG de forma gráfica y dinámica. Además, se ha implementado una funcionalidad de animación que permite mostrar la progresión de los datos en el tiempo. El método 
+    DrawFunction(List<Vector2> lp) utiliza técnicas de interpolación para crear una animación fluida, mejorando así la comprensión de la evolución de los datos.
+
+    
+    \subthesischapter{Escenarios de entrenamiento}
+    La creación de las escenas es dinamica, pues se adapta a los valores de 
+    modalidad y parámetros seleccionados en la configuración del juego. Estos valores son fundamentales, ya que 
+    determinan el funcionamiento y por ende la experiencia de juego. Para llevar a cabo dicha tarea, fue necesario implementar un script 
+    llamado WorldCreator.cs.
 
     \vspace{10pt}
-    \textbf{Configuración del entrenamiento} \\ 
-    ----- menu de parámetros ----------
+    WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se encarga de construir la totalidad del entorno del 
+    juego. El método Awake() en el script WorldCreator cumple una función fundamental en la inicialización y preparación del escenario 
+    de juego, ver (codigo:) . En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert).
+    Este objeto representa la pista sobre la cual se construirá el mundo del juego. A continuación, se procede a la creación dinámica del terreno 
+    (Terrain) del juego. Se genera un nuevo objeto de datos de terreno (TerrainData) y se asigna al terreno recién creado. Además, en el método se 
+    calcula y almacena las dimensiones del objeto de la pista (trackPrefab) utilizando el componente MeshFilter. Estas dimensiones 
+    se utilizan posteriormente para posicionar los árboles y otros elementos de manera coherente respecto a la pista, garantizando la cohesión visual 
+    del mundo del juego. Por último, el método Awake() asigna el material (terrainMaterial) al terreno, definiendo así la apariencia visual del paisaje.
+    Este proceso sienta las bases para el entorno tridimensional en el cual se desarrollará la acción del juego.
+
+
+\begin{center}
+\begin{minipage}{0.82\textwidth}
+\begin{lstlisting}[language=c, label={hola}]
+void Awake() 
+{
+    Assert.IsNotNull(trackPrefab, "The track prefab is missing");
+    terrain = Terrain.activeTerrain;
+        
+    // Generate terrain data
+    var data = new TerrainData();
+    terrain = Terrain.CreateTerrainGameObject(data).GetComponent<Terrain>();
+    terrain.transform.position = Vector3.zero;
+        
+    // Get the track object size
+    var bounds = trackPrefab.GetComponent<MeshFilter>().sharedMesh.bounds;
+    trackSize = bounds.size;
+        
+    terrain.materialTemplate = terrainMaterial;
+}
+
+void PlaceTrees(float zMin, float zMax) {
+// Use the Tree Creator tool to place trees on the terrain in the specified chunk        
+    for (int i = 0; i < treeDensity; i++) {
+        float side = Random.value > 0.5f ? 1.0f : 0.0f;
+
+        float z = Random.Range(zMin, zMax);            
+        float x = Random.Range(0, chunkSize * 0.5f - trackSize.x * 0.5f) * side +
+                Random.Range(chunkSize * 0.5f + trackSize.x * 0.5f, chunkSize) * (1 - side);
+        float y = terrain.SampleHeight(new Vector3(x, 0, z));            
+        int treeIndex = Random.Range(0, treePrefabs.Length);
+        
+        Instantiate(treePrefabs[treeIndex], new Vector3(x, y, z), Quaternion.identity);
+    }
+terrain.Flush();
+}
+
+void GenerateChunk(int chunkIndex) {      
+    float zMin = chunkIndex * chunkSize;
+    float zMax = zMin + chunkSize;
+    terrain.terrainData.size = new Vector3(chunkSize, maxHeight, zMax);
+
+    var track = Instantiate(
+                    trackPrefab, 
+                    new Vector3(chunkSize*0.5f, 0.0f, zMin), 
+                    Quaternion.identity
+                ).transform;
+    track.localScale = new Vector3(1.0f, 1.0f, chunkSize / trackSize.z);
+
+    PlaceTrees(zMin, zMax);
+}
+void Start() {
+    GenerateChunk(0);
+}
+                
+\end{lstlisting}
+
+\end{minipage}    
+\end{center}
+
+    \vspace{10pt}
+    %MOVIMIENTO DEL JUGADOR
+    Haciendo uso de los datos de velocidad angular($v_{a}$) obtenidos por el sensor óptico del pedal, el script 
+    realiza una serie de cálculos para determinar la posición actual del juegador en cada frame 
+    del juego. Lo primero es calcular la velocidad lineal($v_{l}$) a partir de la $v_{a}$  esto es posible bajo la 
+    equación \ref{eq: dist_calc}.
+    % HACER LOS CALCULOS DE CONVERSIÓN DE VELOCIDAD ANGULAR A LINEAL
+    \begin{equation}
+        V_{l} = V_{a}r
+        \label{eq: dist_calc}        
+    \end{equation}
+
+    \vspace{10pt}
+    Cuando recibes información de una API a una velocidad más lenta que la tasa de actualización de los frames en Unity 
+    (por ejemplo, cada 100 ms en lugar de cada 16.67 ms para 60 FPS), puedes sufrir problemas de sincronización entre los datos 
+    recibidos y los frames de renderizado. Para abordar este problema, se utilizó la técnica de la interpolación para suavizar 
+    los movimientos del jugador.
+
+    \vspace{10pt}
+    La interpolación implica estimar valores intermedios basados en los datos que obtenidos. En nuestro caso, fue posible estimar la 
+    posición del jugador en los frames intermedios entre los datos recibidos de la API. Ejemplo del código:
+
+    \begin{enumerate}
+        \item Se almacena las velocidades lineales que recibes de la API en una cola para acceder a ellas cuando sea necesario.
+        \item En el código que maneja las respuestas de la API, agrega las velocidades lineales recibidas a la cola.
+        \item En la función Update(), se utiliza la interpolación para calcular una velocidad suavizada basada en las velocidades almacenadas
+    \end{enumerate}
+
+\begin{center}
+\begin{minipage}{0.5\textwidth}
+\begin{lstlisting}[language=c, label={2}]
+Vector3 speedInterpolated = Vector3.zero;
+foreach (Vector3 speed in speeds)
+{
+    speedInterpolated = Vector3.Lerp(speedInterpolated, speed, 1f / sppeds.Count);
+    transform.Translate(speedInterpolated * Time.deltaTime);
+}
+
+
+// Clears the velocity list for the next interpolation
+speeds.Clear();
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+
+    \subsubthesischapter{Modalidad Ligero}
+    La modalidad ligera, basada en el entrenamiento del tren inferior, se presenta como el primer escenario de juego. En esta 
+    modalidad, los parámetros de distancia o tiempo, seleccionados en el menú de configuración de la rutina, sirven como los pilares 
+    fundamentales del entrenamiento.
+
+    \vspace{10pt}
+    La lógica subyacente del juego en dicha modalidad es la siguiente: al inicio, los usuarios establecen el valor de la distancia o el tiempo en el menú de configuración de las rutinas. Estos valores se utilizan como criterios para mejorar las estadísticas del jugador durante el juego. Por ejemplo, si se establece una distancia de 10 metros, el objetivo del jugador será completar esta distancia en el menor tiempo posible. De manera similar, si se elige un tiempo de 3 minutos, el objetivo será recorrer la mayor distancia posible dentro de ese límite temporal.
+
+    \vspace{10pt}
+    Para implementar esta lógica, fue necesario crear un terreno virtual que se reconstruye dinámicamente según la posición actual del jugador. Esto asegura que el jugador permanezca dentro del área de juego y evita que se pierda la coherencia del juego. Al finalizar cada rutina de rehabilitación en esta modalidad, las estadísticas del jugador son actualizadas para reflejar su desempeño, lo que proporciona una retroalimentación valiosa para su progreso.
+
+    \subsubthesischapter{Modalidad Clinico}
+    La modalidad clínica de nuestro juego serio representa una innovación significativa en nuestra aproximación terapéutica. Además de las características previamente mencionadas, esta modalidad integra los valores de la señal IEMG (Electromiografía de Superficie) capturados por nuestro pedal motorizado. Esta señal se convierte en un componente fundamental para establecer los desafíos en la escena del juego de esta modalidad.
+
+    \vspace{10pt}
+    En esta modalidad clínica, se definen tres puntos clave en el recorrido hacia la meta. En cada uno de estos puntos, el juego verifica la media aritmética de los niveles de IEMG capturados. Estos niveles se comparan con los valores de referencia predefinidos que se establecieron durante la fase de calibración y configuración del juego. Si la media de los niveles de IEMG en un punto dado cumple con los requisitos establecidos, el jugador supera el reto asociado a ese punto y avanza en el juego.
+
+
+    \subthesischapter{Generación de reportes estadísticos}
+    Para obtener las estadísticas de manera efectiva, se desarrolló el script DailyUIController. Este script se encarga de recuperar los datos almacenados en la base de datos y calcular los mejores resultados obtenidos para cada día de la semana. Los resultados se organizaron en una estructura de datos que facilitó su manipulación.
+    Para cada día, se identificó el máximo valor de los resultados y se prepararon para su representación gráfica.
+    La representación visual de las estadísticas se logró mediante la manipulación de elementos visuales definidos en el archivo de diseño UXML. Utilizando Unity 
+    UIElements, se crearon contenedores (VisualElement) para cada día de la semana y se asignaron alturas proporcionales a los mejores resultados obtenidos. Los elementos 
+    visuales se actualizaron dinámicamente a través del script DailyUIController.
+
+    \vspace{10pt}
+    En la fase final del juego, se implementó un código crucial para capturar y guardar los resultados obtenidos en la rutina de entrenamiento. Utilizando la clase DateTime de las bibliotecas de c\#, 
+    se registra la fecha y la hora exactas del final del juego. Estos datos se almacenaron en una estructura adecuada y se insertaron en la base de datos correspondiente. La clase CibiofibDb facilitó esta 
+    operación al proporcionar métodos para añadir datos (addData()) y cerrar la conexión con la base de datos (close()). Este proceso garantizó la persistencia de los resultados en la tabla Do, lo que 
+    permitió un análisis detallado de las sesiones de entrenamiento.
+
+
+    % \textbf{Configuración del entrenamiento} \\ 
+    % ----- menu de parámetros ----------
+
+    \subthesischapter{Conclusiones del capítulo}
+    En el capítulo primero se presenta una descripción del sistema de adquisición de datos para rehabilitación, sus componentes,
+    funcionamiento y descripción
+    
 
 \end{thesischapter}

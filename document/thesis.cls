@@ -10,6 +10,8 @@
 \RequirePackage[spanish]{babel}
 \RequirePackage{tabularx}
 \bibliographystyle{plain}
+\RequirePackage{listings}
+\RequirePackage{xcolor}
 
 
 % Change pages style
@@ -22,10 +24,10 @@
 }
 \newcommand{\thesisgeometry}{
    \newgeometry{
-        top = 0.5in,
-        left = 0.5in,
-        right = 0.5in,
-        bottom = 0.5in
+        top = 2.5cm,
+        left = 2.5cm,
+        right = 2.5cm,
+        bottom = 2.5cm
     }
 }
 
@@ -127,3 +129,32 @@
       \section*{Anexos}
    }
    {}
+
+% Code: 
+\definecolor{codegreen}{rgb}{0.1, 0.5, 0.1}
+\definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{codepurple}{rgb}{0.58, 0, 0.82}
+\definecolor{backcolour}{rgb}{0.95, 0.95, 0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2
+}
+
+
+\lstset{style=mystyle}
