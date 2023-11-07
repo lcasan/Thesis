@@ -34,7 +34,7 @@
         medio de la acción de pedaleo del paciente en rehabilitación. A medida
         que se logra una velocidad definida, se envía la orden de movimiento al videojuego y 
         este responde con el movimiento del avatar en la escena, el cual se encuentra en una pista 
-        cuyo objetivo será alcanzar los mejores resultados de tiempo, distancia o  \textbf{MCV}\footnote{Máxima contracción voluntaria}.
+        cuyo objetivo será alcanzar los mejores resultados de tiempo, distancia o  MCV(Máxima contracción voluntaria).
         \item El segundo componente del sistema (sensores emg) tienen la función de capturar la señal EMG obtenida en la 
         una rutina de entrenamiento y ser usados tanto en la dificultad de los niveles de entrenamiento de la rutina clínica como para la 
         estadística de la misma.
@@ -295,20 +295,22 @@
     % DATABASE --------------------------------------
     \newpage
     \subthesischapter{Diseño de la base de datos}
-    Hay dos tipos famosos de bases de datos, uno se llama Lenguaje de Consulta Estructurado o SQL. Que coloca 
-    los datos en forma de tablas. El otro se llama No-SQL, porque no tiene tablas ni estructura, sino que almacena los 
-    datos en forma de objetos. Intuitivamente, No-SQL consume más recursos que SQL, por lo tanto, para nuestra aplicaciones 
-    móviles preferimos este último.
+    Existen dos tipos prominentes de sistemas de gestión de bases de datos ampliamente reconocidos: uno conocido 
+    como Lenguaje de Consulta Estructurado (SQL, por sus siglas en inglés) organiza los datos en estructuras tabulares, 
+    mientras que el otro, denominado No-SQL, prescinde de las tablas y opta por almacenar datos en forma de objetos. 
+    Contrariamente a SQL, el enfoque No-SQL no sigue una estructura rígida, permitiendo mayor flexibilidad en la 
+    organización de los datos. No obstante, se ha observado que los sistemas No-SQL tienden a requerir una mayor 
+    cantidad de recursos computacionales en comparación con las implementaciones SQL. En el contexto de aplicaciones 
+    móviles, se ha preferido el uso de SQL debido a su eficiencia y menor consumo de recursos, lo que contribuye a una 
+    experiencia de usuario más fluida y eficaz.
 
     \vspace{10pt}
     \subthesischapter{Modelo lógico}
     La descripción que surge de esta fase de diseño sirve como base para especificar la estructura conceptual de la base de datos. 
     La siguiente lista describe los principales requisitos para el registro de datos en el sistema:
     \begin{itemize}
-        \item Los usuarios se identifican mediante un identificador. Del usuario se guarda sus datos de identificación, 
-        referidos en los requerimientos de registro: nombre completo, correo y contraseña.
-        \item Cada usuario puede configurar varias rutinas de entrenamiento. Las rutinas consisten de su identificador 
-        único el tipo de ejercicio seleccionado y los parámetros configurados.   
+        \item Los usuarios son reconocidos a través de un identificador único. En el sistema, se almacenan los detalles de identificación del usuario, los cuales se especifican en los requisitos de registro e incluyen el nombre completo del usuario, su dirección de correo electrónico y una contraseña asociada.
+        \item Cada usuario tiene la capacidad de establecer múltiples rutinas de entrenamiento personalizadas. Estas rutinas están compuestas por un identificador exclusivo, el tipo de ejercicio elegido y los parámetros específicos que han sido configurados por el usuario. 
         \item Luego de terminada una rutina se almacena en el sistema los resultados obtenidos y la fecha de ejecución. 
     \end{itemize}   
     
@@ -317,9 +319,9 @@
     Desde la especificación listada anteriormente se comienzan a
     identificar los conjuntos de entidades y relaciones, así como sus atributos:
     \begin{itemize}
-        \item El conjunto entidad usuario, con los atributos id\_usuario, nombre, correo, contraseña.
-        \item El conjunto entidad rutina con los atributos id\_rutina, modalidad, distancia, tiempo, \textbf{mcv1, mcv2, mcv3, mcv4}\footnote{mcvi: Valor porcentual definido de MCV en el canal i luego de la etapa de calibración}.
-        \item El conjunto relación mucho a mucho de usuario a rutinas denominado ejecuta, es decir un usuario puede ejecutar 
+        \item La entidad \underline{usuario}, con los atributos id\_usuario, nombre, correo, contraseña.
+        \item La entidad \underline{rutina} con los atributos id\_rutina, modalidad, distancia, tiempo, \textbf{mcv\textsubscript{1}, mcv\textsubscript{2}, mcv\textsubscript{3}, mcv\textsubscript{4}}\footnote{mcv\textsubscript{i}: Valor porcentual definido de MCV en el canal i luego de la etapa de calibración}.
+        \item La relación muchos a muchos de \underline{usuario} a \underline{rutinas} denominado \underline{ejecuta}, es decir un usuario puede ejecutar 
         varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios. Dicha relación cuenta con los atributos id\_usuario, id\_rutina, resultados y fecha\_de\_ejecución. 
     \end{itemize}
     
@@ -327,7 +329,7 @@
     El Diagrama de Entidad-Relación (E-R) que resulta de tales especificaciones para la descripción de los datos del sistema se presenta en la figura \ref{fig: diagram-er}.
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.5]{images/diagram-er.png}
+        \includegraphics[scale=0.45]{images/diagram-er.png}
         \caption{Diagrama Entidad Relación}
         \label{fig: diagram-er}
     \end{figure}
@@ -352,6 +354,16 @@
 
     El esquema de las tablas de la base de datos, junto con las dependencias de clave primaria y las foráneas, se puede visualizar en la siguiente 
     porción de código:
+
+    \begin{center}
+        \begin{minipage}{0.60\textwidth}
+        \begin{lstlisting}[language=c,caption={Hola perro}, label={holo}]
+        
+        \end{lstlisting}
+        \end{minipage}
+    
+    \end{center}
+
     \begin{figure}[ht]
         \centering
         \includegraphics[scale=0.5]{images/database-code.png}
@@ -367,8 +379,8 @@
     
     \vspace{10pt}
     La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para 
-    crear implementaciones reales. Fue creada una clase de alto nivel DataBaseModel que se puede extender a otras clases, con el 
-    fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones basicas CURD: Crear, 
+    crear implementaciones reales. Fue creada una clase de alto nivel \underline{DataBaseModel} que se puede extender a otras clases, con el 
+    fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones básicas CURD: Crear, 
     Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
     \begin{figure}[ht]
         \centering
@@ -405,10 +417,14 @@
 
     %------ COMUNICACION SECTION ------
     \subthesischapter{Comunicación con el pedal motorizado}
-    Para la comunicación entre los componentes principales de nuestro sistema, juego serio y pedal motorizado,
+    Para la comunicación entre los componentes principales de el sistema, juego serio y pedal motorizado,
     fue necesaria la implementación de un protocolo de comunicación basado en sockets TCP/IP
     que garantize una conexión confiable y efectiva. Este protocolo proporciona una interfaz que utiliza un conjunto 
-    de mensajes predefinidos, ver tablas 5, 6, 7, 8. El formato de los mensajes sigue una estructura  
+    de mensajes predefinidos, ver tablas 
+    \ref{table:send-msg-in-game}, 
+    \ref{table:recived-msg-in-game}, 
+    \ref{table:send-msg-in-calibration}, 
+    \ref{table:recive-msg-in-calibration}. El formato de los mensajes sigue una estructura  
     que consta de un encabezado y un cuerpo organizados de la siguiente manera: \#[COMANDO][PARÁMETROS]. El 
     encabezado (COMANDO) indica el tipo de mensaje y el tamaño del cuerpo, lo que facilita la interpretación de los datos recibidos.
 
@@ -439,8 +455,8 @@
             \textbf{sg}     &   Envía la orden de parar mediciones del juego \\\hline   
                                    
         \end{tabular}
-        \label{table:send-msg-in-game}
         \caption{Mensajes enviados en el entrenamiento}
+        \label{table:send-msg-in-game}
     \end{table}
     
     \vspace{80pt}
@@ -459,8 +475,8 @@
                                     \vspace{2pt}    
                                 \end{minipage}\\\hline 
         \end{tabular}
-        \label{table:recived-msg-in-game}
         \caption{Mensajes enviados en el entrenamiento}
+        \label{table:recived-msg-in-game}
     \end{table}
 
     \newpage
@@ -533,8 +549,8 @@
             \textbf{sm}     &   Informa al pedal que se ha llegado al fin de las mediciones. \\\hline               
 
         \end{tabular}
-        \label{table:send-msg-in-calibration}
         \caption{Mensajes enviados en la calibración}
+        \label{table:send-msg-in-calibration}
     \end{table}  
 
     \begin{table}[ht]
@@ -580,8 +596,8 @@
                                     \vspace{1pt}
                                 \end{minipage} \\\hline                        
         \end{tabular}
-        \label{table:recive-msg-in-calibration}
         \caption{Mensajes recividos en la calibración}
+        \label{table:recive-msg-in-calibration}
     \end{table} 
 
 
@@ -596,8 +612,9 @@
     \textbf{send\_message()}, que se encarga de enviar el mensaje codificado en el buffer
     de salida. Según este principio, cada función es responsable de codificar su mensaje
     respectivo y finalmente enviar el mensaje llamando a la función. Para proteger
-    de escritura simultánea en el buffer de salida por múltiples hilos se usan mutexs entre el
-    proceso de serializar el mensaje y el envío por el socket. 
+    de escritura simultánea en el buffer de salida por múltiples hilos se usan 
+    \textbf{mutexs}\footnote{Mecanismo en el que se intenta dar solución al problema de la sección crítica en un programa} entre el
+    proceso de serializar el mensaje y el envío por el {\textbf{socket}}\footnote{Canales de comunicación que permiten que procesos no relacionados intercambien datos}. 
     
     \vspace{10pt}
     A continuación es enviado el mensaje \#im1,0,1,0,1,1,2,2 para solicitarle al pedal el inicio 
@@ -633,12 +650,12 @@
 
     \subthesischapter{Implementación de la interfaz gráfica para la representación de datos EMG}
     En el contexto del desarrollo de la interfaz de calibración clínica para la rehabilitación neuromuscular de pacientes con enfermedades cerebrovasculares
-    fue necesario la implementación de la clase CoordinateSystem. Esta clase, diseñada para extender VisualElement en Unity, representa el núcleo de la representación 
+    fue necesario la implementación de la clase \underline{CoordinateSystem}. Esta clase, diseñada para extender VisualElement en Unity, representa el núcleo de la representación 
     gráfica de los datos EMG en la aplicación móvil. Uno de los aspectos clave de esta implementación 
     radica en su capacidad para generar un sistema de coordenadas dinámico y animado que se ajusta a las variaciones en los datos recibidos.
 
     \vspace{10pt}
-    En el constructor de la clase CoordinateSystem, se establece la estructura básica del sistema de coordenadas. Se crean y configuran elementos visuales esenciales, como el 
+    En el constructor de la clase \underline{CoordinateSystem}, se establece la estructura básica del sistema de coordenadas. Se crean y configuran elementos visuales esenciales, como el 
     marco (frame), los ejes (axes), la ventana de visualización (window), y las etiquetas de los ejes x e y (xAxisLabel y yAxisLabel). Para proporcionar contexto a los datos 
     representados, se han desarrollado métodos para agregar etiquetas a los ejes x e y. Estas etiquetas, definidas como objetos Label, muestran los 
     valores correspondientes a las coordenadas en el sistema. La inclusión de estas etiquetas es esencial para que los profesionales de la salud y los pacientes 
@@ -650,7 +667,7 @@
 
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.38]{images/graph.png}
+        \includegraphics[scale=0.25]{images/emg-graph.jpg}
         \caption{Gráfico de representación de datos EMG}
         \label{fig: graph-emg}
     \end{figure}
@@ -658,11 +675,11 @@
     \vspace{10pt}
     Adicional a lo anteriormente mencionado la clase proporciona métodos para trazar puntos y funciones en el sistema de coordenadas. A través de los métodos PlotPoint() y PlotFunction(), se espera que la 
     aplicación pueda representar los datos EMG de forma gráfica y dinámica. Además, se ha implementado una funcionalidad de animación que permite mostrar la progresión de los datos en el tiempo. El método 
-    DrawFunction(List<Vector2> lp) utiliza técnicas de interpolación para crear una animación fluida, mejorando así la comprensión de la evolución de los datos.
+    DrawFunction(List<Vector2> lp) utiliza técnicas de interpolación para crear una animación fluida, mejorando así la comprensión de la obtención de los datos en la línea de tiempo.
 
-    
+    \newpage    
     \subthesischapter{Escenarios de entrenamiento}
-    La creación de las escenas es dinamica, pues se adapta a los valores de 
+    La creación de las escenas es dinámica, pues se adapta a los valores de 
     modalidad y parámetros seleccionados en la configuración del juego. Estos valores son fundamentales, ya que 
     determinan el funcionamiento y por ende la experiencia de juego. Para llevar a cabo dicha tarea, fue necesario implementar un script 
     llamado WorldCreator.cs.
@@ -670,7 +687,7 @@
     \vspace{10pt}
     WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se encarga de construir la totalidad del entorno del 
     juego. El método Awake() en el script WorldCreator cumple una función fundamental en la inicialización y preparación del escenario 
-    de juego, ver (codigo:) . En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert).
+    de juego. En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert).
     Este objeto representa la pista sobre la cual se construirá el mundo del juego. A continuación, se procede a la creación dinámica del terreno 
     (Terrain) del juego. Se genera un nuevo objeto de datos de terreno (TerrainData) y se asigna al terreno recién creado. Además, en el método se 
     calcula y almacena las dimensiones del objeto de la pista (trackPrefab) utilizando el componente MeshFilter. Estas dimensiones 
@@ -678,114 +695,144 @@
     del mundo del juego. Por último, el método Awake() asigna el material (terrainMaterial) al terreno, definiendo así la apariencia visual del paisaje.
     Este proceso sienta las bases para el entorno tridimensional en el cual se desarrollará la acción del juego.
 
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.5]{images/generate-world.png}
+        \caption{Flujo para la creación del entorno de juego}
+        \label{fig: generate-world}
+    \end{figure}
 
 \begin{center}
-\begin{minipage}{0.82\textwidth}
-\begin{lstlisting}[language=c, label={hola}]
-void Awake() 
-{
-    Assert.IsNotNull(trackPrefab, "The track prefab is missing");
-    terrain = Terrain.activeTerrain;
-        
-    // Generate terrain data
-    var data = new TerrainData();
-    terrain = Terrain.CreateTerrainGameObject(data).GetComponent<Terrain>();
-    terrain.transform.position = Vector3.zero;
-        
-    // Get the track object size
-    var bounds = trackPrefab.GetComponent<MeshFilter>().sharedMesh.bounds;
-    trackSize = bounds.size;
-        
-    terrain.materialTemplate = terrainMaterial;
-}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[language=c, caption={Generar terreno},label={hola}]
+ //Obtener el terreno activo en la escena
+ terrain = Terrain.activeTerrain;
+ 
+ // Crear un nuevo objeto de datos del terreno
+ var data = new TerrainData();
 
-void PlaceTrees(float zMin, float zMax) {
-// Use the Tree Creator tool to place trees on the terrain in the specified chunk        
-    for (int i = 0; i < treeDensity; i++) {
-        float side = Random.value > 0.5f ? 1.0f : 0.0f;
+ terrain = Terrain.CreateTerrainGameObject(data).GetComponent<Terrain>();
+ 
+ // Establecer la posición del terreno en el origen del mundo
+ terrain.transform.position = Vector3.zero;     
 
-        float z = Random.Range(zMin, zMax);            
-        float x = Random.Range(0, chunkSize * 0.5f - trackSize.x * 0.5f) * side +
-                Random.Range(chunkSize * 0.5f + trackSize.x * 0.5f, chunkSize) * (1 - side);
-        float y = terrain.SampleHeight(new Vector3(x, 0, z));            
-        int treeIndex = Random.Range(0, treePrefabs.Length);
-        
-        Instantiate(treePrefabs[treeIndex], new Vector3(x, y, z), Quaternion.identity);
-    }
-terrain.Flush();
-}
-
-void GenerateChunk(int chunkIndex) {      
-    float zMin = chunkIndex * chunkSize;
-    float zMax = zMin + chunkSize;
-    terrain.terrainData.size = new Vector3(chunkSize, maxHeight, zMax);
-
-    var track = Instantiate(
-                    trackPrefab, 
-                    new Vector3(chunkSize*0.5f, 0.0f, zMin), 
-                    Quaternion.identity
-                ).transform;
-    track.localScale = new Vector3(1.0f, 1.0f, chunkSize / trackSize.z);
-
-    PlaceTrees(zMin, zMax);
-}
-void Start() {
-    GenerateChunk(0);
-}
-                
+ // Obtener los límites del objeto de pista  mediante su componente MeshFilter           
+ var bounds = trackPrefab.GetComponent<MeshFilter>().sharedMesh.bounds;
+ trackSize = bounds.size;
+ 
+ // Asignar material al terreno generado
+ terrain.materialTemplate = terrainMaterial;
 \end{lstlisting}
-
-\end{minipage}    
+\end{minipage}  
 \end{center}
+
+\begin{center}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[language=c, caption={Generar pista},label={hola}]
+ float zMin = chunkIndex * chunkSize;
+ float zMax = zMin + chunkSize;
+ terrain.terrainData.size = new Vector3(chunkSize, maxHeight, zMax);
+
+ var track = Instantiate(
+                 trackPrefab, 
+                 new Vector3(chunkSize*0.5f, 0.0f, zMin), 
+                 Quaternion.identity
+             ).transform;
+
+ track.localScale = new Vector3(1.0f, 1.0f, chunkSize / trackSize.z);
+\end{lstlisting}
+\end{minipage}  
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[language=c, caption={Posicionar árboles},label={hola}]    
+ for (int i = 0; i < treeDensity; i++) {
+    float side = Random.value > 0.5f ? 1.0f : 0.0f;
+
+    // Generar coordenadas aleatorias dentro del rango especificado
+    float z = Random.Range(zMin, zMax);  
+
+    float x = Random.Range(0, chunkSize * 0.5f - trackSize.x * 0.5f) * side  +
+              Random.Range(chunkSize * 0.5f + trackSize.x * 0.5f, chunkSize) * 
+              (1 - side);
+
+    float y = terrain.SampleHeight(new Vector3(x, 0, z)); 
+
+    int treeIndex = Random.Range(0, treePrefabs.Length);
+    
+    // Instanciar el árbol en las coordenadas x, y, z 
+    Instantiate(
+        treePrefabs[treeIndex], 
+        new Vector3(x, y, z), 
+        Quaternion.identity
+        );
+ }
+
+ // Actualizar los cambios en el terreno
+ terrain.Flush();
+\end{lstlisting}
+\end{minipage}  
+\end{center}
+
 
     \vspace{10pt}
     %MOVIMIENTO DEL JUGADOR
-    Haciendo uso de los datos de velocidad angular($v_{a}$) obtenidos por el sensor óptico del pedal, el script 
-    realiza una serie de cálculos para determinar la posición actual del juegador en cada frame 
-    del juego. Lo primero es calcular la velocidad lineal($v_{l}$) a partir de la $v_{a}$  esto es posible bajo la 
-    equación \ref{eq: dist_calc}.
-    % HACER LOS CALCULOS DE CONVERSIÓN DE VELOCIDAD ANGULAR A LINEAL
+    Utilizando los datos de velocidad angular ($v_{a}$) capturados a través del sensor óptico del pedal, se lleva a 
+    cabo un conjunto de cálculos con el fin de determinar la posición actual del jugador en cada fotograma 
+    del juego. Este proceso implica el cálculo de la velocidad lineal ($v_{l}$) a partir de la $v_{a}$, lo 
+    cual se logra mediante la aplicación de la ecuación~\ref{eq: dist_calc}, donde r es longitud desde del eje de rotación del pedal hasta el pedal.
     \begin{equation}
-        V_{l} = V_{a}r
+        v_{l} = v_{a}r
         \label{eq: dist_calc}        
     \end{equation}
+    Ante la disparidad entre la velocidad de recepción de los datos provenientes del pedal, la cual ocurre a una tasa más lenta que la de actualización de los fotograma en Unity
+    (ejemplo: 100 ms en comparación con los 16.67 ms necesarios para actualizar los 60 fotogramas por segundo de renderizado en Unity), surge un desafío de sincronización entre la información 
+    recibida y los fotogramas de renderizado. Para solucionar este problema, se utilizó la técnica de interpolación, una estrategia que se utiliza para suavizar los movimientos 
+    del jugador y lograr una transición más fluida entre los datos recibidos y la representación visual en la pantalla.
 
     \vspace{10pt}
-    Cuando recibes información de una API a una velocidad más lenta que la tasa de actualización de los frames en Unity 
-    (por ejemplo, cada 100 ms en lugar de cada 16.67 ms para 60 FPS), puedes sufrir problemas de sincronización entre los datos 
-    recibidos y los frames de renderizado. Para abordar este problema, se utilizó la técnica de la interpolación para suavizar 
-    los movimientos del jugador.
-
-    \vspace{10pt}
-    La interpolación implica estimar valores intermedios basados en los datos que obtenidos. En nuestro caso, fue posible estimar la 
-    posición del jugador en los frames intermedios entre los datos recibidos de la API. Ejemplo del código:
-
+    % En nuestro caso, fue posible estimar la posición del jugador en los fotogramas intermedios entre los datos recibidos usando el siguiente algoritmo:
+    Descripción del algoritmo utilizado, ver figura~\ref{fig: interpolation-algorithm} para más detalles:
     \begin{enumerate}
-        \item Se almacena las velocidades lineales que recibes de la API en una cola para acceder a ellas cuando sea necesario.
-        \item En el código que maneja las respuestas de la API, agrega las velocidades lineales recibidas a la cola.
-        \item En la función Update(), se utiliza la interpolación para calcular una velocidad suavizada basada en las velocidades almacenadas
-    \end{enumerate}
+        \item Se utilizan dos variables, \textbf{finalSpeed} e \textbf{initialSpeed}, inicializadas en 0, para determinar la velocidad inicial y final en cada segmento de tiempo de 100 ms.
+        \item En el método \textbf{Update()}\footnote{Es una función especial en Unity que es llamada en cada script, durante cada frame.}, se emplea la técnica de interpolación para calcular 
+        una velocidad suavizada, basada en las velocidades almacenadas previamente. Ver código \ref{code: interpolation}
+    \end{enumerate} 
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.4]{images/interpolation-algorithm.png}
+        \caption{Funcionamiento del algoritmo en los primeros 200ms}
+        \label{fig: interpolation-algorithm}
+    \end{figure}
 
 \begin{center}
-\begin{minipage}{0.5\textwidth}
-\begin{lstlisting}[language=c, label={2}]
-Vector3 speedInterpolated = Vector3.zero;
-foreach (Vector3 speed in speeds)
-{
-    speedInterpolated = Vector3.Lerp(speedInterpolated, speed, 1f / sppeds.Count);
-    transform.Translate(speedInterpolated * Time.deltaTime);
-}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[language=c, label={code: interpolation}, caption={Controlador de movimiento}]
+ delta += Time.deltaTime;
+ 
+ if( currentTime > 0.001f)
+ {
+    delta = 0;
+    finalSpeed = newSpeed;
+    initialSpeed = finalSpeed;
+ }
 
+ currentSpeed = Mathf.Lerp( 
+        initialSpeed, 
+        finalSpeed, 
+        delta
+        );
 
-// Clears the velocity list for the next interpolation
-speeds.Clear();
+ transform.Translate(currentSpeed * Time.deltaTime);
 \end{lstlisting}
 \end{minipage}
 \end{center}
 
 
     \subsubthesischapter{Modalidad Ligero}
-    La modalidad ligera, basada en el entrenamiento del tren inferior, se presenta como el primer escenario de juego. En esta 
+    La modalidad ligero, basada en el entrenamiento del tren inferior, se presenta como el primer escenario de juego. En esta 
     modalidad, los parámetros de distancia o tiempo, seleccionados en el menú de configuración de la rutina, sirven como los pilares 
     fundamentales del entrenamiento.
 
@@ -796,32 +843,84 @@ speeds.Clear();
     Para implementar esta lógica, fue necesario crear un terreno virtual que se reconstruye dinámicamente según la posición actual del jugador. Esto asegura que el jugador permanezca dentro del área de juego y evita que se pierda la coherencia del juego. Al finalizar cada rutina de rehabilitación en esta modalidad, las estadísticas del jugador son actualizadas para reflejar su desempeño, lo que proporciona una retroalimentación valiosa para su progreso.
 
     \subsubthesischapter{Modalidad Clinico}
-    La modalidad clínica de nuestro juego serio representa una innovación significativa en nuestra aproximación terapéutica. Además de las características previamente mencionadas, esta modalidad integra los valores de la señal IEMG (Electromiografía de Superficie) capturados por nuestro pedal motorizado. Esta señal se convierte en un componente fundamental para establecer los desafíos en la escena del juego de esta modalidad.
+    La modalidad clínico de nuestro juego serio representa una innovación significativa en nuestra aproximación terapéutica. Además de las características previamente mencionadas, esta modalidad integra los valores de la señal IEMG (Electromiografía de Superficie) capturados por nuestro pedal motorizado. Esta señal se convierte en un componente fundamental para establecer los desafíos en la escena del juego de esta modalidad.
 
     \vspace{10pt}
     En esta modalidad clínica, se definen tres puntos clave en el recorrido hacia la meta. En cada uno de estos puntos, el juego verifica la media aritmética de los niveles de IEMG capturados. Estos niveles se comparan con los valores de referencia predefinidos que se establecieron durante la fase de calibración y configuración del juego. Si la media de los niveles de IEMG en un punto dado cumple con los requisitos establecidos, el jugador supera el reto asociado a ese punto y avanza en el juego.
 
 
+     
     \subthesischapter{Generación de reportes estadísticos}
-    Para obtener las estadísticas de manera efectiva, se desarrolló el script DailyUIController. Este script se encarga de recuperar los datos almacenados en la base de datos y calcular los mejores resultados obtenidos para cada día de la semana. Los resultados se organizaron en una estructura de datos que facilitó su manipulación.
-    Para cada día, se identificó el máximo valor de los resultados y se prepararon para su representación gráfica.
-    La representación visual de las estadísticas se logró mediante la manipulación de elementos visuales definidos en el archivo de diseño UXML. Utilizando Unity 
-    UIElements, se crearon contenedores (VisualElement) para cada día de la semana y se asignaron alturas proporcionales a los mejores resultados obtenidos. Los elementos 
-    visuales se actualizaron dinámicamente a través del script DailyUIController.
+    Con el objetivo de obtener estadísticas precisas y eficientes de las rutinas de entrenamiento, se desarrolla el script StatisticsUIController.cs. 
+    Este tiene la responsabilidad de recuperar los datos almacenados en la base de datos y actualizar los valores pertinentes en 
+    los gráficos presentados en la figura~\ref{fig: statics-graphs}. Para acceder a detalles específicos del Gráfico 1, el usuario puede 
+    seleccionar la barra correspondiente al día deseado. En este caso, se mostrarán el valor promedio %como la desviación estándar 
+    de los datos relacionados con la velocidad y la MCV de las rutinas realizadas, ver figura \ref{fig: statics-graphs} c)  .
+    
+    \begin{figure}[ht]
+        \centering
+        \subfigure[Gráfico 1]{\includegraphics[height=5.2cm, width=0.45\textwidth]{images/ui/ui15-graph1.png}}
+        \subfigure[Gráfico 2]{\includegraphics[height=5.1cm, width=0.45\textwidth]{images/ui/ui16-graph2.png}}
 
-    \vspace{10pt}
+        \subfigure[Menú]{\includegraphics[scale=0.7]{images/ui/ui15-menu.png}}
+        \caption{Gráficos estadísticos}
+        \label{fig: statics-graphs}
+    \end{figure}
+
+    \subsubthesischapter{Generación de los valores del Gráfico 1}
+    El primer gráfico figura \ref{fig: statics-graphs} a) permite visualizar los valores promedio de velocidad y MCV
+    obtenidos en las rutinas de entrenamiento diarias. Dichos valores se obtuvieron a partir de las ecuaciones \ref{eq: 2}, \ref{eq: 3}.    
+    
+     \begin{equation}
+        V_{i} = \frac{\sum_{j=1}^{k} v_{j}}{k}
+        \label{eq: 2}
+     \end{equation}
+     \begin{equation}
+        MCV_{i} = \sum_{c=1}^{4}\frac{\sum_{j=1}^{k} mcv_{c j}}{k}
+        \label{eq: 3}
+    \end{equation}
+    Donde:
+    \begin{itemize}
+        \item $V_{i} (MCV_{i})$: valor promedio de velocidad(MCV) obtenido el i-esimo día.
+        \item $v_{j}(mcv_{cj})$: velocidad(promedio de MCV del canal c) obtenido en la rutina j del i-esimo día. 
+        \item $k$: es el número de rutinas ejecutadas el i-esimo día 
+    \end{itemize}
+    La representación visual de las estadísticas se logró mediante la manipulación de elementos visuales definidos en el archivo de diseño UXML. Utilizando Unity 
+    UIElements, se crearon contenedores (VisualElement) para cada día de la semana y se asignaron alturas proporcionales a los resultados promedios obtenidos. Los 
+    elementos visuales se actualizan dinámicamente a través del script StatisticsUIController.cs.
+
+    \subsubthesischapter{Generación de los valores del Gráfico 2}
+    El segundo gráfico figura \ref{fig: statics-graphs} b) permite visualizar los valores de velocidad, distancia y tiempo 
+    correspondientes a cada rutina de entrenamiento ejecutada. Para ello, se utilizan datos provenientes de las entidades 
+    de la base de datos, específicamente, de DoEntity y RutineEntity. Estos datos se procesan y se organizan 
+    en una representación gráfica compuesta por tres curvas representadas por dichas magnitudes y generadas a partir de la clase 
+    SystemCoordinate, donde la coordenada \textbf{x} representa el índice de la rutina \textbf{y} la coordenada y representa la magnitud correspondiente (distancia, tiempo o velocidad). Estas curvas 
+    se visualizan sobre un elemento VisualElement de Unity3D, proporcionando así una representación gráfica clara y comprensible del 
+    comportamiento de los datos asociados a cada rutina de entrenamiento ejecutada.
+    
+
+    \subsubthesischapter{Persistencia de los resultados estadísticos}
     En la fase final del juego, se implementó un código crucial para capturar y guardar los resultados obtenidos en la rutina de entrenamiento. Utilizando la clase DateTime de las bibliotecas de c\#, 
     se registra la fecha y la hora exactas del final del juego. Estos datos se almacenaron en una estructura adecuada y se insertaron en la base de datos correspondiente. La clase CibiofibDb facilitó esta 
     operación al proporcionar métodos para añadir datos (addData()) y cerrar la conexión con la base de datos (close()). Este proceso garantizó la persistencia de los resultados en la tabla Do, lo que 
-    permitió un análisis detallado de las sesiones de entrenamiento.
+    permite un análisis detallado del entrenamiento en la sesión de \textbf{Estadísticas}.
 
 
     % \textbf{Configuración del entrenamiento} \\ 
     % ----- menu de parámetros ----------
 
     \subthesischapter{Conclusiones del capítulo}
-    En el capítulo primero se presenta una descripción del sistema de adquisición de datos para rehabilitación, sus componentes,
-    funcionamiento y descripción
+    Se presentó una descripción del sistema de adquisición de datos para rehabilitación, sus componentes,
+    características distintivas y su funcionamiento. Se identificaron y definieron los requisitos del juego 
+    serio, tanto funcionales como no funcionales, así como los actores y casos de usos del sistema que establecieron 
+    las bases fundamentales para el desarrollo de la aplicación. Se realizó un minucioso diseño de la base de datos, 
+    abarcando tanto el modelo lógico como el físico, lo que aseguró una estructura robusta y eficiente para el 
+    almacenamiento de los datos. La manipulación de los datos se abordó de manera integral, desde la conexión con 
+    la base de datos hasta la persistencia de los resultados estadísticos. Se diseñó e implementó la comunicación
+    con el pedal motorizado y la implementación de la interfaz gráfica para la representación de los datos EMG. 
+    Se definieron los escenarios de entrenamiento para las modalidades Ligero y Clínico, asegurando 
+    una cobertura completa de las necesidad de entrenamiento del usuario. Por último en el ámbito estadístico se desarrolló 
+    una serie de gráficos para el seguimiento de los resultados en las rutinas de entrenamiento.   
     
 
 \end{thesischapter}

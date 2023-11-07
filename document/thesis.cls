@@ -7,12 +7,14 @@
 
 % Bibliography style
 %\RequirePackage[natbibapa]{apacite}
-\RequirePackage[spanish]{babel}
+\RequirePackage[english,spanish,es-ucroman,es-tabla]{babel}
 \RequirePackage{tabularx}
 \bibliographystyle{plain}
 \RequirePackage{listings}
 \RequirePackage{xcolor}
-
+\RequirePackage{subfigure}
+\RequirePackage{caption}
+%\addto\captionsspanish{\renewcommand{\listingscaption}{Codigo}}
 
 % Change pages style
 \RequirePackage{geometry}
@@ -121,6 +123,20 @@
    }
    {}
 
+\newenvironment{conclusions}
+   {
+      \addcontentsline{toc}{section}{Concluciones}
+      \section*{Concluciones}
+   }
+   {}
+
+\newenvironment{recommendations}
+   {
+      \addcontentsline{toc}{section}{Recomendaciones}
+      \section*{Recomendaciones}
+   }
+   {}
+
 % Back section
 \newenvironment{annexes}
    {
@@ -158,3 +174,7 @@
 
 
 \lstset{style=mystyle}
+
+% Cambiar el prefijo de los títulos de los listados de código
+\captionsetup[listing]{labelformat=simple, labelsep=colon}
+\renewcommand\lstlistingname{Código}

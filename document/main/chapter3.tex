@@ -1,10 +1,14 @@
 \begin{thesischapter}{3} {Análisis de resultados}
-    En este capítulo se exponen las funcionalidades que ofrece la aplicación a través de un flujo de uso 
-    normal para iniciar una rutina de entrenamiento.  Además, se describirán las estrategias de prueba que se utilizarán para evaluar la efectividad y la 
-    usabilidad de la aplicación de juego serio. Se discutirán los métodos de evaluación, como pruebas de usuario 
-    y estudios piloto, para recopilar datos cualitativos y cuantitativos sobre la experiencia de los especialistas y pacientes. 
-    Además, se considerarán las métricas de rendimiento y los indicadores de progreso para medir el impacto terapéutico de la 
-    aplicación.
+    En el siguiente capítulo se presenta un análisis detallado de las funcionalidades proporcionadas por la aplicación a 
+    través de un flujo de uso típico para iniciar una rutina de entrenamiento. Se describe minuciosamente la estrategia 
+    de prueba empleada para evaluar tanto la eficacia como la calidad del juego serio implementado. La evaluación se basa 
+    en métodos cualitativos y cuantitativos, incluyendo pruebas con especialistas y encuestas detalladas. Los resultados 
+    obtenidos de estas evaluaciones se presentan en una escala dicotómica para cada uno de los requisitos no funcionales
+    presentados. Además, se exploran también las observaciones generales proporcionadas por los especialistas, quienes 
+    identificaron potenciales usos adicionales de la aplicación en el proceso de rehabilitación sirviendo indicadores 
+    cualitativos para medir el impacto terapéutico de la aplicación, resaltando la importancia de la adaptabilidad del 
+    juego a las necesidades cambiantes del usuario.  
+    
 
     \subthesischapter{Comprobación de Requisitos del sistema}
 
@@ -20,119 +24,110 @@
         \label{fig: diagram-flow}
     \end{figure}
     
-    \vspace{10pt}
-    Para comenzar, el usuario debe ingresar sus credenciales en la interfaz de Inicio de Sesión, ver figura \ref{fig: ui0} a)
-    de no poseer alguna cuenta de usuario registrada en el sistema quedará pasar a la interfaz de registro  
-    y registrar un nuevo usuario, ver figura \ref{fig: ui0} b).
-
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.17]{images/ui/0.jpg}
-        \includegraphics[scale=0.17]{images/ui/1.jpg}
-        \caption{a) Vista para el inicio de sesión b) Vista para el registro de usuario}
-        \label{fig: ui0}
-    \end{figure}
-
-    Después de iniciar sesión se puede se muestra la vista principal donde el usuario puede:
-    \begin{itemize}
-        \item Configurar e iniciar un entrenamiento.
-        \item Iniciar calibración.
-        \item Revisar estadísticas.
-        \item Revisar y editar datos del perfil. 
-    \end{itemize} 
-
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.17]{images/ui/2.jpg}
-        \includegraphics[scale=0.17]{images/ui/4.jpg}
-        \includegraphics[scale=0.17]{images/ui/3.jpg}
-        \caption{Vista principal del usuario}
-        \label{fig: ui1}
-    \end{figure}
-
+    Para iniciar el proceso, el usuario debe ingresar sus credenciales en la interfaz de Inicio de Sesión, 
+    como se muestra en el anexo 2 a). En caso de que el usuario no tenga una cuenta registrada en el 
+    sistema, será redirigido automáticamente a la interfaz de registro, anexo 2 b). 
+    En este paso, se le permitirá crear un nuevo usuario para poder acceder al sistema. Tras iniciar sesión, se 
+    despliega la interfaz principal, brindando al usuario la capacidad de realizar diversas 
+    acciones, tales como configurar y dar inicio a un proceso de entrenamiento anexo 3 a) anexo 3 b), 
+    iniciar el proceso de calibración anexo 3 c), examinar estadísticas relevantes anexo 5 y revisar o 
+    editar la información detallada en su perfil anexo 4 a) 4 b) así como elegir una rutina ya configurada anexo 4 c).
 
     \vspace{10pt}
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.17]{images/ui/7.jpg}
-        \includegraphics[scale=0.17]{images/ui/6.jpg}
-        \caption{a) Escenario ligero b) Escenario clínico}
-        \label{fig: diagram-game}
-    \end{figure}
-
-    \newpage 
-    \subsubthesischapter{Requisitos no funcionales}
-    \subthesischapter{Encuesta a especialistas sobre la percepsión del sistema}
-    Los 10 encuestados son [Nivel profesional de los encuestados]
-
-    Los resultados de la encuesta a los fisioterapeutas en cuanto a ergonomía, seguridad y concordancia 
-    de los ejerciciso con los de la terapia tradicional se presentan agrupados en una escala dicotómica
-    en la Tabla \ref{table:test}.
+    Si la rutina de entrenamiento deseada no se encuentra disponible, el usuario tiene la posibilidad de interactuar 
+    directamente con la aplicación accediendo a la interfaz de configuración de parámetros correspondiente a la modalidad 
+    que desea establecer. En el caso de la modalidad "Ligero", anexo 3 a), se le solicita al usuario ingresar manualmente los valores 
+    de distancia o tiempo, específicos al nivel de dificultad del entrenamiento que busca. Por otro lado, en la modalidad 
+    "Clínico" anexo 3 b) 3 c), la interacción se intensifica, ya que el usuario debe calibrar el sistema para obtener los valores esenciales 
+    de línea base y MCV. A partir de este último valor, el usuario asume un papel activo al elegir el porcentaje que se 
+    asignará a la rutina de rehabilitación por canal, basándose en criterios médicos. Una vez que se han establecido estos parámetros, el usuario continúa su interacción con la aplicación al ingresando los 
+    valores específicos de distancia o tiempo correspondiente a la rutina de entrenamiento Clínico. 
     
-\vspace{10pt}
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
-        \hline
-        \multicolumn{4}{|c|}{Encuesta} \\
-        \hline
-        &     &  3 &  \\
-        \hline
-         &     &    &\\
-        \hline        
-    \end{tabular}
-    \label{table:test}
+    \vspace{10pt}
+    Al hacer clic en el botón \"Comenzar\", se presenta la escena de juego correspondiente. Al finalizar, los resultados obtenidos son almacenados en la base de datos 
+    y pueden ser visualizados en la sección de estadísticas de la interfaz. 
+    
+    \newpage 
+    \subsubthesischapter{Encuesta a especialistas sobre la percepsión del sistema}
+    Los 10 encuestados son profesionales del área de la investigación 4 de ellos doctores en ciencia,
+    3 ingenieros entre ellos 1 informático, 1 ingeniero de control automático y 1 bio-médico especialistas en desarrollo 
+    en el tema de la rehabilitación y 3 especialistas del área médica. Todos con más de 5 años de experiencia.
+    
+    \vspace{10pt}
+    Los resultados de la encuesta a los profesionales en cuanto a los requisitos no funcionales (usabilidad e interoperabilidad) 
+    además de los evaluados por \cite{franco2016sistema} (ergonomía, seguridad y concordancia de los ejercicios con los de la terapia tradicional) 
+    se presentan agrupados en una escala dicotómica en la Tabla \ref{table:test}.
+    
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{p{3cm} c c c c}
+            \hline
+            Característica      &  Alto(\#/Total)   &  Alto(\%) & Bajo(\#/Total)  & Bajo(\%) \\\hline
+            Usabilidad          &  7/10   &  70   & 3/10  &   30\\
+            Interoperabilidad   &  8/10   &  80   & 2/10  &   20\\
+            Ergonomía           &  10/10  &  100  & 0/10  &   0\\
+            Concordancia        &  8/10   &  80   & 2/10  &   20\\
+            Seguridad           &  10/10  &  100  & 0/10  &   0\\
+            \hline        
+        \end{tabular}        
+        \caption{Resultados de percepción de los especialistas}
+        \label{table:test}
+    \end{table}
+    \vspace{10pt}
+    Dichos resultados siguen el patrón lógico esperado:
+    \begin{itemize}
+        \item \textbf{Usabilidad (70\% de satisfacción alta):} Un alto nivel de usabilidad significa que los profesionales evaluados encontraron el juego serio fácil de usar y comprender. Esto indica que la interfaz y las interacciones del juego son intuitivas, lo que facilita su adopción por parte de los usuarios.
+        
+        La facilidad de uso es fundamental para los pacientes de neurorehabilitación, especialmente para aquellos que pueden tener limitaciones cognitivas o motoras. Un juego fácil de entender y jugar fomenta la participación y la adherencia al programa de rehabilitación
 
-    \caption{Resultados de percepción de fisioterapeutas en cuanto al nivel de}
-\end{table}
+
+        \item \textbf{Interoperabilidad (80\% de satisfacción alta):} Una alta interoperabilidad sugiere que el juego serio puede integrarse sin problemas con 
+        el sistema de adquisición de datos.
+        
+        La interoperabilidad es crucial en un entorno de neurorehabilitación donde se utilizan varios dispositivos y sistemas para monitorear y apoyar la recuperación 
+        del paciente. Un juego serio interoperable permite una recopilación de datos sin problemas y una comunicación eficaz entre diferentes componentes del sistema.
+
+
+        \item \textbf{Ergonomía y Seguridad (100\% de satisfacción alta):}En el caso de la seguridad aplican condiciones similares a la ergonomía, dado
+        que el sistema por sí mismo incluye las condiciones asociadas con una bicicleta estática que ya es usada en los procesos de rehabilitación de miembro inferior.
+        Además la ergonomía también demuestra la capacidad de la aplicación para adaptarse a las necesidades y habilidades cambiantes del usuario. 
+        
+        La seguridad total indica que los profesionales evaluados consideran que el juego serio no representa ningún riesgo para la salud o la integridad de los usuarios.
+        
+        \item \textbf{Concordancia (80\% de satisfacción alta):} Implica que los ejercicios en el juego serio se alinean adecuadamente con las prácticas de terapia tradicional, 
+        lo que sugiere coherencia en el enfoque de rehabilitación. Los ejercicios en el juego deben complementar y respaldar las técnicas utilizadas en la terapia tradicional. 
+        
+        La concordancia asegura que los pacientes practiquen movimientos y habilidades relevantes para su recuperación.
+    \end{itemize}
+    \vspace{10pt}
+    Las observaciones generales proporcionadas por los especialistas, permitieron identificar otros potenciales usos en el
+    proceso de rehabilitación de víctimas de ACV: resistencia, fuerza, propiocepción y coordinación,actividad física independiente 
+    de su condición, complemento al proceso de entrenamiento de marcha, coordinación, autoconfianza, motivación. Los hallazgos anteriores 
+    van de acuerdo con investigaciones preliminares donde se muestra que con el uso de bicicletas estáticas en rehabilitación se puede fortalecer 
+    a parte de dichas habilidades mencionadas la capacidad física, aeróbicas, además de comprobar un mejoramiento en el sistema cardiovascular y 
+    respiratorio del paciente \cite{phadke2019impact, nardone2017passive}.
+
 
     \vspace{10pt}
-    Las observaciones generales proporcionadas por los fisioterapeutas, permitieron identificar otros 
-    potenciales usos en el proceso de rehabilitación
+    Por otra parte, teniendo en cuenta que el sistema de adquisición de datos no es invasivo
+    y, por el contrario, presentó aceptación por parte de los especialistas por incluir
+    un videojuego, se propone, en un futuro, realizar pruebas a un número determinado de pacientes víctimas de ACV 
+    y de esta manera evaluar el funcionamiento del sistema de adquisición de datos durante
+    ejercicios de rehabilitación resistida y activa-asistida, en los que el paciente moverá los pedales 
+    continuamente y realizará por su propia acción o con ayuda de especialista los ejercicios establecidos. 
+    Adicionalmente, se valida la hipótesis de que el sistema no es exclusivo
+    para rehabilitación de personas víctimas de ACV, por lo tanto se plantea que en
+    un trabajo futuro se podrá probar dicha aplicación en la modalidad ligero, por ejemplo, con deportistas de alto rendimiento con lesiones deportivas.
 
 
     \vspace{10pt}
-    Los hallazgos anteriores van de acuerdo con investigaciones preliminares donde se muestra que con el uso de bicicletas estáticas
-    en rehabilitación se puede fortalecer el muñón, mejorar las habilidades de movilidad con la prótesis y mejorar las capacidades 
-    aeróbicas del paciente [6], [7], [8].
-
-    \vspace{10pt}
-    En gran medida la impresión positiva
-    es porque el desarrollo se convierte en un
-    reto para el usuario y una ayuda a la
-    concentración en una actividad paralela de
-    entretenimiento mientras realiza el proceso de
-    rehabilitación.
-    Si bien se recibieron comentarios negativos
-    respecto a la ergonomía en el caso de
-    la bicicleta específica utilizada para el
-    desarrollo, es decir, con la cual se realizó la
-    prueba, especialmente por los inconvenientes
-    que traería utilizar dicha bicicleta en una
-    persona protetizada en cuanto a estabilidad,
-    hubo claridad en los fisioterapeutas que dicha
-    situación se soluciona fácilmente adaptando
-    el sistema a las bicicletas utilizadas en
-    pacientes protetizados, de tipo Recumbent.
-    Adicionalmente uno de los encuestados
-    expresó sus intentos preliminares a nivel
-    personal de implementar una idea parecida
-    cuando, mientras realizaba entrenamiento
-    físico con una bicicleta estática, practicaba un
-    videojuego identificando que lograba mayor
-    tiempo de entrenamiento. Una limitación
-    que preliminarmente ha sido identificada en
-    el sistema es que su uso prolongado, tal como
-    sucede en el caso de algunos videojuegos,
-    podría contribuir al desarrollo de patologías
-    como Tenosinovitis de Quervain, por lo tanto
-    es recomendable utilizarlo de acuerdo a las
-    recomendaciones del fisioterapeuta.
-    Por último, dos fisioterapeutas hicieron
-    énfasis en que el sistema solamente se puede
-    usar en ciertas etapas de la rehabilitación y
-    teniendo en cuenta el nivel de amputación del
-    paciente.
-
-
+    En gran medida la impresión positiva es porque el desarrollo se convierte en un
+    reto para el usuario y una ayuda a la concentración en una actividad paralela de entretenimiento mientras realiza el proceso de
+    rehabilitación. Si bien se recibieron comentarios  positivos otros también fueron negativos
+    respecto a la usabilidad y la concordancia, requisitos estrechamente relacionados en el juego serio. En ambos se 
+    encontró como deficit el no cubrir toda la gamma de ejercicios definidos en las rutinas de rehabilitación siendo 
+    propuestos para futuras versiones la inclusión de las modalidades resistida y activo-asistida con el fin de complementar
+    los ejercicios de rehabilitación que se pueden realizar actualmente con el sistema de adquisición de datos, 
+    los cuales son solamente ejercicios de rehabilitación libre.
+    
 \end{thesischapter}

@@ -3,9 +3,8 @@
 \author{\\\vspace{0.25cm}Luis Miguel Casañ González}
 \advisor{\\\vspace{0.25cm} Dr.C Alberto López Delis \\ \vspace{0.25cm} Msc. Miguel Castañeda Garay}
 \faculty{Facultad de Ciencias Naturales y Exactas}
-\usepackage{longtable}
-\begin{document}
 
+\begin{document}
     % Title
     \maketitle
     % Set document's geometry
@@ -14,8 +13,8 @@
     % Front section of thesis 
     %\include{front/dedication.tex}
     %\include{front/acknowledgements.tex}
-    %\include{front/resumen.tex}
-    %\include{front/abstract.tex}
+    \include{front/resumen.tex}
+    \include{front/abstract.tex}
     \include{front/content.tex}
     
     % Main section of thesis 
@@ -25,6 +24,8 @@
     \include{main/chapter3.tex}
 
     % Back section of thesis 
+    \include{back/conclusion.tex}
+    \include{back/recommendations.tex}
     \bibliography{back/references.bib}
     \include{back/annexes.tex}
 \end{document}
