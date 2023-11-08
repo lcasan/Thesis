@@ -1,11 +1,6 @@
 \begin{thesischapter}{2} {Análisis, diseño e implementación del Juego Serio}
-    En este capítulo se discuten los detalles de desarrollo de los aspectos citados en el capítulo
-    anterior. Este comienza con una descripción y caracterización general del sistema, donde se  abordan 
-    cada uno de los componentes requeridos para su completo funcionamiento. Posteriormente se detallan 
-    la ingienría de software requerida en la etapa de conceptualización de la aplicación, se explica de forma 
-    detallada los aspectos teóricos y de implementación de la base de datos, el funcionamiento del protocolo de comunicación 
-    y por último los escenarios de juegos requeridos en las rutinas de entrenamiento ligero y clínico, y las estadísticas generadas 
-    por estos.
+    En este capítulo se discuten los detalles de desarrollo de los aspectos citados en el capítulo anterior. Este comienza con una descripción y caracterización general del sistema, donde se  abordan cada uno de los componentes requeridos para su completo funcionamiento. Posteriormente se detallan la ingienría de software requerida en la etapa de conceptualización de la aplicación, se explica de forma 
+    detallada los aspectos teóricos y de implementación de la base de datos, el funcionamiento del protocolo de comunicación y por último los escenarios de juegos requeridos en las rutinas de entrenamiento ligero y clínico, y las estadísticas generadas por estos. Como herramienta de desarrollo se utilizó c\#.
 
     \subthesischapter{Descripción y caracterización del sistema}
     Antes de adentrarnos en los aspectos técnicos de la ingeniería de software, es esencial comprender el contexto en 
@@ -13,12 +8,7 @@
     separado por 2 componentes autónomos que interactúan entre si: juego serio y pedal motorizado. 
 
     \vspace{10pt} % Descripción del sistema 
-    En la figura \ref{fig: sa} se presenta el \textbf{sistema de adquisición de datos}\footnote{Hace refenrencia al pedal motorizado}, 
-    en esta se puede observar la ubicación de los sensores MyoWare  utilizado para la medición de la activación muscular a través del potencial eléctrico, 
-    conocida como electromiografía (EMG) y un un sensor óptico SHARP modelo GP1A51HRJ00F con salida  \textbf{OPIC}\footnote{Output Photocoupler 
-    Integrated Circuit} ubicado en la biela del pedal el cual es utilizado para la obtención de la velocidad angular. Adicionalmente el sistema 
-    utiliza un microcontrolador Arduino DUE encargado de coordinar y controlar las operaciones de adquisición de 
-    datos. Su función principal es gestionar la comunicación entre los sensores de adquisición de datos y el resto del sistema.
+    En la figura \ref{fig: sa} se presenta el \textbf{sistema de adquisición de datos}\footnote{Hace refenrencia al pedal motorizado}, en esta se puede observar la ubicación de los sensores MyoWare  utilizado para la medición de la activación muscular a través del potencial eléctrico, conocida como electromiografía y un sensor óptico SHARP modelo GP1A51HRJ00F con salida  \textbf{OPIC}\footnote{Circuito integrado fotoacoplador de salida} ubicado en la biela del pedal el cual es utilizado para la obtención de la velocidad angular. Adicionalmente el sistema utiliza un microcontrolador Arduino DUE encargado de coordinar y controlar las operaciones de adquisición de datos. Su función principal es gestionar la comunicación entre los sensores de adquisición de datos y el resto del sistema.
 
     \begin{figure}[ht]
         \centering
@@ -35,7 +25,7 @@
         que se logra una velocidad definida, se envía la orden de movimiento al videojuego y 
         este responde con el movimiento del avatar en la escena, el cual se encuentra en una pista 
         cuyo objetivo será alcanzar los mejores resultados de tiempo, distancia o  MCV(Máxima contracción voluntaria).
-        \item El segundo componente del sistema (sensores emg) tienen la función de capturar la señal EMG obtenida en la 
+        \item El segundo componente del sistema (sensores de EMG) tienen la función de capturar la señal EMG obtenida en la 
         una rutina de entrenamiento y ser usados tanto en la dificultad de los niveles de entrenamiento de la rutina clínica como para la 
         estadística de la misma.
     \end{itemize}
@@ -43,13 +33,13 @@
     
     Dichos componentes tanto internos como externos se encuentran orientados hacia 
     la realización de un objetivo común, el desarrollo de la capcidad física tanto para usuarios 
-    sanos como enférmos. A continuación se precisa un resumen de las características funcionales 
-    detalladas de cada uno, ver figura \ref{fig: system} para más detalles:
+    sanos como enfermos. A continuación se presentan las características funcionales 
+    del sistema, ver figura~\ref{fig: system}:
 
     \vspace{10pt}
     La aplicación de juego serio es responsable de:
     \begin{itemize}
-        \item Recibir y procesar las señales del arduino incluido en el pedal para ser utilizadas tanto en la 
+        \item Recibir y procesar las señales de la plataforma Arduino incluido en el pedal para ser utilizadas tanto en la 
               animación de la escena como en la estadística .
         \item La carga y procesamiento de las escenas y los paradigmas de las rutinas junto a la lógica asociada. 
         \item Procesar los eventos registrados durante la realización de la rutina y devolver un análisis sobre los resultados.
@@ -59,9 +49,9 @@
     \vspace{10pt}
     El pedal motorizado es responsable de:
     \begin{itemize}
-        \item Capturar a partir de electrodos las señales EMG del cuerpo humano correspondientes al tren inferior.
-        \item Capturar la velocidad angular en los pedales.
-        \item Enviar en tiempo real los datos capturados a cualquier aplicación de juego serio sincronizada.
+        \item Registrar a partir de electrodos las señales EMG del cuerpo humano correspondientes al tren inferior.
+        \item Registrar la velocidad angular en los pedales.
+        \item Enviar en tiempo real los datos registrados a cualquier aplicación de juego serio sincronizada.
     \end{itemize}
     
     \begin{figure}[ht]
@@ -75,14 +65,14 @@
     \subthesischapter{Requisitos del Juego Serio}
     Un requisito es una restricción que el sistema debe cumplir. Tiene como propósito expresar un comportamiento o propiedad que 
     el sistema debe poseer~\cite{jacobson2000uml}. El objetivo esencial de un requisito es el de definir un comportamiento específico 
-    de manera clara y comprensible tanto para los intermediarios como para el equipo de desarrollo. Pueden clasificarse en funcionales 
+    de manera clara y comprensible. Pueden clasificarse en funcionales 
     y no funcionales.
 
     \subsubthesischapter{Requisitos funcionales}
     La integración de tecnologías de pedaleo en el campo de la rehabilitación neuromuscular ha abierto nuevas oportunidades 
     para mejorar la calidad y eficacia de las terapias. En particular, los juegos serios han demostrado ser una herramienta 
-    efectiva para motivar a los pacientes durante el proceso de rehabilitación. Debido a dicha necesidad fue necesario   
-    el desarrollo de una aplicación android que cumpliera con los siguientes requerimientos funcionales:
+    efectiva para motivar a los pacientes durante el proceso de rehabilitación. Tomando como punto de partida lo anteriormente 
+    abordado se hace necesario el desarrollo de una aplicación android que cumpliera con los siguientes requerimientos funcionales:    
 
     \begin{enumerate}
         \item Iniciar sesión en el sistema
@@ -100,13 +90,11 @@
         \item Mostrar estadísticas rutina
         \item Configurar rutina
         \item Iniciar calibración
-        \item Guardar registro de comportamieto en archivo logs
+        \item Guardar registro de comportamieto en archivo \textbf{logs}\footnote{Archivo de texto en el que constan cronológicamente los acontecimientos que han ido afectando a un sistema informático}
     \end{enumerate}
     \subsubthesischapter{Requisitos no funcionales}
     Los requisitos no funcionales son propiedades o cualidades que el producto debe tener. Enuncian los requisitos del sistema que no pueden ser expresados como funcionalidades en respuesta a alguna acción de un usuario. 
     En nuestro caso se identificaron los siguientes requisitos no funcionales:
-    %Algunas de las categorías más comunes para clasificar un requisito no funcional son las siguientes: usabilidad, desempeño o rendimiento, robustez, fiabilidad, seguridad, hardware y despliegue.
-    %\vspace{10pt}
         
     \begin{itemize}
         \item \underline{Requisitos de usabilidad}: La interfaz de trabajo del usuario con la herramienta deberá ser simple, interactiva e intuitiva y deberá notificar los diferentes errores que se produzcan durante su ejecución.
@@ -143,7 +131,7 @@
         \centering
         \begin{tabularx}{\textwidth}{|c|X|c|}
             \hline
-            \textbf{Casos de Uso} & \textbf{Descripción} & \textbf{Requisitos}\\\hline
+            \textbf{Casos de uso} & \textbf{Descripción} & \textbf{Requisitos}\\\hline
             Iniciar sesión & Permite al usuario acceder al sistema & RF1\\\hline
             Registrar usuario & Permite guardar los datos de un usuario en la Base de Datos & RF2\\\hline
             Eliminar usuario & Permite eliminar la cuenta de un usuario en la Base de Datos & RF3\\\hline
@@ -171,7 +159,7 @@
     \begin{figure}[h]
         \centering
         \includegraphics[scale=0.44]{images/diagram-usecase-user.png}
-        \caption{Diagrama de Casos de Uso, actor usuario}
+        \caption{Diagrama de casos de uso, actor usuario}
         \label{fig: use-cases-user}
     \end{figure}
 
@@ -200,6 +188,7 @@
                 \begin{minipage}[t]{0.925\columnwidth}
                     \textbf{Descripción:} \\
                     Permite iniciar una rutina de entrenamiento seleccionando entre las modalidades disponibles en el sistema
+                    \vspace{2pt}
                 \end{minipage}} \\\hline
                 
                 \textbf{Requisitos funcionales asociados:} &  RF10, RF14\\\hline
@@ -218,7 +207,7 @@
                 \end{minipage}} \\\hline
                 
                 Acción del actor & Acción del sistema \\\hline
-                1. El usuario selecciona la opción de entrenamiento en la vista principal, fig \ref{display: 1}. & 2. El sistema muestra la interfaz para la selección de la modalidad. \\\hline
+                1. El usuario selecciona la opción de entrenamiento en la vista principal, ver anexo 3. & 2. El sistema muestra la interfaz para la selección de la modalidad. \\\hline
                 3. El especialista selecciona la opción que desea:
                 \begin{itemize}
                     \item Caso <<Modalidad ligero>>: ir al curso alterno <<Modalidad ligero>>
@@ -240,7 +229,7 @@
                 Acción del actor & Acción del sistema \\\hline
              
                 & 
-                1. El sistema construye la interfaz con los parámetros generales de la modalidad seleccionada, fig \ref{}. \\\hline
+                1. El sistema construye la interfaz con los parámetros generales de la modalidad seleccionada, ver anexo 3 a). \\\hline
                 2. El usuario inserta los valores de distancia y tiempo según la dificultad del entrenamiento que desee y presiona en el botón comenzar fig \ref{}. 
                 & 
                 3. El sistema muestra la escena de juego correspondiente a la modalidad elegida fig\ref{}. \\ &4. Termina el CU. \\\hline
@@ -253,14 +242,14 @@
                 Acción del actor & Acción del sistema \\\hline
                  
                 & 
-                1. El sistema construye la interfaz correspondiente a la sección de calibración, ver figura \ref{} \\\hline
+                1. El sistema construye la interfaz correspondiente a la sección de calibración, ver anexo 3 c). \\\hline
                 \begin{enumerate}
-                    \item[2.] El usuario presiona en los botones iniciar medición, calcular línea base y calcular MCV siguiendo el protocol médico de calibración
-                    \item[3.] El usuario presiona en el botón de modalidad clínico
+                    \item[2.] El usuario presiona en los botones iniciar medición, calcular línea base y calcular MCV siguiendo el protocol médico de calibración.
+                    \item[3.] El usuario presiona en el botón de modalidad clínico.
                 \end{enumerate}
                 &
-                5. El sistema construye la interfaz con los parámetros generales de la modalidad seleccionada, fig \ref{}. \\\hline
-                6. El usuario inserta los valores de distancia, tiempo y porciento de MCV según la dificultad del entrenamiento que desee y la calibración obtenida y luego presiona en el botón comenzar fig \ref{}. 
+                5. El sistema construye la interfaz con los parámetros generales de la modalidad seleccionada, ver anexo 3 b). \\\hline
+                6. El usuario inserta los valores de distancia, tiempo y porciento de MCV según la dificultad del entrenamiento que desee y la calibración obtenida y luego presiona en el botón comenzar. 
                 & 
                 7. El sistema muestra la escena de juego correspondiente a la modalidad elegida fig\ref{}. \\ &4. Termina el CU. \\\hline
                 
@@ -355,284 +344,280 @@
     El esquema de las tablas de la base de datos, junto con las dependencias de clave primaria y las foráneas, se puede visualizar en la siguiente 
     porción de código:
 
-    \begin{center}
-        \begin{minipage}{0.60\textwidth}
-        \begin{lstlisting}[language=c,caption={Hola perro}, label={holo}]
-        
-        \end{lstlisting}
-        \end{minipage}
+\begin{center}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[language=c,caption={Sección de código, constructor de la clase CibiofibDb}, label={code: database-code}]
+public CibiofibDb() : base()
+{
+    IDbCommand dbcmd = getDbCommand();
+    dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS USER ( " +
+                        "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "FULLNAME TEXT, " +
+                        "EMAIL TEXT, " +
+                        "PASSWORD TEXT )";
+    dbcmd.ExecuteNonQuery();
+
+    dbcmd = getDbCommand();
+    dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS RUTINE ( " +
+                        "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "MODALITY INTEGER, " +
+                        "TIME REAL, " +
+                        "DISTANCE REAL, " +
+                        "MCV0 REAL, " +
+                        "MCV1 REAL, " +
+                        "MCV2 REAL, " +
+                        "MCV3 REAL )";
+
+    dbcmd.ExecuteNonQuery();
+
+    dbcmd = getDbCommand();
+    dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS DO ( " +
+                    "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "USER_ID INTEGER, " +
+                    "RUTINE_ID INTEGER, " +
+                    "RESULT REAL, " +
+                    "DATE TEXT, " +
+    "FOREIGN KEY(USER_ID) REFERENCES USER(ID), " +
+    "FOREIGN KEY(RUTINE_ID) REFERENCES RUTINE(ID))";
+
+    dbcmd.ExecuteNonQuery();
+}
+\end{lstlisting}
+\end{minipage}
+\end{center}
     
-    \end{center}
+\subthesischapter{Manipulación de los datos}
+\vspace{10pt}
+SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún  
+Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, hemos ideado una manera de utilizar las 
+ventajas de SQLite para nuestra aplicación. 
 
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.5]{images/database-code.png}
-        \caption{Sección de código, constructor de la clase CibiofibDb}
-        \label{fig: database-code}
-    \end{figure}
+\vspace{10pt}
+La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para 
+crear implementaciones reales. Fue creada una clase de alto nivel \underline{DataBaseModel} que se puede extender a otras clases, con el 
+fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones básicas CURD: Crear, 
+Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{images/diagram-db.png}
+    \caption{Diagrama de clases}
+    \label{fig: diagram-db}
+\end{figure}
+
+Para gestionar la información almacenada en la base de datos del sistema, se ha implementado un conjunto de funciones en C\# utilizando la biblioteca 
+System.Data.SQLite. Estas funciones permiten realizar las operaciones CURD sobre las tablas USER, RUTINE y DO.
+
+
+\subsubthesischapter{Conexión con la base de datos}
+Para establecer la conexión con la base de datos, se utiliza la función getDbCommand() que devuelve un objeto de tipo IDbCommand. Este objeto se utiliza para ejecutar las instrucciones SQL en 
+la base de datos. Se asegura que la conexión esté establecida correctamente antes de realizar cualquier operación de manipulación de datos.
+
+\subsubthesischapter{Inserción en la base de datos}
+Para insertar nuevos registros en las tablas USER, RUTINE o DO, se han implementado las funciones addData(UserEntity user), addData(RutineEntity rutine) y addData(DoEntity \_do) respectivamente. 
+Estas funciones generan y ejecutan instrucciones SQL del tipo INSERT INTO para agregar nuevos registros a las tablas. Los datos son obtenidos de objetos de las clases UserEntity, RutineEntity y DoEntity
+definidas en Models.cs.
+
+\subsubthesischapter{Obtención de datos}
+Para obtener datos de la base de datos, se han implementado las funciones getDataByAtributeName<T>(string atribute, string name) y getAllData<T>(string table\_name). 
+La primera función permite obtener datos específicos de una tabla según un atributo y un valor dado. La segunda función recupera todos los registros de una tabla específica. 
+Ambas funciones devuelven los datos en forma de listas de objetos del tipo especificado por el tipo genérico T.
+
+\subsubthesischapter{Eliminación de registros}
+Para eliminar los datos de la base de datos, se han implementado las funciones deleteDataByAtributeName(string atribute, string name) y deleteAllData(string table\_name). 
+La primera función permite eliminar datos específicos de una tabla según un atributo y un valor dado. La segunda función elimina todos los registros de una tabla específica. 
+
+\subsubthesischapter{Edicion de atributos en la base de datos}
+Para la edición de los datos en la base de datos, se implementó la función changeValueByAtributeName<T>(string atribute, string name, T value), que 
+permite editar los datos de un atributo a partir de un valor genérico dado.
+
+%------ COMUNICACION SECTION ------
+\subthesischapter{Comunicación con el pedal motorizado}
+Para la comunicación entre los componentes principales de el sistema, juego serio y pedal motorizado, se implementó un protocolo de comunicación basado en sockets TCP/IP que garantiza una conexión confiable y efectiva. Este protocolo proporciona una interfaz que utiliza un conjunto de mensajes predefinidos, ver tablas 
+\ref{table:send-msg-in-game}, 
+\ref{table:recived-msg-in-game}, 
+\ref{table:send-msg-in-calibration}, 
+\ref{table:recive-msg-in-calibration}. El formato de los mensajes sigue una estructura que consta de un encabezado y un cuerpo organizados de la siguiente manera: \#[COMANDO][PARÁMETROS]. El encabezado \underline{COMANDO} indica el tipo de mensaje y el tamaño del cuerpo, lo que facilita la interpretación de los datos recibidos.
+
+\vspace{10pt} 
+Para gestionar la comunicación con el pedal motorizado, se desarrolló un script en C\# llamado \underline{Stream.cs}. Este script utiliza las bibliotecas de .Net\footnote{Entorno de desarrollo de software creado por Microsoft} para establecer y administrar la conexión con el pedal. La comunicación se realiza de manera asíncrona, aprovechando la programación basada en hilos para evitar bloqueos en la aplicación Unity3D mientras se establece la comunicación con el dispositivo físico
     
-    \subthesischapter{Manipulación de los datos}
-    \vspace{10pt}
-    SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún  
-    Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, hemos ideado una manera de utilizar las 
-    ventajas de SQLite para nuestra aplicación. 
-    
-    \vspace{10pt}
-    La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para 
-    crear implementaciones reales. Fue creada una clase de alto nivel \underline{DataBaseModel} que se puede extender a otras clases, con el 
-    fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones básicas CURD: Crear, 
-    Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[scale=0.5]{images/diagram-db.png}
-        \caption{Diagrama de clases}
-        \label{fig: diagram-db}
-    \end{figure}
+% ----- SEND SECTION -----
+\vspace{20pt}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ |c|p{14cm}|}
+        \hline
+        \multicolumn{2}{|c|}{Entrenamiento: Mensajes enviados} \\
+        \hline
+        Comandos        &   Descripción \\\hline
+        % ----- COMMAND IG -----
+        \textbf{ig}     &   \begin{minipage}{14cm}
+                                \vspace{2pt}
 
-    Para gestionar la información almacenada en la base de datos del sistema, se ha implementado un conjunto de funciones en C\# utilizando la biblioteca 
-    System.Data.SQLite. Estas funciones permiten realizar las operaciones CURD sobre las tablas USER, RUTINE y DO.
-    
-    
-    \subsubthesischapter{Conexión con la base de datos}
-    Para establecer la conexión con la base de datos, se utiliza la función getDbCommand() que devuelve un objeto de tipo IDbCommand. Este objeto se utiliza para ejecutar las instrucciones SQL en 
-    la base de datos. Se asegura que la conexión esté establecida correctamente antes de realizar cualquier operación de manipulación de datos.
+                                Envía la orden de iniciar mediciones del juego y sigue el esquema \#ig[modalidad][canal1],[canal2],[canal3],[canal4]
+                                
+                                \vspace{2pt}   
+                            \end{minipage}\\\hline 
+        % ----- COMMAND SG -----
+        \textbf{sg}     &   Envía la orden de parar mediciones del juego \\\hline   
+                                
+    \end{tabular}
+    \caption{Mensajes enviados en el entrenamiento}
+    \label{table:send-msg-in-game}
+\end{table}
 
-    \subsubthesischapter{Inserción en la base de datos}
-    Para insertar nuevos registros en las tablas USER, RUTINE o DO, se han implementado las funciones addData(UserEntity user), addData(RutineEntity rutine) y addData(DoEntity \_do) respectivamente. 
-    Estas funciones generan y ejecutan instrucciones SQL del tipo INSERT INTO para agregar nuevos registros a las tablas. Los datos son obtenidos de objetos de las clases UserEntity, RutineEntity y DoEntity
-    definidas en Models.cs.
+\vspace{80pt}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ |c|p{14cm}|}
+        \hline
+        \multicolumn{2}{|c|}{Entrenamiento: Mensajes recividos} \\
+        \hline
+        Comandos        &   Descripción \\\hline
+        % ----- COMMAND AR -----
+        \textbf{ar}     &   \begin{minipage}{14cm}
+                                \vspace{2pt}    
+                                Recive el valor de velocidad angular y de las mediciones de los canales activos, posee el formato 
+                                \#ar[velocidad angular][canal1][canal2][canal3][canal4]. 
+                                \vspace{2pt}    
+                            \end{minipage}\\\hline 
+    \end{tabular}
+    \caption{Mensajes enviados en el entrenamiento}
+    \label{table:recived-msg-in-game}
+\end{table}
 
-    \subsubthesischapter{Obtención de datos}
-    Para obtener datos de la base de datos, se han implementado las funciones getDataByAtributeName<T>(string atribute, string name) y getAllData<T>(string table\_name). 
-    La primera función permite obtener datos específicos de una tabla según un atributo y un valor dado. La segunda función recupera todos los registros de una tabla específica. 
-    Ambas funciones devuelven los datos en forma de listas de objetos del tipo especificado por el tipo genérico T.
-
-    \subsubthesischapter{Eliminación de registros}
-    Para eliminar los datos de la base de datos, se han implementado las funciones deleteDataByAtributeName(string atribute, string name) y deleteAllData(string table\_name). 
-    La primera función permite eliminar datos específicos de una tabla según un atributo y un valor dado. La segunda función elimina todos los registros de una tabla específica. 
-
-    \subsubthesischapter{Edicion de atributos en la base de datos}
-    Para la edición de los datos en la base de datos, se implementó la función changeValueByAtributeName<T>(string atribute, string name, T value), que 
-    permite editar los datos de un atributo a partir de un valor genérico dado.
-
-    %------ COMUNICACION SECTION ------
-    \subthesischapter{Comunicación con el pedal motorizado}
-    Para la comunicación entre los componentes principales de el sistema, juego serio y pedal motorizado,
-    fue necesaria la implementación de un protocolo de comunicación basado en sockets TCP/IP
-    que garantize una conexión confiable y efectiva. Este protocolo proporciona una interfaz que utiliza un conjunto 
-    de mensajes predefinidos, ver tablas 
-    \ref{table:send-msg-in-game}, 
-    \ref{table:recived-msg-in-game}, 
-    \ref{table:send-msg-in-calibration}, 
-    \ref{table:recive-msg-in-calibration}. El formato de los mensajes sigue una estructura  
-    que consta de un encabezado y un cuerpo organizados de la siguiente manera: \#[COMANDO][PARÁMETROS]. El 
-    encabezado (COMANDO) indica el tipo de mensaje y el tamaño del cuerpo, lo que facilita la interpretación de los datos recibidos.
-
-    \vspace{10pt} 
-    Para gestionar la comunicación con el pedal motorizado, se desarrolló un script en C\# llamado "Stream.cs". Este script 
-    utiliza las bibliotecas de punto Net para establecer y administrar la conexión con el pedal. 
-    La comunicación se realiza de manera asíncrona, aprovechando la programación basada en hilos (threads) para evitar bloqueos 
-    en la aplicación Unity3D mientras se establece la comunicación con el dispositivo físico
-    
-    % ----- SEND SECTION -----
-    \vspace{20pt}
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{ |c|p{14cm}|}
-            \hline
-            \multicolumn{2}{|c|}{Entrenamiento: Mensajes enviados} \\
-            \hline
-            Comandos        &   Descripción \\\hline
-            % ----- COMMAND IG -----
-            \textbf{ig}     &   \begin{minipage}{14cm}
-                                    \vspace{2pt}
-
-                                    Envía la orden de iniciar mediciones del juego y sigue el esquema \#ig[modalidad][canal1],[canal2],[canal3],[canal4]
-                                    
-                                    \vspace{2pt}   
-                                \end{minipage}\\\hline 
-            % ----- COMMAND SG -----
-            \textbf{sg}     &   Envía la orden de parar mediciones del juego \\\hline   
-                                   
-        \end{tabular}
-        \caption{Mensajes enviados en el entrenamiento}
-        \label{table:send-msg-in-game}
-    \end{table}
-    
-    \vspace{80pt}
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{ |c|p{14cm}|}
-            \hline
-            \multicolumn{2}{|c|}{Entrenamiento: Mensajes recividos} \\
-            \hline
-            Comandos        &   Descripción \\\hline
-            % ----- COMMAND AR -----
-            \textbf{ar}     &   \begin{minipage}{14cm}
-                                    \vspace{2pt}    
-                                    Recive el valor de velocidad angular y de las mediciones de los canales activos, posee el formato 
-                                    \#ar[velocidad angular][canal1][canal2][canal3][canal4]. 
-                                    \vspace{2pt}    
-                                \end{minipage}\\\hline 
-        \end{tabular}
-        \caption{Mensajes enviados en el entrenamiento}
-        \label{table:recived-msg-in-game}
-    \end{table}
-
-    \newpage
-    \vspace*{60pt}
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{ |c|p{14cm}|}
-            \hline
-            \multicolumn{2}{|c|}{Calibración: Mensajes enviados} \\
-            \hline
-            Comandos        &   Descripción \\\hline
-            % ----- COMMAND CH -----
-            \textbf{ch}     &   \begin{minipage}{14cm}
-                                    \vspace{1pt}
-                                    Envía la orden de activar o desactivar los canales de mediciones y sigue 
-                                    el siguiente esquema: \#ch[canal][acción], donde:
+\newpage
+\vspace*{60pt}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ |c|p{14cm}|}
+        \hline
+        \multicolumn{2}{|c|}{Calibración: Mensajes enviados} \\
+        \hline
+        Comandos        &   Descripción \\\hline
+        % ----- COMMAND CH -----
+        \textbf{ch}     &   \begin{minipage}{14cm}
+                                \vspace{1pt}
+                                Envía la orden de activar o desactivar los canales de mediciones y sigue 
+                                el siguiente esquema: \#ch[canal][acción], donde:
+                                \begin{itemize}
+                                    \item \textbf{Canal}: Establece el canal sobre el que se va a realizar la acción.
+                                    \item \textbf{Acción}: Establece si se va a activar o desactivar dicho canal. 
+                                \end{itemize}
+                                \vspace{1pt}
+                            \end{minipage}\\\hline
+        % ----- COMMAND IM -----
+        \textbf{im}     &   \begin{minipage}{14cm}
+                                \vspace{1pt}
+                                Envía la orden de iniciar mediciones siguiendo el esquema 
+                                \#im[canal1][canal2][canal3][canal4][algoritmo1][algoritmo2][algoritmo3][algoritmo4], donde cada canal es 1 o 0 y el algoritmo indica el algoritmo a emplear en el cálculo de la MCV.
+                                \begin{itemize}
+                                    \item Ejemplo: \#im1,0,1,0,1,1,2,2,
+                                \end{itemize}   
+                                % Inicia las mediciones por los canales 1 y 3 con el algoritmo1 para el canal1 y el algoritmo2 
+                                % para el canal3, para los canales no seleccionados se omite el tipo de algoritmo seleccionado.
+                                \vspace{1pt}
+                            \end{minipage}\\\hline
+        % ----- COMMAND LB -----
+        \textbf{lb}     &   \begin{minipage}{14cm}
+                                \vspace{1pt}
+                                Establece las acciones correspondientes al trabajo con la línea base y sigue el siguiente esquema: \#lb[canal][acción], donde:
+                                \begin{itemize}
+                                    \item \textbf{Canal}: Establece el canal sobre el va a realizar la acción.
+                                    \item \textbf{Acción}: Establece la acción, esta puede ser: 
                                     \begin{itemize}
-                                        \item \textbf{Canal}: Establece el canal sobre el que se va a realizar la acción.
-                                        \item \textbf{Acción}: Establece si se va a activar o desactivar dicho canal. 
+                                        \item Iniciar interacción cálculo de línea base.
+                                        \item Detener iteración cálculo de línea base.
+                                        \item Aceptar valor de interacción del cálculo de línea base.
+                                        \item Rechazar valor de iteracción del cálculo de línea base.
+                                        \item Obtener valor final de línea base.
                                     \end{itemize}
-                                    \vspace{1pt}
-                                \end{minipage}\\\hline
-            % ----- COMMAND IM -----
-            \textbf{im}     &   \begin{minipage}{14cm}
-                                    \vspace{1pt}
-                                    Envía la orden de iniciar mediciones siguiendo el esquema 
-                                    \#im[canal1][canal2][canal3][canal4][algoritmo1][algoritmo2][algoritmo3][algoritmo4], 
-                                    donde cada canal es 1 o 0 y el algoritmo indica el algoritmo a emplear en el cálculo de la MCV.
+                                \end{itemize} 
+                                \vspace{1pt}
+                            \end{minipage}\\\hline
+        % ----- COMMAND MCV -----
+        \textbf{mc}     &   \begin{minipage}{14cm}
+                                \vspace{1pt}
+                                Establece las acciones correspondientes al trabajo con la MCV y sigue el siguiente esquema: \#mc[canal][acción], donde:
+                                \begin{itemize}
+                                    \item \textbf{Canal}: Establece el canal sobre el va a realizar la acción.
+                                    \item \textbf{Acción}: Establece la acción, esta puede ser: 
                                     \begin{itemize}
-                                        \item Ejemplo: \#im1,0,1,0,1,1,2,2,
-                                    \end{itemize}   
-                                    % Inicia las mediciones por los canales 1 y 3 con el algoritmo1 para el canal1 y el algoritmo2 
-                                    % para el canal3, para los canales no seleccionados se omite el tipo de algoritmo seleccionado.
-                                    \vspace{1pt}
-                                \end{minipage}\\\hline
-            % ----- COMMAND LB -----
-            \textbf{lb}     &   \begin{minipage}{14cm}
-                                    \vspace{1pt}
-                                    Establece las acciones correspondientes al trabajo con la Línea Base y sigue el siguiente esquema: \#lb[canal][acción], donde:
-                                    \begin{itemize}
-                                        \item \textbf{Canal}: Establece el canal sobre el va a realizar la acción.
-                                        \item \textbf{Acción}: Establece la acción, esta puede ser: 
-                                        \begin{itemize}
-                                            \item Iniciar interacción cálculo de Línea Base.
-                                            \item Detener iteración cálculo de Línea Base.
-                                            \item Aceptar valor de interacción del cálculo de Línea Base.
-                                            \item Rechazar valor de iteracción del cálculo de Línea Base.
-                                            \item Obtener valor final de Línea Base.
-                                        \end{itemize}
-                                    \end{itemize} 
-                                    \vspace{1pt}
-                                \end{minipage}\\\hline
-            % ----- COMMAND MCV -----
-            \textbf{mc}     &   \begin{minipage}{14cm}
-                                    \vspace{1pt}
-                                    Establece las acciones correspondientes al trabajo con la MCV y sigue el siguiente esquema: \#mc[canal][acción], donde:
-                                    \begin{itemize}
-                                        \item \textbf{Canal}: Establece el canal sobre el va a realizar la acción.
-                                        \item \textbf{Acción}: Establece la acción, esta puede ser: 
-                                        \begin{itemize}
-                                            \item Iniciar interacción cálculo de MCV.
-                                            \item Detener iteración cálculo de MCV.
-                                            \item Aceptar valor de interacción del cálculo de MCV.
-                                            \item Rechazar valor de iteracción del cálculo de MCV.
-                                            \item Obtener valor final de MCV.
-                                        \end{itemize}
-                                    \end{itemize} 
-                                    \vspace{1pt}
-                                \end{minipage}\\\hline
-            \textbf{sm}     &   Informa al pedal que se ha llegado al fin de las mediciones. \\\hline               
-
-        \end{tabular}
-        \caption{Mensajes enviados en la calibración}
-        \label{table:send-msg-in-calibration}
-    \end{table}  
-
-    \begin{table}[ht]
-        \centering
-        \begin{tabular}{ |c|p{14cm}|}
-            \hline
-            \multicolumn{2}{|c|}{Calibración: Mensajes recividos} \\
-            \hline
-            Comandos        &   Descripción \\\hline
-            % ----- COMMAND AR -----
-            \textbf{ar}     &   \begin{minipage}{14cm}
-                                    \vspace{2pt}    
-                                    Recive las mediciones de los canales activos, cada medición corresponde con 2 byte de información y se reciben 100 mediciones por cada canal cada 100ms, 
-                                    por lo que cada 400 valores correspoden a las mediciones con las mediciones del 1 al 4 para ese instante de tiempo.
-                                    \begin{itemize}
-                                        \item Ejemplo: si el primer comando recibido fuese fuese: \#ar031006204511 ... 16038023
+                                        \item Iniciar interacción cálculo de MCV.
+                                        \item Detener iteración cálculo de MCV.
+                                        \item Aceptar valor de interacción del cálculo de MCV.
+                                        \item Rechazar valor de iteracción del cálculo de MCV.
+                                        \item Obtener valor final de MCV.
                                     \end{itemize}
-                                    Los dos primeros bytes 03 y 10 corresponden con el valor 0000001100010000$_{B}$ cuyo valor numérico  784 que sería el valor de la EMG para el canal 1 en el milisegundos 
-                                    1 de la medición.
-                                    \vspace{2pt}    
-                                \end{minipage}\\\hline    
-            % ----- COMMAND LB -----         
-            \textbf{lb}     &   \begin{minipage}{14cm}
-                                    \vspace{1pt}
-                                    Informa a la aplicación del valor de la Línea Base o iteracción de cálculo de Línea Base siguiendo el esquema: \#lb[canal][tipo][valor byte 1][valor byte 2] donde:
-                                    \begin{itemize}
-                                        \item \textbf{Canal}: Establece el canal al que corresponde el valor.
-                                        \item \textbf{Tipo} : Establece si el valor corresponde a un medición de una interacción o al valor final de la Línea Base.
-                                        \item \textbf{Valor} : Son los valores den formato byte del valor de la Línea Base.  
-                                    \end{itemize}
-                                    % PONER EJEMPLO
-                                    \vspace{1pt}
-                                \end{minipage}\\\hline 
-            % ----- COMMAND MC -----                        
-            \textbf{mc}     &   \begin{minipage}{14cm}
-                                    \vspace{1pt}
-                                    Informa a la aplicación del valor de la MCV o iteracción de cálculo de Línea Base siguiendo el esquema: \#mc[canal][tipo][valor byte 1][valor byte 2] donde:
-                                    \begin{itemize}
-                                        \item \textbf{Canal}: Establece el canal al que corresponde el valor.
-                                        \item \textbf{Tipo} : Establece si el valor corresponde a un medición de una interacción o al valor final de la Línea Base.
-                                        \item \textbf{Valor} : Son los valores den formato byte del valor de la Línea Base.  
-                                    \end{itemize}
-                                    \vspace{1pt}
-                                \end{minipage} \\\hline                        
-        \end{tabular}
-        \caption{Mensajes recividos en la calibración}
-        \label{table:recive-msg-in-calibration}
-    \end{table} 
+                                \end{itemize} 
+                                \vspace{1pt}
+                            \end{minipage}\\\hline
+        \textbf{sm}     &   Informa al pedal que se ha llegado al fin de las mediciones. \\\hline               
+
+    \end{tabular}
+    \caption{Mensajes enviados en la calibración}
+    \label{table:send-msg-in-calibration}
+\end{table}  
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{ |c|p{14cm}|}
+        \hline
+        \multicolumn{2}{|c|}{Calibración: Mensajes recividos} \\
+        \hline
+        Comandos        &   Descripción \\\hline
+        % ----- COMMAND AR -----
+        \textbf{ar}     &   \begin{minipage}{14cm}
+                                \vspace{2pt}    
+                                Recive las mediciones de los canales activos, cada medición corresponde con 2 byte de información y se reciben 100 mediciones por cada canal cada 100ms, 
+                                por lo que cada 400 valores correspoden a las mediciones con las mediciones del 1 al 4 para ese instante de tiempo.
+                                \begin{itemize}
+                                    \item Ejemplo: si el primer comando recibido fuese fuese: \#ar031006204511 ... 16038023
+                                \end{itemize}
+                                Los dos primeros bytes 03 y 10 corresponden con el valor 0000001100010000$_{B}$ cuyo valor numérico  784 que sería el valor de la EMG para el canal 1 en el milisegundos 
+                                1 de la medición.
+                                \vspace{2pt}    
+                            \end{minipage}\\\hline    
+        % ----- COMMAND LB -----         
+        \textbf{lb}     &   \begin{minipage}{14cm}
+                                \vspace{1pt}
+                                Informa a la aplicación del valor de la línea base o iteracción de cálculo de línea base siguiendo el esquema: \#lb[canal][tipo][valor byte 1][valor byte 2] donde:
+                                \begin{itemize}
+                                    \item \textbf{Canal}: Establece el canal al que corresponde el valor.
+                                    \item \textbf{Tipo} : Establece si el valor corresponde a un medición de una interacción o al valor final de la línea base.
+                                    \item \textbf{Valor} : Son los valores den formato byte del valor de la línea base.  
+                                \end{itemize}
+                                % PONER EJEMPLO
+                                \vspace{1pt}
+                            \end{minipage}\\\hline 
+        % ----- COMMAND MC -----                        
+        \textbf{mc}     &   \begin{minipage}{14cm}
+                                \vspace{1pt}
+                                Informa a la aplicación del valor de la MCV o iteracción de cálculo de línea base siguiendo el esquema: \#mc[canal][tipo][valor byte 1][valor byte 2] donde:
+                                \begin{itemize}
+                                    \item \textbf{Canal}: Establece el canal al que corresponde el valor.
+                                    \item \textbf{Tipo} : Establece si el valor corresponde a un medición de una interacción o al valor final de la línea base.
+                                    \item \textbf{Valor} : Son los valores den formato byte del valor de la línea base.  
+                                \end{itemize}
+                                \vspace{1pt}
+                            \end{minipage} \\\hline                        
+    \end{tabular}
+    \caption{Mensajes recividos en la calibración}
+    \label{table:recive-msg-in-calibration}
+\end{table} 
 
 
-    \vspace{100pt}   
-    \subthesischapter{Ejemplo de comunicación}
-    En el proceso de calibración mostrado en la figura \ref{fig: diagram-protocol-in-calibration} 
-    la comunicación inicia con el envío del comando \#ch1,1 
-    correspondiente a la solicitud de activación  del canal1. El envío de mensajes se realiza 
-    a través de funciones específicas para cada tipo de mensaje.
-    Estas funciones serializan tipos de mensajes específicos en un buffer de salida. Una vez
-    codificado el mensaje en el buffer de salida, se llama a la función,
-    \textbf{send\_message()}, que se encarga de enviar el mensaje codificado en el buffer
-    de salida. Según este principio, cada función es responsable de codificar su mensaje
-    respectivo y finalmente enviar el mensaje llamando a la función. Para proteger
-    de escritura simultánea en el buffer de salida por múltiples hilos se usan 
-    \textbf{mutexs}\footnote{Mecanismo en el que se intenta dar solución al problema de la sección crítica en un programa} entre el
-    proceso de serializar el mensaje y el envío por el {\textbf{socket}}\footnote{Canales de comunicación que permiten que procesos no relacionados intercambien datos}. 
+% \vspace{100pt}   
+\newpage
+\subthesischapter{Ejemplo de comunicación}
+En el proceso de calibración mostrado en la figura \ref{fig: diagram-protocol-in-calibration}  la comunicación inicia con el envío del comando \#ch1,1 correspondiente a la solicitud de activación  del canal1. El envío de mensajes se realiza  a través de funciones específicas para cada tipo de mensaje. Estas funciones serializan tipos de mensajes específicos en un buffer de salida. Una vez codificado el mensaje en el buffer de salida, se llama a la función, \textbf{send\_message()}, que se encarga de enviar el mensaje codificado en el buffer de salida. Según este principio, cada función es responsable de codificar su mensaje respectivo y finalmente enviar el mensaje llamando a la función. Para proteger de escritura simultánea en el buffer de salida por múltiples hilos se usan \textbf{mutexs}\footnote{Mecanismo en el que se intenta dar solución al problema de la sección crítica en un programa} entre el
+proceso de serializar el mensaje y el envío por el {\textbf{socket}}\footnote{Canales de comunicación que permiten que procesos no relacionados intercambien datos}. 
     
-    \vspace{10pt}
-    A continuación es enviado el mensaje \#im1,0,1,0,1,1,2,2 para solicitarle al pedal el inicio 
-    del proceso de mediciones en los canales 1 y 3 usando los algoritmos 1 y 2 respectivamente, el 
-    cual es respondido con un conjunto serie de mensajes de la forma \#ar0310 ... 023. La recepción 
-    de mensajes está implementada sobre un hilo distinto del principal. Cuando se 
-    recibe un mensaje este se almacena en la variable respectiva
-    asociada al tipo de mensaje y se notifica su recepción cambiando una variable de control
-    asociada a la recepción o lanzando un evento para informar al hilo principal de su
-    recepción. Para proteger el acceso a las variables que pueden tener lecturas y escrituras
-    simultáneas por ambos hilos se usan mutexs. Con el uso de mutexs se garantiza que
-    solamente un hilo acceda simultáneamente a las variables de almacenamiento. 
+\vspace{10pt}
+A continuación es enviado el mensaje \#im1,0,1,0,1,1,2,2 para solicitarle al pedal el inicio del proceso de mediciones en los canales 1 y 3 usando los algoritmos 1 y 2 respectivamente, el cual es respondido con un conjunto serie de mensajes de la forma \#ar0310 ... 023. La recepción de mensajes está implementada sobre un hilo distinto del principal. Cuando se recibe un mensaje este se almacena en la variable respectiva asociada al tipo de mensaje y se notifica su recepción cambiando una variable de control asociada a la recepción o lanzando un evento para informar al hilo principal de su recepción. Para proteger el acceso a las variables que pueden tener lecturas y escrituras simultáneas por ambos hilos se usan mutexs. Con el uso de mutexs se garantiza que solamente un hilo acceda simultáneamente a las variables de almacenamiento. 
 
     \vspace{10pt}
-    Durante la medición el usuario puede hacer uso de 2 funcionalidades y ejecutarlas en el orden 
-    establecido por el protocolo médico, cálculo de la Línea Base y posteriormente cálculo de la MCV.
-    Ambas funcionalidades pueden repetirse un número indefinido de veces hasta la validación del resultado 
-    obtenido. Ejemplo para el cálculo de la Línea Base:
+    Durante la medición el usuario puede hacer uso de 2 funcionalidades y ejecutarlas en el orden establecido por el protocolo médico, cálculo de la línea base y posteriormente cálculo de la MCV. Ambas funcionalidades pueden repetirse un número indefinido de veces hasta la validación del resultado obtenido. Ejemplo para el cálculo de la línea base:
     
     \vspace{10pt}
     Se envía el mensaje \#lb1,0 para iniciar el cálculo, próximo este es enviado el mensaje  \#lb1,1 para 
@@ -650,7 +635,7 @@
 
     \subthesischapter{Implementación de la interfaz gráfica para la representación de datos EMG}
     En el contexto del desarrollo de la interfaz de calibración clínica para la rehabilitación neuromuscular de pacientes con enfermedades cerebrovasculares
-    fue necesario la implementación de la clase \underline{CoordinateSystem}. Esta clase, diseñada para extender VisualElement en Unity, representa el núcleo de la representación 
+    fue necesario la implementación de la clase \underline{CoordinateSystem}. Esta clase, diseñada para extender \textbf{VisualElement}\footnote{Es un elemento visual de Unity3D } en Unity, representa el núcleo de la representación 
     gráfica de los datos EMG en la aplicación móvil. Uno de los aspectos clave de esta implementación 
     radica en su capacidad para generar un sistema de coordenadas dinámico y animado que se ajusta a las variaciones en los datos recibidos.
 
@@ -662,7 +647,7 @@
     comprendan el significado de los datos EMG presentados, mejorando así la utilidad clínica de la interfaz. 
     
     \vspace{5pt}
-    Estos elementos son fundamentales para la presentación adecuada de los datos EMG en el contexto clínico, pero además, se aplican estilos USS a estos, definidos en archivos específicos (SystemCoordinateUSS.uss), para asegurar una 
+    Estos elementos son fundamentales para la presentación adecuada de los datos EMG en el contexto clínico, pero además, se aplican estilos \textbf{USS}\footnote{Son archivos de texto inspirados en las hojas de estilo en cascada (CSS) de HTML} a estos, definidos en archivos específicos (SystemCoordinateUSS.uss), para asegurar una 
     presentación visual coherente y atractiva, ver figura \ref{fig: graph-emg}.
 
     \begin{figure}[ht]
@@ -673,9 +658,9 @@
     \end{figure}
 
     \vspace{10pt}
-    Adicional a lo anteriormente mencionado la clase proporciona métodos para trazar puntos y funciones en el sistema de coordenadas. A través de los métodos PlotPoint() y PlotFunction(), se espera que la 
-    aplicación pueda representar los datos EMG de forma gráfica y dinámica. Además, se ha implementado una funcionalidad de animación que permite mostrar la progresión de los datos en el tiempo. El método 
-    DrawFunction(List<Vector2> lp) utiliza técnicas de interpolación para crear una animación fluida, mejorando así la comprensión de la obtención de los datos en la línea de tiempo.
+    Adicional a lo anteriormente mencionado la clase proporciona métodos para trazar puntos y funciones en el sistema de coordenadas. A través de los métodos PlotPoint() y PlotFunction(), la 
+    aplicación puede representar los datos EMG de forma gráfica y dinámica. Además, se ha implementado una funcionalidad de animación que permite mostrar la progresión de los datos en el tiempo. El método 
+    DrawFunction() utiliza técnicas de interpolación para crear una animación fluida, mejorando así la comprensión de la obtención de los datos en la línea de tiempo.
 
     \newpage    
     \subthesischapter{Escenarios de entrenamiento}
@@ -702,78 +687,78 @@
         \label{fig: generate-world}
     \end{figure}
 
-\begin{center}
-\begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, caption={Generar terreno},label={hola}]
- //Obtener el terreno activo en la escena
- terrain = Terrain.activeTerrain;
+% \begin{center}
+% \begin{minipage}{0.8\textwidth}
+% \begin{lstlisting}[language=c, caption={Generar terreno},label={hola}]
+%  //Obtener el terreno activo en la escena
+%  terrain = Terrain.activeTerrain;
  
- // Crear un nuevo objeto de datos del terreno
- var data = new TerrainData();
+%  // Crear un nuevo objeto de datos del terreno
+%  var data = new TerrainData();
 
- terrain = Terrain.CreateTerrainGameObject(data).GetComponent<Terrain>();
+%  terrain = Terrain.CreateTerrainGameObject(data).GetComponent<Terrain>();
  
- // Establecer la posición del terreno en el origen del mundo
- terrain.transform.position = Vector3.zero;     
+%  // Establecer la posición del terreno en el origen del mundo
+%  terrain.transform.position = Vector3.zero;     
 
- // Obtener los límites del objeto de pista  mediante su componente MeshFilter           
- var bounds = trackPrefab.GetComponent<MeshFilter>().sharedMesh.bounds;
- trackSize = bounds.size;
+%  // Obtener los límites del objeto de pista  mediante su componente MeshFilter           
+%  var bounds = trackPrefab.GetComponent<MeshFilter>().sharedMesh.bounds;
+%  trackSize = bounds.size;
  
- // Asignar material al terreno generado
- terrain.materialTemplate = terrainMaterial;
-\end{lstlisting}
-\end{minipage}  
-\end{center}
+%  // Asignar material al terreno generado
+%  terrain.materialTemplate = terrainMaterial;
+% \end{lstlisting}
+% \end{minipage}  
+% \end{center}
 
-\begin{center}
-\begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, caption={Generar pista},label={hola}]
- float zMin = chunkIndex * chunkSize;
- float zMax = zMin + chunkSize;
- terrain.terrainData.size = new Vector3(chunkSize, maxHeight, zMax);
+% \begin{center}
+% \begin{minipage}{0.8\textwidth}
+% \begin{lstlisting}[language=c, caption={Generar pista}]
+%  float zMin = chunkIndex * chunkSize;
+%  float zMax = zMin + chunkSize;
+%  terrain.terrainData.size = new Vector3(chunkSize, maxHeight, zMax);
 
- var track = Instantiate(
-                 trackPrefab, 
-                 new Vector3(chunkSize*0.5f, 0.0f, zMin), 
-                 Quaternion.identity
-             ).transform;
+%  var track = Instantiate(
+%                  trackPrefab, 
+%                  new Vector3(chunkSize*0.5f, 0.0f, zMin), 
+%                  Quaternion.identity
+%              ).transform;
 
- track.localScale = new Vector3(1.0f, 1.0f, chunkSize / trackSize.z);
-\end{lstlisting}
-\end{minipage}  
-\end{center}
+%  track.localScale = new Vector3(1.0f, 1.0f, chunkSize / trackSize.z);
+% \end{lstlisting}
+% \end{minipage}  
+% \end{center}
 
-\begin{center}
-\begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, caption={Posicionar árboles},label={hola}]    
- for (int i = 0; i < treeDensity; i++) {
-    float side = Random.value > 0.5f ? 1.0f : 0.0f;
+% \begin{center}
+% \begin{minipage}{0.8\textwidth}
+% \begin{lstlisting}[language=c, caption={Posicionar árboles}]    
+%  for (int i = 0; i < treeDensity; i++) {
+%     float side = Random.value > 0.5f ? 1.0f : 0.0f;
 
-    // Generar coordenadas aleatorias dentro del rango especificado
-    float z = Random.Range(zMin, zMax);  
+%     // Generar coordenadas aleatorias dentro del rango especificado
+%     float z = Random.Range(zMin, zMax);  
 
-    float x = Random.Range(0, chunkSize * 0.5f - trackSize.x * 0.5f) * side  +
-              Random.Range(chunkSize * 0.5f + trackSize.x * 0.5f, chunkSize) * 
-              (1 - side);
+%     float x = Random.Range(0, chunkSize * 0.5f - trackSize.x * 0.5f) * side  +
+%               Random.Range(chunkSize * 0.5f + trackSize.x * 0.5f, chunkSize) * 
+%               (1 - side);
 
-    float y = terrain.SampleHeight(new Vector3(x, 0, z)); 
+%     float y = terrain.SampleHeight(new Vector3(x, 0, z)); 
 
-    int treeIndex = Random.Range(0, treePrefabs.Length);
+%     int treeIndex = Random.Range(0, treePrefabs.Length);
     
-    // Instanciar el árbol en las coordenadas x, y, z 
-    Instantiate(
-        treePrefabs[treeIndex], 
-        new Vector3(x, y, z), 
-        Quaternion.identity
-        );
- }
+%     // Instanciar el árbol en las coordenadas x, y, z 
+%     Instantiate(
+%         treePrefabs[treeIndex], 
+%         new Vector3(x, y, z), 
+%         Quaternion.identity
+%         );
+%  }
 
- // Actualizar los cambios en el terreno
- terrain.Flush();
-\end{lstlisting}
-\end{minipage}  
-\end{center}
+%  // Actualizar los cambios en el terreno
+%  terrain.Flush();
+% \end{lstlisting}
+% \end{minipage}  
+% \end{center}
 
 
     \vspace{10pt}
@@ -810,22 +795,21 @@
 \begin{center}
 \begin{minipage}{0.8\textwidth}
 \begin{lstlisting}[language=c, label={code: interpolation}, caption={Controlador de movimiento}]
- delta += Time.deltaTime;
+delta += Time.deltaTime;
  
- if( currentTime > 0.001f)
- {
+if(delta > 0.001f) {
     delta = 0;
     finalSpeed = newSpeed;
     initialSpeed = finalSpeed;
- }
+}
 
- currentSpeed = Mathf.Lerp( 
-        initialSpeed, 
-        finalSpeed, 
-        delta
-        );
+currentSpeed = Mathf.Lerp( 
+    initialSpeed, 
+    finalSpeed, 
+    delta
+);
 
- transform.Translate(currentSpeed * Time.deltaTime);
+transform.Translate(currentSpeed * Time.deltaTime);
 \end{lstlisting}
 \end{minipage}
 \end{center}
