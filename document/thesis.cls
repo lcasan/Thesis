@@ -50,7 +50,7 @@
    \hspace{-0.5in}
    \begin{minipage}[c]{0.4\textwidth}
       \begin{center}
-         {\large Universidad de Orinte} \\ \@faculty \\ 
+         {\large Universidad de Oriente} \\ \@faculty \\ 
          \vskip 0.25cm
          \includegraphics[width=2in, height=0.8in]{images/logo.png} \\
          \vskip 1cm

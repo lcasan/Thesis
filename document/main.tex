@@ -2,31 +2,32 @@
 \usepackage{svg}
 \usepackage{tikz,pgfplots}
 
-\title{Aplicación de juego serio integrada a un sistema de rehabilitación  neuromuscular para pacientes con enfermedades cerebrevasculares}
+\title{Aplicación de juego serio integrada a un sistema de rehabilitación  neuromuscular para pacientes con enfermedades cerebrovasculares}
 \author{\\\vspace{0.25cm}Luis Miguel Casañ González}
 \advisor{\\\vspace{0.25cm} Dr.C Alberto López Delis \\ \vspace{0.25cm} Msc. Miguel Castañeda Garay}
 \faculty{Facultad de Ciencias Naturales y Exactas}
 
 \begin{document}
-    % Title
+    % TITLE
     \maketitle
-    % Set document's geometry
+
+    % SET DOCUMENT'S GEOMETRY
     \thesisgeometry
 
-    % Front section of thesis 
-    %\include{front/dedication.tex}
-    %\include{front/acknowledgements.tex}
+    % FRONT SECTION OF THESIS 
+    \include{front/dedication.tex}
+    \include{front/acknowledgements.tex}
     \include{front/resumen.tex}
     \include{front/abstract.tex}
     \include{front/content.tex}
     
-    % Main section of thesis 
+    % MAIN SECTION OF THESIS 
     \include{main/introduction.tex}
     \include{main/chapter1.tex}
-    \include{main/chapter2.tex}
+    \include{main/chapter2/content.tex}
     \include{main/chapter3/content.tex}
 
-    % Back section of thesis 
+    % BACK SECTION OF THESIS 
     \include{back/conclusion.tex}
     \include{back/recommendations.tex}
     \bibliography{back/references.bib}
