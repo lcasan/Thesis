@@ -653,7 +653,13 @@ A continuación es enviado el mensaje \#im1,0,1,0,1,1,2,2 para solicitarle al pe
 
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.25]{images/emg-graph.jpg}
+        \begin{tikzpicture}   
+            \begin{axis}[
+                ytick distance=0.5,
+            ]
+                \addplot [mark=none] table [x=x, y=y, col sep=comma] {data/emg.csv};
+            \end{axis}
+        \end{tikzpicture}
         \caption{Gráfico de representación de datos EMG}
         \label{fig: graph-emg}
     \end{figure}
