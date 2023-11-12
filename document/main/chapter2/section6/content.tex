@@ -1,14 +1,8 @@
 \subthesischapter{Manipulación de los datos}
-\vspace{10pt}
-SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún  
-Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, hemos ideado una manera de utilizar las 
-ventajas de SQLite para nuestra aplicación. 
+SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, se ha ideado una manera de utilizar las ventajas de SQLite para nuestra aplicación.
 
-\vspace{10pt}
-La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para 
-crear implementaciones reales. Fue creada una clase de alto nivel \underline{DataBaseModel} que se puede extender a otras clases, con el 
-fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones básicas CURD: Crear, 
-Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
+\vspace{5pt}
+La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para crear implementaciones reales. Fue creada una clase de alto nivel \underline{DataBaseModel}  que se puede extender a otras clases, con el fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones básicas CURD: Crear, Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
 
 \begin{figure}[ht]
     \centering
@@ -29,5 +23,4 @@ Para gestionar la información almacenada en la base de datos del sistema, se ha
     \item \underline{Eliminación de registros:} Para eliminar los datos de la base de datos, se han implementado las funciones deleteDataByAtributeName(string atribute, string name) y deleteAllData(string table\_name). La primera función permite eliminar datos específicos de una tabla según un atributo y un valor dado. La segunda función elimina todos los registros de una tabla específica.
 
     \item \underline{Edicion de atributos en la base de datos:} Para la edición de los datos en la base de datos, se implementó la función changeValueByAtributeName<T>(string atribute, string name, T value), que permite editar los datos de un atributo a partir de un valor genérico dado.
-
 \end{itemize}

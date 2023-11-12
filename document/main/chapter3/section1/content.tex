@@ -1,14 +1,13 @@
-\subthesischapter{Requerimiento del software y hardware}
-\subsubthesischapter{Software}
-Para la aplicación de juego serio se necesita un dispositivo móvil de la familia Android o IPhone. Para soportar todas las características de inmersión virtual se recomienda que el dispositivo móvil cuente con:
-\begin{itemize}
-    \item Versión android superior a la 5.1 (API 22)
-    \item ARMv7 con Neon Support (32-bit) o ARM64
-\end{itemize}
+\subthesischapter{Arquitectura del software}
 
-\subsubthesischapter{Hardware}
+En la aplicación se usó como arquitectura de software el MVC(Model Vista Controlador), un patrón de software comúnmente utilizado para implementar datos (Modelo), interfaces de usuario (Vista) y lógica de control (Controlador), que enfatiza una separación entre la lógica de negocios y su visualización. En la figura \ref{fig: software-architecture} se muestra el MVC correspondiente a la aplicación de juego serio.
 
-% DIAGRAMA DE DESPLIEGUE 
-\subthesischapter{Diagrama de despliegue}
-Un diagrama de despliegue es un tipo de diagrama UML que muestra la arquitectura de ejecución de un sistema, incluyendo nodos como entornos de ejecución de hardware o software. Los diagramas de despliegue se utilizan normalmente para visualizar el hardware y el software físico de un sistema. Usándolo es posible entender cómo el sistema se desplegará físicamente en el hardware.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.19]{images/software-architecture.png}
+    \caption{Diagrama de clase de diseño}
+    \label{fig: software-architecture}
+\end{figure}
+
+
 

@@ -19,22 +19,22 @@ Desde la especificación listada anteriormente se comienzan a
 identificar los conjuntos de entidades y relaciones, así como sus atributos:
 \begin{itemize}
     \item La entidad \underline{usuario}, con los atributos id\_usuario, nombre, correo, contraseña.
-    \item La entidad \underline{rutina} con los atributos id\_rutina, modalidad, distancia, tiempo, \textbf{mcv\textsubscript{1}, mcv\textsubscript{2}, mcv\textsubscript{3}, mcv\textsubscript{4}}\footnote{mcv\textsubscript{i}: Valor porcentual definido de MCV en el canal i luego de la etapa de calibración}.
+    \item La entidad \underline{rutina} con los atributos id\_rutina, modalidad, distancia, tiempo, \textbf{mcv\textsubscript{0}, mcv\textsubscript{1}, mcv\textsubscript{2}, mcv\textsubscript{3}}\footnote{mcv\textsubscript{i}: Valor porcentual definido de MCV en el canal i luego de la etapa de calibración.}.
     \item La relación muchos a muchos de \underline{usuario} a \underline{rutinas} denominado \underline{ejecuta}, es decir un usuario puede ejecutar 
-    varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios. Dicha relación cuenta con los atributos id\_usuario, id\_rutina, resultados y fecha\_de\_ejecución. 
+    varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios. Dicha relación cuenta con los atributos velocidad, mcv\_promedio y fecha\_de\_ejecución. 
 \end{itemize}
     
 \vspace{5pt}
-El Diagrama de Entidad-Relación (E-R) que resulta de tales especificaciones para la descripción de los datos del sistema se presenta en la figura \ref{fig: diagram-er}.
+El diagrama Entidad-Relación (E-R) que resulta de tales especificaciones para la descripción de los datos del sistema se presenta en la figura \ref{fig: diagram-er}.
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.45]{images/diagram-er.pdf}
+    \includegraphics[scale=0.48]{images/diagram-er.png}
     \caption{Diagrama Entidad Relación}
     \label{fig: diagram-er}
 \end{figure}
 
 \subsubthesischapter{Modelo físico}
-El modelo físico de la base de datos consta de tres tablas principales: USER, RUTINE y DO en las que se han definido las siguientes restricciones para mantener la integridad de los datos:
+El modelo físico de la base de datos consta de tres tablas principales: \textbf{USER, RUTINE y DO}\footnote{USER, RUTINE y DO hace referencias a las tablas usuario, rutina y ejecuta respectivamente.} en las que se han definido las siguientes restricciones para mantener la integridad de los datos:
 
 \begin{itemize}
     \item En la tabla USER, se ha establecido un campo ID como clave primaria, que se genera automáticamente mediante autoincremento 
@@ -43,9 +43,7 @@ El modelo físico de la base de datos consta de tres tablas principales: USER, R
     \item La tabla RUTINE contiene información sobre las rutinas de ejercicios. Se ha definido un campo ID como clave primaria con 
     autoincremento. Los campos MODALITY, TIME, DISTANCE, MCV0, MCV1, MCV2 y MCV3 almacenan los detalles de la rutina.
 
-    \item En la tabla DO, se ha establecido un campo ID como clave primaria con autoincremento. Los campos ID\_MODALITY y ID\_USER actúan 
-    como claves foráneas, haciendo referencia a las tablas RUTINE y USER respectivamente. El campo RESULT almacena los resultados obtenidos, 
-    y el campo DATE registra la fecha de la realización de la rutina.
+    \item En la tabla DO, se ha establecido un campo ID como clave primaria con autoincremento. Los campos ID\_MODALITY y ID\_USER actúan como claves foráneas, haciendo referencia a las tablas RUTINE y USER respectivamente. El campo VELOCITY y MCV\_AVERAGE almacena los resultados de velocidad y el promedio de MCV obtenidos al finalizar la rutina, y el campo DATE registra la fecha de la realización de la rutina.
 \end{itemize}
 
 El esquema de las tablas de la base de datos, junto con las dependencias de clave primaria y las foráneas, se puede visualizar en la siguiente 
@@ -82,7 +80,8 @@ public CibiofibDb() : base()
                     "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "USER_ID INTEGER, " +
                     "RUTINE_ID INTEGER, " +
-                    "RESULT REAL, " +
+                    "VELOCITY REAL, " +
+                    "MCV_AVERAGE REAL, " +
                     "DATE TEXT, " +
     "FOREIGN KEY(USER_ID) REFERENCES USER(ID), " +
     "FOREIGN KEY(RUTINE_ID) REFERENCES RUTINE(ID))";
