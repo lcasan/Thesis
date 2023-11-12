@@ -1,7 +1,6 @@
 \newpage
 \subthesischapter{Diseño de la base de datos}
-Existen dos tipos prominentes de sistemas de gestión de bases de datos ampliamente reconocidos: los conocido como Lenguaje de Consulta Estructurado (SQL, por sus siglas en inglés) organizan los datos en estructuras tabulares, mientras que los otros, denominado No-SQL, prescinden de las tablas y optan por almacenar datos en forma de objetos. Contrariamente a SQL, el enfoque No-SQL no sigue una estructura rígida, permitiendo mayor flexibilidad en la organización de los datos. No obstante, se ha observado que los sistemas No-SQL tienden a requerir una mayor cantidad de recursos computacionales en comparación con las implementaciones SQL. En el contexto de aplicaciones 
-móviles, se ha preferido el uso de SQL debido a su eficiencia y menor consumo de recursos, lo que contribuye a una experiencia de usuario más fluida y eficaz.
+Existen dos tipos prominentes de sistemas de gestión de bases de datos ampliamente reconocidos: los conocido como Lenguaje de Consulta Estructurado (SQL, por sus siglas en inglés) organizan los datos en estructuras tabulares, mientras que los otros, denominado No-SQL, prescinden de las tablas y optan por almacenar datos en forma de objetos. Contrariamente a SQL, el enfoque No-SQL no sigue una estructura rígida, permitiendo mayor flexibilidad en la organización de los datos. No obstante, se ha observado que los sistemas No-SQL tienden a requerir una mayor cantidad de recursos computacionales en comparación con las implementaciones SQL. En el contexto de aplicaciones móviles, se ha preferido el uso de SQL debido a su eficiencia y menor consumo de recursos, lo que contribuye a una experiencia de usuario más fluida y eficaz.
 
 \vspace{5pt}
 \subsubthesischapter{Modelo lógico}
@@ -37,11 +36,9 @@ El diagrama Entidad-Relación (E-R) que resulta de tales especificaciones para l
 El modelo físico de la base de datos consta de tres tablas principales: \textbf{USER, RUTINE y DO}\footnote{USER, RUTINE y DO hace referencias a las tablas usuario, rutina y ejecuta respectivamente.} en las que se han definido las siguientes restricciones para mantener la integridad de los datos:
 
 \begin{itemize}
-    \item En la tabla USER, se ha establecido un campo ID como clave primaria, que se genera automáticamente mediante autoincremento 
-    cada vez que se inserta una nueva fila. Los campos FULLNAME, EMAIL y PASSWORD almacenan la información del usuario.
+    \item En la tabla USER, se ha establecido un campo ID como clave primaria, que se genera automáticamente mediante autoincremento cada vez que se inserta una nueva fila. Los campos FULLNAME, EMAIL y PASSWORD almacenan la información del usuario.
 
-    \item La tabla RUTINE contiene información sobre las rutinas de ejercicios. Se ha definido un campo ID como clave primaria con 
-    autoincremento. Los campos MODALITY, TIME, DISTANCE, MCV0, MCV1, MCV2 y MCV3 almacenan los detalles de la rutina.
+    \item La tabla RUTINE contiene información sobre las rutinas de ejercicios. Se ha definido un campo ID como clave primaria con autoincremento. Los campos MODALITY, TIME, DISTANCE, MCV0, MCV1, MCV2 y MCV3 almacenan los detalles de la rutina.
 
     \item En la tabla DO, se ha establecido un campo ID como clave primaria con autoincremento. Los campos ID\_MODALITY y ID\_USER actúan como claves foráneas, haciendo referencia a las tablas RUTINE y USER respectivamente. El campo VELOCITY y MCV\_AVERAGE almacena los resultados de velocidad y el promedio de MCV obtenidos al finalizar la rutina, y el campo DATE registra la fecha de la realización de la rutina.
 \end{itemize}
