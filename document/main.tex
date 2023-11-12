@@ -3,6 +3,7 @@
 \usepackage{tikz,pgfplots}
 \usepackage{colortbl}
 \usepackage{fontspec}
+\usepackage{hyperref}
 
 \title{Aplicación de juego serio integrada a un sistema de rehabilitación  neuromuscular para pacientes con enfermedades cerebrovasculares}
 \author{\\\vspace{0.25cm}Luis Miguel Casañ González}
@@ -21,13 +22,16 @@
     \thesisgeometry
 
     % FRONT SECTION OF THESIS 
+    \pagestyle{empty}
     \include{front/dedication.tex}
     \include{front/acknowledgements.tex}
     \include{front/resumen.tex}
     \include{front/abstract.tex}
+    \include{front/abbidx.tex}
     \include{front/content.tex}
     
-    % MAIN SECTION OF THESIS 
+    % MAIN SECTION OF THESIS
+    \pagestyle{plain} 
     \include{main/introduction.tex}
     \include{main/chapter1.tex}
     \include{main/chapter2/content.tex}
