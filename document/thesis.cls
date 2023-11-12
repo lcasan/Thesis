@@ -100,8 +100,23 @@
    }
    {}
 
-% Main section 
+% Abbidx section
+\newenvironment{abbidx}
+   {
+      \thispagestyle{empty}
+      \section*{Índice de abreviaturas}
+      \hypertarget{page: abbidx}{}
+   }
+   {}
 
+% Content section
+\newenvironment{content}
+   {
+   }
+   {}
+
+
+% Main section 
 \newenvironment{introduction}
    {
       \addcontentsline{toc}{section}{Introducción}
