@@ -2,8 +2,7 @@
 La creación de las escenas es dinámica, pues se adapta a los valores de modalidad y parámetros seleccionados en la configuración del juego. Estos valores son fundamentales, ya que determinan el funcionamiento y por ende la experiencia de juego. Para llevar a cabo dicha tarea, fue necesario implementar un script llamado WorldCreator.cs.
 
 \vspace{5pt}
-WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se encarga de construir la totalidad del entorno del juego. El método Awake() en el script WorldCreator cumple una función fundamental en la inicialización y preparación del escenario de juego. En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert).
-Este objeto representa la pista sobre la cual se construirá el mundo del juego. A continuación, se procede a la creación dinámica del terreno (Terrain) del juego. Se genera un nuevo objeto de datos de terreno (TerrainData) y se asigna al terreno recién creado. Además, en el método se calcula y almacena las dimensiones del objeto de la pista (trackPrefab) utilizando el componente MeshFilter. Estas dimensiones se utilizan posteriormente para posicionar los árboles y otros elementos de manera coherente respecto a la pista, garantizando la cohesión visual del mundo del juego. Por último, el método Awake() asigna el material (terrainMaterial) al terreno, definiendo así la apariencia visual del paisaje. Este proceso sienta las bases para el entorno tridimensional en el cual se desarrollará la acción del juego.
+WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se encarga de construir la totalidad del entorno del juego. El método Awake() en el script WorldCreator cumple una función fundamental en la inicialización y preparación del escenario de juego. En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert). Este objeto representa la pista sobre la cual se construirá el mundo del juego. A continuación, se procede a la creación dinámica del terreno (Terrain) del juego. Se genera un nuevo objeto de datos de terreno (TerrainData) y se asigna al terreno recién creado. Además, en el método se calcula y almacena las dimensiones del objeto de la pista (trackPrefab) utilizando el componente MeshFilter. Estas dimensiones se utilizan posteriormente para posicionar los árboles y otros elementos de manera coherente respecto a la pista, garantizando la cohesión visual del mundo del juego. Por último, el método Awake() asigna el material (terrainMaterial) al terreno, definiendo así la apariencia visual del paisaje. Este proceso sienta las bases para el entorno tridimensional en el cual se desarrollará la acción del juego.
 
 \begin{figure}[ht]
     \centering
@@ -88,26 +87,21 @@ Este objeto representa la pista sobre la cual se construirá el mundo del juego.
 
 \vspace{5pt}
 %MOVIMIENTO DEL JUGADOR
-Utilizando los datos de velocidad angular ($v_{a}$) capturados a través del sensor óptico del pedal, se lleva a 
-cabo un conjunto de cálculos con el fin de determinar la posición actual del jugador en cada fotograma 
-del juego. Este proceso implica el cálculo de la velocidad lineal ($v_{l}$) a partir de la $v_{a}$, lo 
-cual se logra mediante la aplicación de la ecuación~\ref{eq: dist_calc}, donde r es longitud desde del eje de rotación del pedal hasta el pedal.
+Utilizando los datos de velocidad angular ($v_{a}$) capturados a través del sensor óptico del pedal, se lleva a cabo un conjunto de cálculos con el fin de determinar la posición actual del jugador en cada fotograma del juego. Este proceso implica el cálculo de la velocidad lineal ($v_{l}$) a partir de la $v_{a}$, lo cual se logra mediante la aplicación de la ecuación~\ref{eq: dist_calc}, donde r es longitud desde del eje de rotación del pedal hasta el pedal.
+
 \begin{equation}
     v_{l} = v_{a}r
     \label{eq: dist_calc}        
 \end{equation}
-Ante la disparidad entre la velocidad de recepción de los datos provenientes del pedal, la cual ocurre a una tasa más lenta que la de actualización de los fotograma en Unity
-(ejemplo: 100 ms en comparación con los 16.67 ms necesarios para actualizar los 60 fotogramas por segundo de renderizado en Unity), surge un desafío de sincronización entre la información 
-recibida y los fotogramas de renderizado. Para solucionar este problema, se utilizó la técnica de interpolación, una estrategia que se utiliza para suavizar los movimientos 
-del jugador y lograr una transición más fluida entre los datos recibidos y la representación visual en la pantalla.
+
+Ante la disparidad entre la velocidad de recepción de los datos provenientes del pedal, la cual ocurre a una tasa más lenta que la de actualización de los fotograma en Unity (ejemplo: 100 ms en comparación con los 16.67 ms necesarios para actualizar los 60 fotogramas por segundo de renderizado en Unity), surge un desafío de sincronización entre la información recibida y los fotogramas de renderizado. Para solucionar este problema, se utilizó la técnica de interpolación, una estrategia que se utiliza para suavizar los movimientos del jugador y lograr una transición más fluida entre los datos recibidos y la representación visual en la pantalla.
 
 \vspace{10pt}
 % En nuestro caso, fue posible estimar la posición del jugador en los fotogramas intermedios entre los datos recibidos usando el siguiente algoritmo:
 Descripción del algoritmo utilizado, ver figura~\ref{fig: interpolation-algorithm} para más detalles:
 \begin{enumerate}
     \item Se utilizan dos variables, \textbf{finalSpeed} e \textbf{initialSpeed}, inicializadas en 0, para determinar la velocidad inicial y final en cada segmento de tiempo de 100 ms.
-    \item En el método \textbf{Update()}\footnote{Es una función especial en Unity que es llamada en cada script, durante cada frame.}, se emplea la técnica de interpolación para calcular 
-    una velocidad suavizada, basada en las velocidades almacenadas previamente. Ver código \ref{code: interpolation}
+    \item En el método \textbf{Update()}\footnote{Es una función especial en Unity que es llamada en cada script, durante cada frame.}, se emplea la técnica de interpolación para calcular una velocidad suavizada, basada en las velocidades almacenadas previamente. Ver código \ref{code: interpolation}
 \end{enumerate} 
 
 \begin{figure}[ht]
@@ -141,9 +135,7 @@ transform.Translate(currentSpeed * Time.deltaTime);
 
 
 \subsubthesischapter{Modalidad Ligero}
-La modalidad ligero, basada en el entrenamiento del tren inferior, se presenta como el primer escenario de juego. En esta 
-modalidad, los parámetros de distancia o tiempo, seleccionados en el menú de configuración de la rutina, sirven como los pilares 
-fundamentales del entrenamiento.
+La modalidad ligero, basada en el entrenamiento del tren inferior, se presenta como el primer escenario de juego. En esta modalidad, los parámetros de distancia o tiempo, seleccionados en el menú de configuración de la rutina, sirven como los pilares fundamentales del entrenamiento.
 
 \vspace{5pt}
 Como muestra la figura \ref{fig: game-world}a la lógica subyacente del juego en dicha modalidad es la siguiente: al inicio, los usuarios establecen el valor de la distancia o el tiempo en el menú de configuración de las rutinas. Estos valores se utilizan como criterios para mejorar las estadísticas del jugador durante el juego. Por ejemplo, si se establece una distancia de 10 metros, el objetivo del jugador será completar esta distancia en el menor tiempo posible. De manera similar, si se elige un tiempo de 3 minutos, el objetivo será recorrer la mayor distancia posible dentro de ese límite temporal.
