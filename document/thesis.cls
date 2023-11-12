@@ -125,8 +125,8 @@
 
 \newenvironment{conclusions}
    {
-      \addcontentsline{toc}{section}{Concluciones}
-      \section*{Concluciones}
+      \addcontentsline{toc}{section}{Conclusiones}
+      \section*{Conclusiones}
    }
    {}
 

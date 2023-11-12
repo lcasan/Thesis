@@ -2,7 +2,7 @@
 \subsubthesischapter{Identificación de los actores}
 Los actores no son parte del sistema, pero sí pueden intercambiar información con él, ellos representan un rol que juegan una o varias personas, un equipo o un sistema automatizado. En la aplicación de juego serio se identificaron los siguientes actores:
 
-\begin{table}[ht]
+\begin{table}[h]
     \centering
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
@@ -16,35 +16,37 @@ Los actores no son parte del sistema, pero sí pueden intercambiar información 
 \end{table}
 
 \subsubthesischapter{Identificación de los casos de usos}    
-Cada forma en que los actores usan el sistema se representa con un caso de uso, como fragmentos de funcionalidad que el sistema ofrece para aportar solución a la necesidad de esta aplicación. Los casos de uso que se definen para el sistema propuesto están reflejados en la tabla \ref{tab: rf} con su respectivo diagrama en las figuras \ref{fig: use-cases-user} y \ref{fig: use-cases-system}.
-\begin{table}[ht]
+Cada forma en que los actores usan el sistema se representa con un caso de uso, como fragmentos de funcionalidad que el sistema ofrece para aportar solución a la necesidad de esta aplicación. Los casos de uso que se definen para el sistema propuesto están reflejados en la tabla \ref{tab: rf} con su respectivo diagrama en las figura \ref{fig: use-cases-user} y \ref{fig: use-cases-system}.
+\begin{table}[h]
     \centering
     \begin{tabularx}{\textwidth}{|c|X|c|}
         \hline
         \textbf{Casos de uso} & \textbf{Descripción} & \textbf{Requisitos}\\\hline
         Iniciar sesión & Permite al usuario acceder al sistema & RF1\\\hline
-        Registrar usuario & Permite guardar los datos de un usuario en la Base de Datos & RF2\\\hline
-        Eliminar usuario & Permite eliminar la cuenta de un usuario en la Base de Datos & RF3\\\hline
-        Editar datos del usuario & Permite actualizar los datos personales del usuario en la Base de Datos & RF4\\\hline
-        Cerrar sesión & Permite al usuario cerrar sesión en el sistema & RF5\\\hline
-        Enviar datos al pedal & Permite a la aplicación enviar datos al pedal & RF6 \\\hline
-        Recibir datos del pedal & Permite a la aplicación recibir los datos provenientes del pedal & RF7\\\hline
-        Establecer comunicación & Permite establecer comunicación entre el dispositivo Android y el Pedal Motorizado & RF8\\\hline
-        Finalizar Comunicación & Permite finalizar comunicación entre el dispositivo Android y el Pedal Motorizado & RF9\\\hline
-        Iniciar rutina & Permite dar inicio a la rutina de entrenamiento & RF10\\\hline
-        Pausar/Reanudar rutina & Permite pausar la etapa actual de la rutina & RF11\\\hline
-        Finalizar rutina & Permite dar fin a la rutina de entrenamiento & RF12\\\hline
-        Mostrar estadística & Permite mostrar estadísticas de las rutinas de entrenamiento  al usuario& RF13\\\hline
-        Configurar rutina & Permite elegir la modalidad e insertar los parámetros de la rutina  & RF14\\\hline
-        Iniciar calibración & Permite iniciar la calibración para la modalidad clínica  & RF15\\\hline
-        Guardar logs & Permite almacenar los hechos ocurridos en el sistema en ficheros de logs & RF16\\\hline
+        Cerrar sesión & Permite al usuario cerrar sesión en el sistema & RF2\\\hline
+        Registrar usuario & Permite guardar los datos de un usuario en la base de datos & RF3\\\hline
+        Eliminar usuario & Permite eliminar la cuenta de un usuario en la base de datos & RF4\\\hline
+        Editar datos del usuario & Permite actualizar los datos del usuario en la base de datos & RF5\\\hline
+        Gestionar cuenta  & Se extiende de los casos de uso registrar usuario, eliminar usuario y editar datos del usuario & RF3, RF4, RF5 \\\hline
+        Transferir datos & Permite enviar o recibir datos entre el juego serio y el pedal motorizado & RF6, RF7\\\hline
+        Comunicar con pedal & Permite establecer la comunicación entre el juego serio y el pedal motorizado & RF8, RF9\\\hline
+        Configurar rutina & Permite elegir la modalidad e insertar los parámetros de la rutina  & RF10\\\hline
+        Iniciar rutina & Permite dar inicio a la rutina de entrenamiento & RF11\\\hline
+        Pausar/Reanudar rutina & Permite pausar la etapa actual de la rutina & RF12\\\hline
+        Finalizar rutina & Permite dar fin a la rutina de entrenamiento & RF13\\\hline
+        Entrenar & Se extiende de los casos de uso  iniciar rutina, pausar/reanudar rutina, finalizar rutina&RF11,RF12,RF13\\\hline
+        Mostrar rutina & Permite visualizar una rutina de entrenamiento configurada anteriormente &RF14\\\hline
+        Visualizar estadística & Permite mostrar estadísticas de las rutinas & RF15\\\hline
+        Calibrar sistema & Permite iniciar la calibración para la modalidad clínica  & RF16\\\hline
+        Guardar logs & Permite almacenar los hechos ocurridos en el sistema & RF17\\\hline
+        Mostrar notificaciones & Permite notificar sobre cualquier error en la aplicación & RF18\\\hline
         %Iniciar juego rutina libre & Permite dar inicio a la rutina de entrenamiento libre \\\hline
         %Iniciar juego rutina resistido & Permite dar inicio a la rutina de entrenamiento resistido \\\hline
     \end{tabularx}
     \caption{Casos de uso del sistema}
     \label{tab: rf}
 \end{table}
-    
+
 \vspace*{50pt}
 \begin{figure}[h]
     \centering
@@ -53,10 +55,10 @@ Cada forma en que los actores usan el sistema se representa con un caso de uso, 
     \label{fig: use-cases-user}
 \end{figure}
 
-\vspace*{50pt}
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.44]{images/diagram-usecase-system.png}
     \caption{Diagrama de casos de uso, actor sistema}
     \label{fig: use-cases-system}
 \end{figure}
+
