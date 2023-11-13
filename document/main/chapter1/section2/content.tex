@@ -1,0 +1,81 @@
+\subthesischapter{Aspectos conceptuales en sistemas informáticos.}
+\vspace{10pt}
+\subsubthesischapter{Arquitectura Cliente-Servidor}
+Según ~\cite{moyano2020arquitectura} la arquitectura Cliente - Servidor, es 
+un modelo de una aplicación distribuida en el cual se basa en dos actores:
+Uno con rol de proveedor de recursos y otro con rol consultor sobre los recursos.
+\begin{itemize}
+    \item Cliente: Programa ejecutable que participa activamente en el establecimiento de las conexiones. Envía una petición al servidor y se queda
+    esperando por una respuesta. Su tiempo de vida es finito una vez que son
+    servidas sus solicitudes, termina el trabajo.
+    \item Servidor: Es un programa que ofrece un servicio que se puede obtener
+    en una red. Acepta la petición desde la red, realiza el servicio y devuelve
+    el resultado al solicitante. Al ser posible implantarlo como aplicaciones de
+    programas, puede ejecutarse en cualquier sistema donde exista TCP/IP y
+    junto con otros programas de aplicación. El servidor comienza su ejecución
+    antes de comenzar la interacción con el cliente.
+\end{itemize}
+
+\vspace{10pt}
+\subsubthesischapter{Motores Gráficos}
+
+\vspace{2pt}
+Un motor de videojuegos es una aplicación de software que ofrece todas las herramientas necesarias para el diseño y desarrollo completo de un videojuego, disponiendo de un motor de renderizado para gráficos 2D y 3D, detector de colisiones, sonidos, scripting, animación, inteligencia artificial, redes, streaming, administración de memoria y mucho más \cite{arce2011desarrollo}.
+
+\vspace{10pt}
+\subsubthesischapter{Protocolos de Comunicación TCP/IP}
+TCP/IP es un conjunto de protocolos que especifican estándares de comunicaciones entre sistemas y detallan los convenios para el direccionamiento y la interconexión de redes. El protocolo TCP/IP permite las comunicaciones entre varios sistemas (llamados sistemas principales) conectados en una red. A su vez, cada red puede estar conectada a otra para comunicarse con los sistemas principales de dicha red. Aunque existen muchos tipos de tecnologías de red, algunas de las cuales utilizan el transporte en modalidad continua y por conmutación de paquetes, TCP/IP ofrece una ventaja importante: la independencia de hardware ~\cite{protocolo-tcp-ip}.
+
+\vspace{10pt}
+\subsubthesischapter{Base de Datos}
+Una base de datos es una recopilación organizada de información o datos estructurados, que normalmente se almacena de forma electrónica en un sistema informático. Normalmente, una base de datos está controlada por un sistema de gestión de bases de  datos (SGBD). En conjunto, los datos y el DBMS, junto con las aplicaciones asociadas a ellos, reciben el nombre de sistema de bases de datos, abreviado normalmente a simplemente base de datos.~\cite{Quéesuna68}
+
+\vspace{10pt}
+\textbf{Sistemas de gestión de Bases de Datos} \\
+Normalmente, una base de datos requiere un programa de software de bases de datos completo, conocido como sistema de gestión de  bases de datos (SGBD). Un SGBD sirve como interfaz entre la base de datos y sus programas o usuarios finales, lo que permite a los  usuarios recuperar, actualizar y gestionar cómo se organiza y se optimiza la información. Un SGBD también facilita la supervisión y el control de las bases de datos, lo que permite una variedad de operaciones administrativas como la supervisión del rendimiento, el ajuste, la copia de seguridad y la recuperación.~\cite{Quéesuna68}
+
+\vspace{10pt}
+Entre los SGBD relacionales más modernos se encuentran [33]:
+\begin{itemize}
+    \item MySQL: Es un sistema relacional de código abierto, multihilo y multiusuario. Código
+    abierto significa que todo el mundo puede acceder a1 código fuente, es decir, a1 código de
+    programación del SGBD, en este caso MySQL ~\cite{ian2003biblia}. Presenta como ventajas principales: alta
+    velocidad al realizar las operaciones, bajo costo en requerimientos para la elaboración de
+    bases de dato, facilidad de configuración, instalación, usabilidad y administración. MySQL
+    puede ejecutarse en la inmensa mayoría de sistemas operativos y tiene compatibilidad en su
+    mayor parte con los lenguajes de programación ANSI C y C++.
+    \item Microsoft SQL Server: Es un sistema basado en el lenguaje Transact-SQL, capaz de poner
+    a disposición de muchos usuarios grandes cantidades de datos de manera simultánea. Es un
+    sistema propietario de Microsoft. Sus principales características son: soporte de
+    transacciones, alta escalabilidad, estabilidad y seguridad. Incluye también un potente entorno
+    gráfico de administración. Su principal desventaja es el precio, aunque cuenta con una
+    versión EXPRESS que permite usarlo en entornos pequeños.
+    \item Oracle: Es un sistema multiplataforma fabricado por Oracle Corporation. Tradicionalmente
+    ha sido el SGBD por excelencia, considerado como el más completo y robusto; destacado
+    por su soporte de transacciones, alta estabilidad y escalabilidad. También siempre ha sido
+    considerado de los más caros, por lo que no se ha estandarizado su uso como otras
+    aplicaciones. Al igual que SQL Server, Oracle cuenta con una versión EXPRESS gratis para
+    pequeñas instalaciones o usuarios personales.
+    \item Microsoft Access: Es un sistema creado por Microsoft para uso personal de pequeñas
+    organizaciones. Una posibilidad adicional es la de crear ficheros con bases de datos que
+    pueden ser consultados por otros programas. Este SGBD permite crear tablas de datos
+    indexadas, modificar tablas de datos, creación de consultas, formularios, informes, vistas de
+    diseño y consultas referencias cruzadas.
+    \item PostgreSQL: Es uno de los líderes de los sistemas de gestión de base de datos (SGBD)
+    relacionales de código abierto. Este gestor de BD es uno de los almacenes de datos más rápido
+    y potente del mercado debido a sus características avanzadas (extensibilidad, seguridad y
+    estabilidad). Dado a que no tiene restricción en su entrada a datos, usa multiprocesos en vez
+    de multihilos para garantizar la seguridad del sistema, un fallo en uno de los procesos no
+    afectará el resto y el sistema continuará funcionando. Ofrece, al igual que MySQL, un sistema
+    de contraseñas y privilegios seguros mediante verificación basada en el host, y el tráfico de
+    contraseñas está cifrado al conectarse a un servidor. Además, este gestor de BD soporta gran
+    cantidad y variedad de datos y tiene compatibilidad en su mayor parte con los lenguajes de
+    programación Java, C y C++, entre otros
+    \item SQLite: Es una biblioteca utilizada en multitud de aplicaciones actuales ya que es open 
+    source y las consultas son muy eficientes. Las principales características de SQLite son:
+    \begin{itemize}
+        \item El tamaño, al tratarse de una biblioteca, es mucho menor que cualquier SGBD
+        \item Reúne los cuatro criterios ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad) logrando gran estabilidad
+        \item Gran portabilidad y rendimiento
+    \end{itemize}
+\end{itemize}
