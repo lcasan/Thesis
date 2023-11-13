@@ -2,7 +2,6 @@
 \subthesischapter{Diseño de la base de datos}
 Existen dos tipos prominentes de sistemas de gestión de bases de datos ampliamente reconocidos: los conocido como Lenguaje de Consulta Estructurado (SQL, por sus siglas en inglés) organizan los datos en estructuras tabulares, mientras que los otros, denominado No-SQL, prescinden de las tablas y optan por almacenar datos en forma de objetos. Contrariamente a SQL, el enfoque No-SQL no sigue una estructura rígida, permitiendo mayor flexibilidad en la organización de los datos. No obstante, se ha observado que los sistemas No-SQL tienden a requerir una mayor cantidad de recursos computacionales en comparación con las implementaciones SQL. En el contexto de aplicaciones móviles, se ha preferido el uso de SQL debido a su eficiencia y menor consumo de recursos, lo que contribuye a una experiencia de usuario más fluida y eficaz.
 
-\vspace{5pt}
 \subsubthesischapter{Modelo lógico}
 La descripción que surge de esta fase de diseño sirve como base para especificar la estructura conceptual de la base de datos. 
 La siguiente lista describe los principales requisitos para el registro de datos en el sistema:
@@ -12,7 +11,6 @@ La siguiente lista describe los principales requisitos para el registro de datos
     \item Luego de terminada una rutina se almacena en el sistema los resultados obtenidos y la fecha de ejecución. 
 \end{itemize}   
     
-\vspace{5pt}
 \textbf{Designación de los conjuntos de entidades y de relaciones}\\
 Desde la especificación listada anteriormente se comienzan a
 identificar los conjuntos de entidades y relaciones, así como sus atributos:
@@ -23,7 +21,6 @@ identificar los conjuntos de entidades y relaciones, así como sus atributos:
     varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios. Dicha relación cuenta con los atributos velocidad, mcv\_promedio y fecha\_de\_ejecución. 
 \end{itemize}
     
-\vspace{5pt}
 El diagrama Entidad-Relación (E-R) que resulta de tales especificaciones para la descripción de los datos del sistema se presenta en la figura \ref{fig: diagram-er}.
 \begin{figure}[ht]
     \centering
