@@ -1,5 +1,5 @@
 \subthesischapter{Generación de reportes estadísticos}
-Con el objetivo de obtener estadísticas precisas y eficientes de las rutinas de entrenamiento, se desarrolla el script StatisticsUIController.cs. Este tiene la responsabilidad de recuperar los datos almacenados en la base de datos y actualizar los valores pertinentes en los gráficos presentados en la figura~\ref{fig: statics-graphs}. Para acceder a detalles específicos del Gráfico 1, el usuario puede seleccionar la barra correspondiente al día deseado. En este caso, se mostrarán el valor promedio de los datos relacionados con la velocidad y la MCV de las rutinas realizadas, ver figura \ref{fig: statics-graphs} c  .
+Con el objetivo de obtener estadísticas precisas y eficientes de las rutinas de entrenamiento, se desarrolla el script StatisticsUIController.cs. Este tiene la responsabilidad de recuperar los datos almacenados en la base de datos y actualizar los valores pertinentes en los gráficos presentados en la figura~\ref{fig: statics-graphs}. Para acceder a detalles específicos del Gráfico 1, el usuario puede seleccionar la barra correspondiente al día deseado. En este caso, se mostrarán el valor promedio de los datos relacionados con la velocidad y la MCV de las rutinas realizadas, ver figura~\ref{fig: statics-graphs} c  .
 
 \begin{figure}[ht]
     \centering
@@ -13,7 +13,7 @@ Con el objetivo de obtener estadísticas precisas y eficientes de las rutinas de
 
 \newpage
 \subsubthesischapter{Generación de los valores del gráfico velocidad | mcv promedio}
-El gráfico de la figura \ref{fig: statics-graphs}(a) permite visualizar los valores promedio de velocidad y MCV obtenidos en las rutinas de entrenamiento diarias. Dichos valores se obtuvieron a partir de las ecuaciones \ref{eq: 2} y \ref{eq: 3}.    
+El gráfico de la figura~\ref{fig: statics-graphs}(a) permite visualizar los valores promedio de velocidad y MCV obtenidos en las rutinas de entrenamiento diarias. Dichos valores se obtuvieron a partir de las ecuaciones~\ref{eq: 2} y \ref{eq: 3}.    
 
 \begin{equation}
     V_{i} = \frac{\sum_{j=1}^{k} v_{j}}{k}
@@ -32,7 +32,7 @@ Donde:
 La representación visual de las estadísticas se logró mediante la manipulación de elementos visuales definidos en el archivo de diseño \textbf{UXML}\footnote{Documento en Unity3D que define la estructura de la interfaz de usuario y las plantillas de interfaz de usuario reutilizables.}. Se crearon contenedores VisualElement para cada día de la semana y se asignaron alturas proporcionales a los resultados promedios obtenidos. Los elementos visuales se actualizan dinámicamente a través del script StatisticsUIController.cs.
 
 \subsubthesischapter{Generación de los valores gráfico resultados por rutina}
-El gráfico de la figura \ref{fig: statics-graphs}(b), permite visualizar los valores de velocidad, distancia y tiempo correspondientes a cada rutina de entrenamiento ejecutada. Para ello, se utilizan datos provenientes de las entidades de la base de datos, específicamente, de DoEntity y RutineEntity. Estos datos se procesan y se organizan en una representación gráfica compuesta por tres curvas representadas por dichas magnitudes y generadas a partir de la clase SystemCoordinate, donde la coordenada \textbf{x} representa el índice de la rutina y la coordenada \textbf{y} representa la magnitud correspondiente (distancia, tiempo o velocidad). Estas curvas  se visualizan sobre un elemento VisualElement de Unity3D, proporcionando así una representación gráfica clara y comprensible del comportamiento de los datos asociados a cada rutina de entrenamiento ejecutada.
+El gráfico de la figura~\ref{fig: statics-graphs}(b), permite visualizar los valores de velocidad, distancia y tiempo correspondientes a cada rutina de entrenamiento ejecutada. Para ello, se utilizan datos provenientes de las entidades de la base de datos, específicamente, de DoEntity y RutineEntity. Estos datos se procesan y se organizan en una representación gráfica compuesta por tres curvas representadas por dichas magnitudes y generadas a partir de la clase SystemCoordinate, donde la coordenada \textbf{x} representa el índice de la rutina y la coordenada \textbf{y} representa la magnitud correspondiente (distancia, tiempo o velocidad). Estas curvas  se visualizan sobre un elemento VisualElement de Unity3D, proporcionando así una representación gráfica clara y comprensible del comportamiento de los datos asociados a cada rutina de entrenamiento ejecutada.
     
 
 \subsubthesischapter{Persistencia de los resultados estadísticos}

@@ -1,11 +1,9 @@
 \subthesischapter{Implementación de la interfaz gráfica para la representación de datos EMG}
 En el contexto del desarrollo de la interfaz de calibración clínica para la rehabilitación neuromuscular de pacientes con enfermedades cerebrovasculares fue necesario la implementación de la clase \underline{CoordinateSystem}. Esta clase, diseñada para extender \textbf{VisualElement}\footnote{Es un elemento visual de Unity3D} en Unity, representa el núcleo de la representación gráfica de los datos EMG en la aplicación móvil. Uno de los aspectos clave de esta implementación radica en su capacidad para generar un sistema de coordenadas dinámico y animado que se ajusta a las variaciones en los datos recibidos.
 
-\vspace{5pt}
 En el constructor de la clase \underline{CoordinateSystem}, se establece la estructura básica del sistema de coordenadas. Se crean y configuran elementos visuales esenciales, como el marco (frame), los ejes (axes), la ventana de visualización (window), y las etiquetas de los ejes x e y (xAxisLabel y yAxisLabel). Para proporcionar contexto a los datos representados, se han desarrollado métodos para agregar etiquetas a los ejes x e y. Estas etiquetas, definidas como objetos Label, muestran los valores correspondientes a las coordenadas en el sistema. La inclusión de estas etiquetas es esencial para que los profesionales de la salud y los pacientes comprendan el significado de los datos EMG presentados, mejorando así la utilidad clínica de la interfaz. 
     
-\vspace{5pt}
-Estos elementos son fundamentales para la presentación adecuada de los datos EMG en el contexto clínico, pero además, se aplican estilos \textbf{USS}\footnote{Son archivos de texto inspirados en las hojas de estilo en cascada (CSS) de HTML} a estos, definidos en archivos específicos (SystemCoordinateUSS.uss), para asegurar una presentación visual coherente y atractiva, ver figura \ref{fig: graph-emg}.
+Estos elementos son fundamentales para la presentación adecuada de los datos EMG en el contexto clínico, pero además, se aplican estilos \textbf{USS}\footnote{Son archivos de texto inspirados en las hojas de estilo en cascada (CSS) de HTML} a estos, definidos en archivos específicos (SystemCoordinateUSS.uss), para asegurar una presentación visual coherente y atractiva, ver figura~\ref{fig: graph-emg}.
 
 \begin{figure}[ht]
     \centering
