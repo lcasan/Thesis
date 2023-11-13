@@ -1,42 +1,10 @@
 \subthesischapter{Tecnologías y herramientas}
 \subsubthesischapter{Motor gráfico(Unity3D)}
-Actualmente podemos encontrar una amplia gama de motores de videojuegos, con diferentes tipos de licencias y orientados a cumplir distintos tipos de propósitos. Se puede encontrar motores comerciales y gratuitos, con metodologías 2D o 3D, inclusive que brindan soluciones de juegos a variadas plataformas (Windows, Linux, Android, etc.).\\ 
+Actualmente podemos encontrar una amplia gama de motores de videojuegos, con diferentes tipos de licencias y orientados a cumplir distintos tipos de propósitos. Se pueden encontrar motores comerciales y gratuitos, con metodologías 2D o 3D, que incluso brindan soluciones de juegos a variadas plataformas (Windows, Linux, Android, etc). La Tabla~\ref{tab: graphics-engines} muestra detalles comparativos de los motores gráficos más usados del mercado.
 
-% Afortunadamente existe una nueva tendencia por parte de algunas empresas que desarrollan motores de 
-% videojuegos, que los impulsa a colocar en el mercado versiones gratuitas (generalmente limitadas en 
-% algún aspecto) de sus herramientas para que las personas que deseen aprender, puedan hacerlo sin tener 
-% que comprar una versión full. Entre estas empresas podemos encontrar las conocidas Epic Games
-% y Unity Technologies, las cuales ofrecen versiones gratuitas y descargables de sus famosos motores de videojuegos \cite{arce2011desarrollo}.
-
-\vspace{10pt}
-La tabla 1 muestra detalles comparativos de los motores gráficos más usados del mercado:
-\begin{table}[ht]
-    \centering
-    \begin{tabularx}{\textwidth}{|X|X|X|X|X|X|X|}
-        \hline
-        \textbf{Motor gráfico  \& Atributos} & \textbf{Unity} & \textbf{Unreal Engine} & \textbf{GameMaker Studio} & \textbf{Godot} & \textbf{CryEngine}\\\hline
-        Orientación                 & 2D y 3D                                                       &2D y 3D                                                          & 2D                            & 2D y 3D               & 3D \\\hline
-        Sistema Operativo           & Windows, Linux, MacOS                                           & Windows                                                         & Windows                       & Windows, Linux, MacOS               & Windows, Linux, MacOS\\\hline
-        Plataformas                 & iOS, Android, Window, PS4, MacOS,  Linux, Xbox One y 360, HTML5 & iOS, Android, Window, PS4, MacOS,  Linux, Xbox One y 360, HTML5   & Windows, MacOS, Linux, HTML5, Android, iOS, Amazon Fire TV, Android TV, Universal Windows Platform, PlayStation 4, Xbox One, Nintendo Switch    & Windows, MacOS, Linux    & Windows, Linux, Nintendo Switch, Xbox One, PlayStation 4, Xbox 360, PlayStation 3, Wii U\\\hline
-        Lenguaje de Programación    & C\#                                                           & C++                                                             & Lenguaje propio GML           & Lenguaje de scripting & Programación basada en nodos \\\hline
-        Licencia                    & Gratuita                                                      & De pago                                                         & Versión gratuita limitada     & Gratuita              &  Gratuita en la versión 5\\\hline
-        Documentación               & Muy amplia                                                    & Escasa                                                          & Amplia                        & limitada              & Amplia\\\hline
-        Curva de aprendizaje        & Sencilla                                                      & Complicada                                                      & Media                         & Media                 & Media \\\hline
-        
-    \end{tabularx}
-    \label{tab: graphics-engines}
-    \caption{ Tabla comparativa de los motores gráficos \\ (Adaptado de~\cite{gonjar2019desarrollo})}
-\end{table}
-
-
-\vspace{10pt}
-% Según lo antes expuesto podemos concluir en que cada uno de los motores poseen características únicas que los diferencian entre sí a 
-% la hora del desarrollo de videojuego tanto en 2d, 3d o RV.
 Para el propósito de la tesis se considera Unity como unos de los motores más populares a la hora del desarrollo de videojuegos, para las distintas plataformas, una gran ventaja que tiene Unity a la hora de desarrollar un videojuego para Android, es su modo de configurar el entorno, porque solo se necesita descargar los módulos de Android, y ya está listo para crear juegos.
 
-\vspace{5pt}
 Principales características de este motor gráfico que son de utilidad en el sistema:~\cite{unity3d}
-
 \begin{itemize}
     \item Programación con C\#.
     \item Soporte parcial de .NET (incluye soporte a .NET Sockets).
@@ -45,22 +13,37 @@ Principales características de este motor gráfico que son de utilidad en el si
     \item Carga de modelados y texturas de varios formatos de programas externos como Blender, Maya, Adobe Suite, 3D Max, Cinema 4D, entre otros.
     \item Despliegue gratis sobre Android.
     \item Inspector para clases personalizadas en tiempo de ejecución.
-    \item Animación a través de cinemática directa e inversa.
 \end{itemize}
+
+\begin{table}[ht]
+    \hspace*{-25pt}
+    \centering
+    \begin{tabularx}{1.1\textwidth}{|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Motor gráfico  \& Atributos} & \textbf{Unity} & \textbf{Unreal Engine} & \textbf{GameMaker Studio} & \textbf{Godot} & \textbf{CryEngine}\\\hline
+        Orientación                 & 2D y 3D                                                       &2D y 3D                                                          & 2D                            & 2D y 3D               & 3D \\\hline
+        Sistema Operativo           & Windows, Linux, MacOS                                           & Windows                                                         & Windows                       & Windows, Linux, MacOS               & Windows, Linux, MacOS\\\hline
+        Plataformas                 & iOS, Android, Window, PS4, MacOS,  Linux, Xbox One y 360, HTML5 & iOS, Android, Window, PS4, MacOS,  Linux, Xbox One y 360, HTML5   & Windows, MacOS, Linux, HTML5, Android, iOS, PlayStation 4, Xbox One & Windows, MacOS, Linux    & Windows, Linux, Nintendo Switch, Xbox One, PlayStation 4, Xbox 360, PlayStation 3, Wii U\\\hline
+        Lenguaje de Programación    & C\#                                                           & C++                                                             & Lenguaje propio GML           & Lenguaje scripting & Programación basada en nodos \\\hline
+        Licencia                    & Gratuita                                                      & De pago                                                         & Versión gratuita limitada     & Gratuita              &  Gratuita en la versión 5\\\hline
+        Documentación               & Muy amplia                                                    & Escasa                                                          & Amplia                        & Limitada              & Amplia\\\hline
+        Curva de aprendizaje        & Sencilla                                                      & Complicada                                                      & Media                         & Media                 & Media \\\hline
+    \end{tabularx}
+    \caption{Comparación de motores gráficos en función de sus atributos \\ (Adaptado de~\cite{gonjar2019desarrollo})}
+    \label{tab: graphics-engines}
+\end{table}
 
 \subsubthesischapter{Visual Studio Code}
 Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux, macOS y Web. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código, características que lo convierten en una herramienta perfecta para manipular los scripts en Unity \cite{vscode}.
 
 \subsubthesischapter{NET Framework 4.7}
-El framework .NET provee un modelo de programación global que permite el desarrollo de todo tipo de aplicaciones desde móviles a web a escritorio. Técnicamente el framework .NET es un ambiente de ejecución que administra las aplicaciones que corren sobre este. En él se brinda un conjunto extensivo de bibliotecas para dar solución a las principales áreas del desarrollo de software.
+El framework .NET provee un modelo de programación global que permite el desarrollo de todo tipo de aplicaciones móviles, web o de escritorio. Técnicamente el framework .NET es un ambiente de ejecución que administra las aplicaciones que corren sobre este. En él se brinda un conjunto extensivo de bibliotecas para dar solución a las principales áreas del desarrollo de software.
 
 El framework en sí consiste de dos grandes componentes: motor de ejecución CLR (Common Language Runtime, por sus siglas en inglés) el cual se encarga de la ejecución de las aplicaciones; y la biblioteca de clases (nombre en inglés .NET Framework Class Library)~\cite{netframework}
 
-\vspace{2pt}
 Características principales:
 \begin{itemize}
     \item Manejo de memoria automático.
-    \item Sistema común de tipado. O sea, los tipos de datos primitivos son definidos por el framework, lo cual facilita las operaciones entre distintos lenguajes que usan este ambiente de ejecución.
     \item Una biblioteca bien vasta para operaciones generales de bajo nivel.
     \item Operatividad entre lenguajes. O sea, se puede acceder a rutinas y bibliotecas (dinámicas y estáticas) escritas en otros lenguajes si fueron compiladas con compiladores para esos lenguajes que soporten el framework .NET.
     \item Gran número de lenguajes disponibles: Visual Basic, C\#, Visual F\#, C++, entre otros.
