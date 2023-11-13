@@ -1,7 +1,6 @@
 \subthesischapter{Manipulación de los datos}
 SQLite ha sido favorecido por los desarrolladores móviles y recomendado por la documentación oficial de Android. Aún Unity no ha brindado soporte oficial para crear bases de datos. Sin embargo, se ha ideado una manera de utilizar las ventajas de SQLite para nuestra aplicación.
 
-\vspace{5pt}
 La idea utilizada fue agrupar los métodos y variables comunes en una clase. Luego extender la clase usando herencia para crear implementaciones reales. Fue creada una clase de alto nivel \underline{DataBaseModel}  que se puede extender a otras clases, con el fin de acceder a las operaciones básicas de cualquier base de datos. Llamamos a estas operaciones básicas CURD: Crear, Actualizar, Leer y Borrar, ver figura \ref{fig: diagram-db}.
 
 \begin{figure}[ht]
