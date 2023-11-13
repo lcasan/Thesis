@@ -98,7 +98,7 @@ Ante la disparidad entre la velocidad de recepción de los datos provenientes de
 Descripción del algoritmo utilizado, ver figura~\ref{fig: interpolation-algorithm} para más detalles:
 \begin{enumerate}
     \item Se utilizan dos variables, \textbf{finalSpeed} e \textbf{initialSpeed}, inicializadas en 0, para determinar la velocidad inicial y final en cada segmento de tiempo de 100 ms.
-    \item En el método \textbf{Update()}\footnote{Es una función especial en Unity que es llamada en cada script, durante cada frame.}, se emplea la técnica de interpolación para calcular una velocidad suavizada, basada en las velocidades almacenadas previamente. Ver código \ref{code: interpolation}
+    \item En el método \textbf{Update()}\footnote{Es una función especial en Unity que es llamada en cada script, durante cada frame.}, se emplea la técnica de interpolación para calcular una velocidad suavizada, basada en las velocidades almacenadas previamente. Ver código~\ref{code: interpolation}
 \end{enumerate} 
 
 \begin{figure}[ht]
@@ -134,14 +134,14 @@ transform.Translate(currentSpeed * Time.deltaTime);
 \subsubthesischapter{Modalidad Ligero}
 La modalidad ligero, basada en el entrenamiento del tren inferior, se presenta como el primer escenario de juego. En esta modalidad, los parámetros de distancia o tiempo, seleccionados en el menú de configuración de la rutina, sirven como los pilares fundamentales del entrenamiento.
 
-Como muestra la figura \ref{fig: game-world}a la lógica subyacente del juego en dicha modalidad es la siguiente: al inicio, los usuarios establecen el valor de la distancia o el tiempo en el menú de configuración de las rutinas. Estos valores se utilizan como criterios para mejorar las estadísticas del jugador durante el juego. Por ejemplo, si se establece una distancia de 10 metros, el objetivo del jugador será completar esta distancia en el menor tiempo posible. De manera similar, si se elige un tiempo de 3 minutos, el objetivo será recorrer la mayor distancia posible dentro de ese límite temporal.
+Como muestra la figura~\ref{fig: game-world}a la lógica subyacente del juego en dicha modalidad es la siguiente: al inicio, los usuarios establecen el valor de la distancia o el tiempo en el menú de configuración de las rutinas. Estos valores se utilizan como criterios para mejorar las estadísticas del jugador durante el juego. Por ejemplo, si se establece una distancia de 10 metros, el objetivo del jugador será completar esta distancia en el menor tiempo posible. De manera similar, si se elige un tiempo de 3 minutos, el objetivo será recorrer la mayor distancia posible dentro de ese límite temporal.
 
 Para implementar esta lógica, fue necesario crear un terreno virtual que se reconstruye dinámicamente según la posición actual del jugador. Esto asegura que el jugador permanezca dentro del área de juego y evita que se pierda la coherencia del juego. Al finalizar cada rutina de rehabilitación en esta modalidad, las estadísticas del jugador son actualizadas para reflejar su desempeño, lo que proporciona una retroalimentación valiosa para su progreso.
 
 \subsubthesischapter{Modalidad Clínico}
 La modalidad clínico de nuestro juego serio representa una innovación significativa en nuestra aproximación terapéutica. Además de las características previamente mencionadas, esta modalidad integra los valores de la señal IEMG (Electromiografía de Superficie) capturados por nuestro pedal motorizado. Esta señal se convierte en un componente fundamental para establecer los desafíos en la escena del juego de esta modalidad.
 
-Como muestra la figura \ref{fig: game-world}b en esta modalidad clínica, se definen tres puntos clave en el recorrido hacia la meta. En cada uno de estos puntos, el juego verifica la media aritmética de los niveles de MCV capturados. Estos niveles se comparan con los valores de referencia predefinidos que se establecieron durante la fase de calibración y configuración del juego. Si la media de los niveles de MCV en un punto dado cumple con los requisitos establecidos, el jugador supera el reto asociado a ese punto y avanza en el juego.
+Como muestra la figura~\ref{fig: game-world}b en esta modalidad clínica, se definen tres puntos clave en el recorrido hacia la meta. En cada uno de estos puntos, el juego verifica la media aritmética de los niveles de MCV capturados. Estos niveles se comparan con los valores de referencia predefinidos que se establecieron durante la fase de calibración y configuración del juego. Si la media de los niveles de MCV en un punto dado cumple con los requisitos establecidos, el jugador supera el reto asociado a ese punto y avanza en el juego.
 
 \begin{figure}[ht]
     \centering
