@@ -1,10 +1,10 @@
 \subthesischapter{Comunicación con el pedal motorizado}
-Para la comunicación entre los componentes principales de el sistema, juego serio y pedal motorizado, se creó un módulo de comunicación implementado bajo una arquitectura cliente-servidor basada en sockets TCP/IP que garantiza una conexión confiable y efectiva. Este protocolo proporciona una interfaz que utiliza un conjunto de mensajes predefinidos, ver tablas~\ref{table:send-msg-in-game}, \ref{table:recived-msg-in-game}, \ref{table:send-msg-in-calibration}, \ref{table:recive-msg-in-calibration}. El formato de los mensajes sigue una estructura que consta de un encabezado y un cuerpo organizados de la siguiente manera: \#[COMANDO][PARÁMETROS]. El encabezado \underline{COMANDO} indica el tipo de mensaje y el tamaño del cuerpo, lo que facilita la interpretación de los datos recibidos.
+Para la comunicación entre los componentes principales de el sistema, juego serio y pedal motorizado, se creó un módulo de comunicación implementado bajo una arquitectura cliente-servidor basada en sockets TCP/IP que garantiza una conexión confiable y efectiva. Este protocolo proporciona una interfaz que utiliza un conjunto de mensajes predefinidos, ver tablas \ref{table:send-msg-in-game}, \ref{table:recived-msg-in-game}, \ref{table:send-msg-in-calibration}, \ref{table:recive-msg-in-calibration}. El formato de los mensajes sigue una estructura que consta de un encabezado y un cuerpo organizados de la siguiente manera: \#[COMANDO][PARÁMETROS]. El encabezado \underline{COMANDO} indica el tipo de mensaje y el tamaño del cuerpo, lo que facilita la interpretación de los datos recibidos.
 
 Para gestionar la comunicación con el pedal motorizado, se desarrolló un script en C\# llamado \underline{Stream.cs}. Este script utiliza las bibliotecas de .Net\footnote{Entorno de desarrollo de software creado por Microsoft} para establecer y administrar la conexión con el pedal. La comunicación se realiza de manera asíncrona, aprovechando la programación basada en hilos para evitar bloqueos en la aplicación Unity3D mientras se establece la comunica con el dispositivo físico.
 
 % TRAINING : SENT MESSAGES
-\begin{table}[ht]
+\begin{table}[h]
     \centering
     \begin{tabular}{ |c|p{14cm}|}
         \hline
@@ -33,7 +33,7 @@ Para gestionar la comunicación con el pedal motorizado, se desarrolló un scrip
 \end{table}
 
 % TRAINING : RECEIVED MESSAGES
-\begin{table}[ht]
+\begin{table}[h]
     \centering
     \begin{tabular}{ |c|p{14cm}|}
         \hline
@@ -58,7 +58,7 @@ Para gestionar la comunicación con el pedal motorizado, se desarrolló un scrip
 \end{table}
 
 \newpage
-\begin{table}[ht]
+\begin{table}[h]
     \centering
     \begin{tabular}{ |c|p{14cm}|}
         \hline
@@ -128,7 +128,7 @@ Para gestionar la comunicación con el pedal motorizado, se desarrolló un scrip
     \label{table:send-msg-in-calibration}
 \end{table}  
 
-\begin{table}[ht]
+\begin{table}[!ht]
     \centering
     \begin{tabular}{ |c|p{14cm}|}
         \hline
@@ -173,8 +173,9 @@ Para gestionar la comunicación con el pedal motorizado, se desarrolló un scrip
 \end{table} 
 
 \newpage
+\newpage
 \subthesischapter{Ejemplo de comunicación}
-En el proceso de calibración mostrado en la figura~\ref{fig: diagram-protocol-in-calibration}  la comunicación inicia con el envío del comando \#ch1,1 correspondiente a la solicitud de activación  del canal1. El envío de mensajes se realiza  a través de funciones específicas para cada tipo de mensaje. Estas funciones serializan tipos de mensajes específicos en un buffer de salida. Una vez codificado el mensaje en el buffer de salida, se llama a la función, \textbf{send\_message()}, que se encarga de enviar el mensaje codificado en el buffer de salida. Según este principio, cada función es responsable de codificar su mensaje respectivo y finalmente enviar el mensaje llamando a la función. Para proteger de escritura simultánea en el buffer de salida por múltiples hilos se usan \textbf{mutexs}\footnote{Mecanismo en el que se intenta dar solución al problema de la sección crítica en un programa.} entre el proceso de serializar el mensaje y el envío por el {\textbf{socket}}\footnote{Canales de comunicación que permiten que procesos no relacionados intercambien datos.}. 
+En el proceso de calibración mostrado en la figura \ref{fig: diagram-protocol-in-calibration}  la comunicación inicia con el envío del comando \#ch1,1 correspondiente a la solicitud de activación  del canal1. El envío de mensajes se realiza  a través de funciones específicas para cada tipo de mensaje. Estas funciones serializan tipos de mensajes específicos en un buffer de salida. Una vez codificado el mensaje en el buffer de salida, se llama a la función, \textbf{send\_message()}, que se encarga de enviar el mensaje codificado en el buffer de salida. Según este principio, cada función es responsable de codificar su mensaje respectivo y finalmente enviar el mensaje llamando a la función. Para proteger de escritura simultánea en el buffer de salida por múltiples hilos se usan \textbf{mutexs}\footnote{Mecanismo en el que se intenta dar solución al problema de la sección crítica en un programa.} entre el proceso de serializar el mensaje y el envío por el {\textbf{socket}}\footnote{Canales de comunicación que permiten que procesos no relacionados intercambien datos.}. 
     
 A continuación es enviado el mensaje \#im1,0,1,0, para solicitarle al pedal el inicio del proceso de mediciones en los canales 1 y 3  respectivamente, el cual es respondido con una serie de mensajes de la forma \#ar0310 ... 023. La recepción de mensajes está implementada sobre un hilo distinto del principal. Cuando se recibe un mensaje este se almacena en la variable respectiva asociada al tipo de mensaje y se notifica su recepción cambiando una variable de control asociada a la recepción o lanzando un evento para informar al hilo principal de su recepción. Para proteger el acceso a las variables que pueden tener lecturas y escrituras simultáneas por ambos hilos se usan mutexs.
 
