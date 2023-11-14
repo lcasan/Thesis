@@ -1,9 +1,117 @@
-\subthesischapter{Impacto socio-económico}
+\subthesischapter{Pruebas del sistema}
+% SUBSECTION 1: FUNCTIONAL REQUIREMENTS
+\subsubthesischapter{Comprobación de los requisitos funcionales del sistema}
+La comprobación de los requisitos funcionales del sistema se realizó a partir de una prueba de caja negra. Dicha prueba puede definirse como una técnica donde se busca la verificación de las funcionalidades del software o aplicación analizada, sin tomar como referente la estructura del código interno, las rutas de tipo internas ni la información referente a la implementación. Esto quiere decir que se llevan a cabo con desconocimiento del funcionamiento del sistema interno, debido a que se enfoca en la entrada y salida de un software, tomando como base sus especificaciones y requisitos. A modo de ejemplo en la Tabla \ref{tab: darkbox1} se muestra la  aplicación de dicha prueba para el requisito funcional inicio de sesión.    
 
-Se considera un impacto cuando surge un cambio en la vida de la población. Esto puede incluso extenderse a generaciones futuras. Por tanto, los tipos más destacados suelen ser los relacionados con cambios en el nivel educativo, el estado de salud o el nivel de ingresos. En este caso, el software está orientado principalmente a mejorar la salud, sin embargo, también hay un fuerte componente económico. Teniendo esto en cuenta, se podría decir que el proyecto de integración del software a un sistema de rehabilitación tiene una propuesta de valor ciertamente robusta. Por un lado y como aspecto relevante de impacto es el potencial beneficio que puede brindar a las personas que han sufrido un ACV. 
+\begin{table}[!ht]
+    \centering
+    \begin{tabularx}{\textwidth}{|c|X|X|X|}
+        \hline
+        \textbf{No} & \textbf{Entrada} & \textbf{Respuesta esperada} & \textbf{Respuesta del sistema}\\\hline
+        % 1
+        1
+        &
+        \begin{minipage}{0.3\columnwidth}
+            \textbf{campo correo} (cadena de caracteres asociada con un correo registrado en la base de datos).
+            
+            \textbf{campo contraseña} (la contraseña correspondiente al correo registrado).
+        \end{minipage}  
+        & 
+        Permite al usuario acceder al sistema. 
+        & 
+        Se accede al sistema correctamente.
+        \\\hline
+        
+        % 2
+        2
+        &
+        \begin{minipage}{0.3\columnwidth}
+            \textbf{campo correo} (cadena de caracteres que no posea formato de correo). \\\\ \textbf{campo contraseña} (Cualquier cadena de caracteres).
+        \end{minipage}  
+        & 
+        El sistema notifica con el mensaje: Correo inválido.
+        & 
+        Se notifica correctamente el mensaje: Correo inválido. (ver Figura \ref{annex: 1}a)
+        \\\hline
 
-Las estimaciones más recientes de la GDB(Global Burden of Disease por sus siglas en inglés) en 2019 muestran que el ictus sigue siendo la segunda causa principal de muerte y la tercera causa de muerte y discapacidad combinadas en el mundo. El coste mundial estimado del ictus es de más de \$891 billones de dólares (1,12\% del PIB mundial).Entre 1990 y 2019, la carga (en términos de número absoluto de casos) aumentó sustancialmente (70,0\% de aumento de los ictus incidentes, 43,0\% de muertes por ictus, 102,0\% de ictus prevalentes)~\cite{feigin2022world}. Además, según las estadísticas descritas por la Organización Mundial de Accidentes Cerebrovasculares~\cite{lindsay2019world}, cada año se producen más de 12,2 millones de nuevos accidentes cerebrovasculares. En todo el mundo, una de cada cuatro personas mayores de 25 años sufrirá un ictus a lo largo de su vida. Cada año, más del 16\% de todos los accidentes cerebrovasculares se producen en personas de 15 a 49 años. Cada año, más del 62\% de todos los accidentes cerebrovasculares se producen en personas menores de 70 años. Cada año, el 47\% de los ictus se producen en hombres y el 53\% en mujeres. Estas cifras muestran la magnitud del problema de salud pública que representa el ACV, así como la necesidad de contar con estrategias de prevención, tratamiento y rehabilitación eficaces y accesibles. 
+        % 3
+        3
+        &
+        \begin{minipage}{0.3\columnwidth}
+            \textbf{campo correo} (cadena de caracteres asociada con un correo registrado en la base de datos).
+            
+            \textbf{campo contraseña} (Contraseña distinta a la correspondiente con el correo registrado).
+        \end{minipage}  
+        & 
+        El sistema notifica con el mensaje: Contraseña incorrecta.
+        & 
+        Se notifica correctamente el mensaje: Contraseña incorrecta. (ver Figura \ref{annex: 1}c)
+        \\\hline
+        % 4
+        4
+        &
+        \begin{minipage}{0.3\columnwidth}
+            \textbf{campo correo} (cadena de caracteres asociada con un correo que no esté registrado en la base de datos). 
+            
+            \textbf{campo contraseña} (Contraseña distinta a la correspondiente con el correo registrado).
+        \end{minipage}  
+        & 
+        El sistema notifica con el mensaje: Correo incorrecta.
+        & 
+        \cellcolor{red!75} Error
+        \\\hline
 
-Por otra parte la aplicación de juego serio, al integrarse al sistema de rehabilitación muscular por pedal motorizado, ofrece una solución innovadora y atractiva para mejorar la recuperación funcional y la calidad de vida de las personas que han sufrido un ACV. Al estimular la actividad física, la motivación, el entretenimiento y el aprendizaje, la aplicación puede contribuir a reducir el impacto negativo del ACV en la salud, la economía y la sociedad, al ser un recurso de bajo costo que permite un ahorro sustancial en costes a la institución médica que lo utilice y por ende mayor capacidad de rehabilitación. Además esta mejora no se remite solamente a personas que han sufrido un ACV, cualquier persona con problemas de movilidad podría usarlo como método de rehabilitación. Los beneficios de los videojuegos para la rehabilitación más importantes que se han conseguido hasta la fecha son: mejoras en la marcha, resistencia, equilibrio, coordinación, fortalecimiento de los músculos y entrenamiento de habilidades cognitivas. La actividad física en combinación con los videojuegos es una estrategia factible y efectiva para fortalecer los miembros superiores e inferiores del cuerpo, la flexibilidad, el equilibrio y la agilidad.  La inserción de nuevas tecnologías en ambientes realistas en los que se realiza la actividad física permite, además, dinamizar la relación entre el ejercicio y los resultados.  
+    \end{tabularx}
+    \caption{Prueba de caja negra, inicio de sesión.}
+    \label{tab: darkbox1}
+\end{table}
 
-La utilidad de los videojuegos desde su concepción es la de servir como herramienta para hacer ejercicio desde la comodidad del hogar. Con la implementación de esta tecnología no solo se mejora la salud, sino también se logra el mantenimiento físico de los adultos mayores, en pro de prolongar una existencia con calidad, demostrando incrementos en el consumo de oxígeno, gasto energético, frecuencia cardíaca y tasa de esfuerzo percibido lo cual deriva en beneficios importantes para la salud y en un impacto para contrarrestar el sedentarismo y sus enfermedades derivadas. Si a esto se le añade el indudable atractivo para los jóvenes, por tratarse de un videojuego, y la saciedad en la curiosidad de los adultos por probar una tecnología novedosa, podría llegar a ser un producto muy solicitado. Por tanto, se obtiene un producto comercializable integrado a un sistema de rehabilitación por pedal motorizado, con valor agregado, centrado en mejorar la salud de las personas mientras mantiene un costo relativamente pequeño en comparación con el mercado mundial, que puede oscilar entre los \$10,000 a \$200,000 según \cite{Costodeh3}.
+\newpage
+La prueba de caja negra para la funcionalidad de inicio de sesión se llevó a cabo mediante la implementación de varios casos de prueba, cada uno de los cuales involucraba múltiples iteraciones para abordar distintas combinaciones de entradas. Estas iteraciones se realizaron con el objetivo de evaluar exhaustivamente el comportamiento del sistema en diversas situaciones. En el caso 4 se evidenció un error, para su solución se realizó una revisión del código fuente para determinar la causa subyacente. Luego, se implementaron medidas correctivas, como ajustes en el código y en la lógica de manejo de errores, con el objetivo de resolver y evitar incidentes similares en el futuros.
+
+% SUBSECTION 2
+\subsubthesischapter{Encuesta a especialistas sobre la percepción del sistema}
+Para la evaluación de los requisitos no funcionales usabilidad e interoperabilidad, además de los evaluados por \cite{franco2016sistema} (ergonomía, seguridad y concordancia de los ejercicios con los de la terapia tradicional) fue aplicada una encuesta a 10 profesionales del área de la investigación, 4 de ellos doctores en ciencia, 3 ingenieros (entre ellos 1 informático, 1 ingeniero de control automático y 1 biomédico) especialistas en desarrollo en el tema de la rehabilitación y 3 especialistas del área médica. Todos con más de 5 años de experiencia. Los resultados de dicha encuesta se presentan agrupados en una escala dicotómica en la Tabla \ref{table:test}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{p{3cm} c c c c}
+        \hline
+        Característica      &  Alto(\#/Total)   &  Alto(\%) & Bajo(\#/Total)  & Bajo(\%) \\\hline
+        Usabilidad          &  7/10   &  70   & 3/10  &   30\\
+        Interoperabilidad   &  8/10   &  80   & 2/10  &   20\\
+        Ergonomía           &  10/10  &  100  & 0/10  &   0\\
+        Concordancia        &  8/10   &  80   & 2/10  &   20\\
+        Seguridad           &  10/10  &  100  & 0/10  &   0\\
+        \hline        
+    \end{tabular}        
+    \caption{Resultados de percepción de los especialistas.}
+    \label{table:test}
+\end{table}
+
+Dichos resultados siguen el patrón lógico esperado:
+\begin{itemize}
+    \item \textbf{Usabilidad (70\% de satisfacción alta):} Un alto nivel de usabilidad significa que los profesionales evaluados encontraron el juego serio fácil de usar y comprender. Esto indica que la interfaz y las interacciones del juego son intuitivas, lo que facilita su adopción por parte de los usuarios.
+    
+    La facilidad de uso es fundamental para los pacientes de neurorrehabilitación, especialmente para aquellos que pueden tener limitaciones cognitivas o motoras. Un juego fácil de entender y jugar fomenta la participación y la adherencia al programa de rehabilitación.
+
+
+    \item \textbf{Interoperabilidad (80\% de satisfacción alta):} Una alta interoperabilidad sugiere que el juego serio puede integrarse sin problemas con el sistema de adquisición de datos.
+    
+    La interoperabilidad es crucial en un entorno de neurorrehabilitación donde se utilizan varios dispositivos y sistemas para monitorear y apoyar la recuperación del paciente. Un juego serio interoperable permite una recopilación de datos sin problemas y una comunicación eficaz entre diferentes componentes del sistema.
+
+
+    \item \textbf{Ergonomía y Seguridad (100\% de satisfacción alta):} En el caso de la seguridad aplican condiciones similares a la ergonomía, dado que el sistema por sí mismo incluye las condiciones asociadas con una bicicleta estática que ya es usada en los procesos de rehabilitación de miembro inferior. Además, la ergonomía también demuestra la capacidad de la aplicación para adaptarse a las necesidades y habilidades cambiantes del usuario. 
+    
+    La seguridad total indica que los profesionales evaluados consideran que el juego serio no representa ningún riesgo para la salud o la integridad de los usuarios.
+    
+    \item \textbf{Concordancia (80\% de satisfacción alta):} Implica que los ejercicios en el juego serio se alinean adecuadamente con las prácticas de terapia tradicional, lo que sugiere coherencia en el enfoque de rehabilitación. Los ejercicios en el juego deben complementar y respaldar las técnicas utilizadas en la terapia tradicional. 
+    
+    La concordancia asegura que los pacientes practiquen movimientos y habilidades relevantes para su recuperación.
+\end{itemize}
+
+Las observaciones generales proporcionadas por los especialistas, permitieron identificar otros usos potenciales en el proceso de rehabilitación de víctimas de ACV: resistencia, fuerza y coordinación,actividad física independiente de su condición, complemento al proceso de entrenamiento de marcha, coordinación, autoconfianza, motivación.
+
+Por otra parte, teniendo en cuenta que el sistema de adquisición de datos no es invasivo y, por el contrario, presentó aceptación por parte de los especialistas por incluir un videojuego, se propone, en un futuro, realizar pruebas a un número determinado de pacientes víctimas de ACV y de esta manera evaluar el funcionamiento del sistema de adquisición de datos durante ejercicios de rehabilitación resistida y activa-asistida, en los que el paciente moverá los pedales continuamente y realizará por su propia acción o con ayuda de especialista los ejercicios establecidos. Adicionalmente, se valida que el sistema no es exclusivo para rehabilitación de personas víctimas de ACV, por lo tanto se plantea que en un trabajo futuro se podrá probar dicha aplicación en la modalidad ligero, por ejemplo, con deportistas de alto rendimiento con lesiones deportivas.
+
+Si bien se recibieron comentarios  positivos otros también fueron negativos respecto a la usabilidad y la concordancia, requisitos estrechamente relacionados en el juego serio. En ambos se encontró como déficit el no cubrir toda la gama de ejercicios definidos en las rutinas de rehabilitación siendo propuestos para futuras versiones la inclusión de las modalidades resistida y activo-asistida con el fin de complementar los ejercicios de rehabilitación que se pueden realizar actualmente con el sistema de adquisición de datos, los cuales son solamente ejercicios de rehabilitación libre.
