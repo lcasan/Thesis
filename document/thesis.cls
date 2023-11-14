@@ -1,12 +1,11 @@
-% Identification
+% IDENTIFICATION 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis}[2022/22/12 Created by Luis Miguel Casan Gonzalez]
 
-% Preliminary declarations
+% PRELIMINARIY DECLARATIONS
 \LoadClass{article}
 
-% Bibliography style
-%\RequirePackage[natbibapa]{apacite}
+% BIBLIOGRAPHY STYLE
 \RequirePackage[english,spanish,es-ucroman,es-tabla]{babel}
 \RequirePackage{tabularx}
 \bibliographystyle{plain}
@@ -14,9 +13,8 @@
 \RequirePackage{xcolor}
 \RequirePackage{subfigure}
 \RequirePackage{caption}
-%\addto\captionsspanish{\renewcommand{\listingscaption}{Codigo}}
 
-% Change pages style
+% THESIS GEOMETRY
 \RequirePackage{geometry}
 \newgeometry{
    top = 0in,
@@ -33,7 +31,7 @@
     }
 }
 
-% Title
+% TITLE
 \RequirePackage{graphicx}
 \newcommand{\advisor}[1]{\def\@advisor{#1}}
 \newcommand{\degree}[1]{\def\@degree{#1}}
@@ -42,11 +40,11 @@
 
 \def\maketitle{
   \thispagestyle{empty}
-  % Left background of title
+  % LEFT BACKGROUND OF TTITLE
    \begin{minipage}[c]{0.6\textwidth}
       \hspace{-0.8in}\includegraphics[height=\textheight, width= 0.99\textwidth]{images/background.png}
    \end{minipage}
-   % Content of title
+   % CONTENT OF TITLE
    \hspace{-0.5in}
    \begin{minipage}[c]{0.4\textwidth}
       \begin{center}
@@ -64,20 +62,21 @@
          \vfill 
          {\large TESIS PRESENTADA EN OPCIÓN AL TÍTULO ACADÉMICO DE LICENCIADO EN CIENCIA DE LA COMPUTACIÓN} \\
          \vskip 1cm
-         {21 de septiembre 2023}
+         {Noviembre de 2023}
          %\@date
       \end{center}
    \end{minipage}
 }
-% Environments of thesis 
-% Front section
+
+% ENVIROMENTS OF THESIS 
+% FRONT SECTION:
 \newenvironment{dedication}
-   {
-      \thispagestyle{empty}
-      \vskip 3.5cm
-      \begin{flushright}
-   }
-   { \end{flushright} }
+{
+   \thispagestyle{empty}
+   \vskip 3.5cm
+   \begin{flushright}
+}
+{ \end{flushright} }
 
 \newenvironment{acknowledgements}
    {
