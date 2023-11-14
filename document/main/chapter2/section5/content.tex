@@ -21,67 +21,20 @@ identificar los conjuntos de entidades y relaciones, así como sus atributos:
     varias rutinas y la misma rutina puede ser ejecutada por distintos usuarios. Dicha relación cuenta con los atributos velocidad, mcv\_promedio y fecha\_de\_ejecución. 
 \end{itemize}
     
-El diagrama Entidad-Relación (E-R) que resulta de tales especificaciones para la descripción de los datos del sistema se presenta en la Figura \ref{fig: diagram-er}.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.48]{images/diagram-er.png}
-    \caption{Diagrama Entidad Relación.}
-    \label{fig: diagram-er}
-\end{figure}
-
 \subsubthesischapter{Modelo físico}
-El modelo físico de la base de datos consta de tres tablas principales: \textbf{USER, RUTINE y DO}\footnote{USER, RUTINE y DO hace referencias a las tablas usuario, rutina y ejecuta respectivamente.} en las que se han definido las siguientes restricciones para mantener la integridad de los datos:
+El modelo físico de la base de datos mostrado en la Figura \ref{fig: logic-model-db} consta de tres tablas principales: \textbf{User, Rutine y Do}\footnote{User, Rutine y Do hace referencias a las tablas usuario, rutina y ejecuta respectivamente.} en las que se han definido las siguientes restricciones para mantener la integridad de los datos:
 
 \begin{itemize}
-    \item En la tabla USER, se ha establecido un campo ID como clave primaria, que se genera automáticamente mediante autoincremento cada vez que se inserta una nueva fila. Los campos FULLNAME, EMAIL y PASSWORD almacenan la información del usuario.
+    \item En la tabla USER, se ha establecido un campo \textbf{id} como clave primaria, que se genera automáticamente mediante autoincremento cada vez que se inserta una nueva fila. Los campos \textbf{fullname}, \textbf{email} y \textbf{password} almacenan la información del usuario.
 
-    \item La tabla RUTINE contiene información sobre las rutinas de ejercicios. Se ha definido un campo ID como clave primaria con autoincremento. Los campos MODALITY, TIME, DISTANCE, MCV0, MCV1, MCV2 y MCV3 almacenan los detalles de la rutina.
+    \item La tabla \textbf{Rutine} contiene información sobre las rutinas de ejercicios. Se ha definido un campo ID como clave primaria con autoincremento. Los campos \textbf{modality}, \textbf{time}, \textbf{distance}, \textbf{mc1}, \textbf{mc2}, \textbf{mc3} y \textbf{mc4} almacenan los detalles de la rutina.
 
-    \item En la tabla DO, se ha establecido un campo ID como clave primaria con autoincremento. Los campos ID\_MODALITY y ID\_USER actúan como claves foráneas, haciendo referencia a las tablas RUTINE y USER respectivamente. El campo VELOCITY y MCV\_AVERAGE almacena los resultados de velocidad y el promedio de MCV obtenidos al finalizar la rutina, y el campo DATE registra la fecha de la realización de la rutina.
+    \item En la tabla \textbf{Do}, se ha establecido un campo \textbf{id} como clave primaria con autoincremento. Los campos \textbf{user\_id} y \textbf{rutine\_id} actúan como claves foráneas, haciendo referencia a las tablas \textbf{Rutine} y \textbf{User} respectivamente. El campo \textbf{velocity} y \textbf{mcv\_average} almacena los resultados de velocidad y el promedio de MCV obtenidos al finalizar la rutina, y el campo \textbf{date} registra la fecha de la realización de la rutina.
 \end{itemize}
 
-El esquema de las tablas de la base de datos, junto con las dependencias de clave primaria y las foráneas, se puede visualizar en la siguiente 
-porción de código:
-
-\begin{center}
-\begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c,caption={Sección de código, constructor de la clase CibiofibDb}, label={code: database-code}]
-public CibiofibDb() : base()
-{
-    IDbCommand dbcmd = getDbCommand();
-    dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS USER ( " +
-                        "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "FULLNAME TEXT, " +
-                        "EMAIL TEXT, " +
-                        "PASSWORD TEXT )";
-    dbcmd.ExecuteNonQuery();
-
-    dbcmd = getDbCommand();
-    dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS RUTINE ( " +
-                        "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "MODALITY INTEGER, " +
-                        "TIME REAL, " +
-                        "DISTANCE REAL, " +
-                        "MCV0 REAL, " +
-                        "MCV1 REAL, " +
-                        "MCV2 REAL, " +
-                        "MCV3 REAL )";
-
-    dbcmd.ExecuteNonQuery();
-
-    dbcmd = getDbCommand();
-    dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS DO ( " +
-                    "ID  INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "USER_ID INTEGER, " +
-                    "RUTINE_ID INTEGER, " +
-                    "VELOCITY REAL, " +
-                    "MCV_AVERAGE REAL, " +
-                    "DATE TEXT, " +
-    "FOREIGN KEY(USER_ID) REFERENCES USER(ID), " +
-    "FOREIGN KEY(RUTINE_ID) REFERENCES RUTINE(ID))";
-
-    dbcmd.ExecuteNonQuery();
-}
-\end{lstlisting}
-\end{minipage}
-\end{center}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.6]{images/logic-model-db.png}
+    \caption{Diagrama del modelo físico de la base de datos.}
+    \label{fig: logic-model-db}
+\end{figure} 

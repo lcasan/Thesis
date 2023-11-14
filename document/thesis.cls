@@ -13,6 +13,8 @@
 \RequirePackage{xcolor}
 \RequirePackage{subfigure}
 \RequirePackage{caption}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
 
 % THESIS GEOMETRY
 \RequirePackage{geometry}

@@ -5,7 +5,7 @@ En el constructor de la clase \underline{CoordinateSystem}, se establece la estr
     
 Estos elementos son fundamentales para la presentación adecuada de los datos EMG en el contexto clínico, pero además, se aplican estilos \textbf{USS}\footnote{Son archivos de texto inspirados en las hojas de estilo en cascada (CSS) de HTML} a estos, definidos en archivos específicos (SystemCoordinateUSS.uss), para asegurar una presentación visual coherente y atractiva, ver figura~\ref{fig: graph-emg}.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \begin{tikzpicture}   
         \begin{axis}[
@@ -18,4 +18,5 @@ Estos elementos son fundamentales para la presentación adecuada de los datos EM
     \label{fig: graph-emg}
 \end{figure}
 
+\newpage
 Adicional a lo anteriormente mencionado la clase proporciona métodos para trazar puntos y funciones en el sistema de coordenadas. A través de los métodos PlotPoint() y PlotFunction(), la aplicación puede representar los datos EMG de forma gráfica y dinámica. Además, se ha implementado una funcionalidad de animación que permite mostrar la progresión de los datos en el tiempo. El método DrawFunction() utiliza técnicas de interpolación para crear una animación fluida, mejorando así la comprensión de la obtención de los datos en la línea de tiempo.
