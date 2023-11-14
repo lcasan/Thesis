@@ -79,90 +79,71 @@
 { \end{flushright} }
 
 \newenvironment{acknowledgements}
-   {
-      \thispagestyle{empty}
-      \section*{Agradecimientos}
-   }
-   {}
+{
+   \thispagestyle{empty}
+   \section*{Agradecimientos}
+}
+{}
 
 \newenvironment{resumen}
-   {
-      \thispagestyle{empty}
-      \section*{Resumen}
-   }
-   {}
+{
+   \thispagestyle{empty}
+   \section*{Resumen}
+}
+{}
 
 \renewenvironment{abstract}
-   {
-      \thispagestyle{empty}
-      \section*{Abstract}
-   }
-   {}
+{
+   \thispagestyle{empty}
+   \section*{Abstract}
+}
+{}
 
-% Abbidx section
-\newenvironment{abbidx}
-   {
-      \thispagestyle{empty}
-      \section*{Índice de abreviaturas}
-      \hypertarget{page: abbidx}{}
-   }
-   {}
-
-% Content section
-\newenvironment{content}
-   {
-   }
-   {}
-
-
-% Main section 
+% MAIN SECTION 
 \newenvironment{introduction}
-   {
-      \addcontentsline{toc}{section}{Introducción}
-      \pagenumbering{arabic}
-      \section*{Introducción}
-   }
-   {}
+{
+   \addcontentsline{toc}{section}{Introducción}
+   \pagenumbering{arabic}
+   \section*{Introducción}
+}
+{}
 
-% Commands for thesis's chapters
-\newcommand{\subthesischapter}[1]{\subsection{#1} }%\addcontentsline{toc}{subsection}{#1}}
-\newcommand{\subsubthesischapter}[1]{\subsubsection{#1} }%\addcontentsline{toc}{subsubsection}{#1}}
+% COMMANDS FOR THESIS'S CHAPTERS
+\newcommand{\subthesischapter}[1]{\subsection{#1} }
+\newcommand{\subsubthesischapter}[1]{\subsubsection{#1} }
 
 \newenvironment{thesischapter}[2]
-   {
-      \addcontentsline{toc}{section}{Capítulo #1 : #2}
-      \section*{Capítulo #1: #2}
-      \setcounter{section}{#1}
-      \setcounter{subsection}{0}
-   }
-   {}
+{
+   \addcontentsline{toc}{section}{Capítulo #1 : #2}
+   \section*{Capítulo #1: #2}
+   \setcounter{section}{#1}
+   \setcounter{subsection}{0}
+}
+{}
 
 \newenvironment{conclusions}
-   {
-      \addcontentsline{toc}{section}{Conclusiones}
-      \section*{Conclusiones}
-   }
-   {}
+{
+   \addcontentsline{toc}{section}{Conclusiones}
+   \section*{Conclusiones}
+}
+{}
 
 \newenvironment{recommendations}
-   {
-      \addcontentsline{toc}{section}{Recomendaciones}
-      \section*{Recomendaciones}
-   }
-   {}
+{
+   \addcontentsline{toc}{section}{Recomendaciones}
+   \section*{Recomendaciones}
+}
+{}
 
-% Back section
+% BACK SECTION
 \newenvironment{annexes}[1]
-   {
-      \addcontentsline{toc}{section}{Anexo #1}
-      \pagenumbering{Roman}
+{
+   \addcontentsline{toc}{section}{Anexo #1}
+   \section*{Anexo #1}
+}
+{}
 
-      \newpage
-      \section*{Anexo #1}
-   }
-   {}
-
-% Code: 
+% CODE: 
 \definecolor{codegreen}{rgb}{0.1, 0.5, 0.1}
 \definecolor{codegray}{rgb}{0.5, 0.5, 0.5}
 \definecolor{codepurple}{rgb}{0.58, 0, 0.82}
@@ -191,6 +172,6 @@
 
 \lstset{style=mystyle}
 
-% Cambiar el prefijo de los títulos de los listados de código
+% CHANGE PREFIX OF CODE LISTING TITLES
 \captionsetup[listing]{labelformat=simple, labelsep=colon}
 \renewcommand\lstlistingname{Código}
