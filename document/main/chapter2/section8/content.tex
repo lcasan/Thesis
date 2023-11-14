@@ -1,18 +1,18 @@
 \subthesischapter{Escenarios de entrenamiento}
 La creación de las escenas es dinámica, pues se adapta a los valores de modalidad y parámetros seleccionados en la configuración del juego. Estos valores son fundamentales, ya que determinan el funcionamiento y por ende la experiencia de juego. Para llevar a cabo dicha tarea, fue necesario implementar un script llamado WorldCreator.cs.
 
-WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se encarga de construir la totalidad del entorno del juego. El método Awake() en el script WorldCreator cumple una función fundamental en la inicialización y preparación del escenario de juego. En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert). Este objeto representa la pista sobre la cual se construirá el mundo del juego. A continuación, se procede a la creación dinámica del terreno (Terrain) del juego. Se genera un nuevo objeto de datos de terreno (TerrainData) y se asigna al terreno recién creado. Además, en el método se calcula y almacena las dimensiones del objeto de la pista (trackPrefab) utilizando el componente MeshFilter. Estas dimensiones se utilizan posteriormente para posicionar los árboles y otros elementos de manera coherente respecto a la pista, garantizando la cohesión visual del mundo del juego. Por último, el método Awake() asigna el material (terrainMaterial) al terreno, definiendo así la apariencia visual del paisaje. Este proceso sienta las bases para el entorno tridimensional en el cual se desarrollará la acción del juego.
+WorldCreator.cs es el núcleo de la creación escénica. Este script se encarga de construir la totalidad del entorno del juego. El método Awake() en el script WorldCreator cumple una función fundamental en la inicialización y preparación del escenario de juego. En primer lugar, verifica la integridad del objeto trackPrefab, asegurándose de que no sea nulo mediante una aserción (Assert). Este objeto representa la pista sobre la cual se construirá el mundo del juego. A continuación, se procede a la creación dinámica del terreno (Terrain) del juego. Se genera un nuevo objeto de datos de terreno (TerrainData) y se asigna al terreno recién creado. Además, en el método se calcula y almacena las dimensiones del objeto de la pista (trackPrefab) utilizando el componente MeshFilter. Estas dimensiones se utilizan posteriormente para posicionar los árboles y otros elementos de manera coherente respecto a la pista, garantizando la cohesión visual del mundo del juego. Por último, el método Awake() asigna el material (terrainMaterial) al terreno, definiendo así la apariencia visual del paisaje. Este proceso sienta las bases para el entorno tridimensional en el cual se desarrollará la acción del juego.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{images/generate-world.png}
-    \caption{Flujo para la creación del entorno de juego}
+    \caption{Flujo para la creación del entorno de juego.}
     \label{fig: generate-world}
 \end{figure}
 
 \begin{center}
 \begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, caption={Generar terreno},label={hola}]
+\begin{lstlisting}[language=c, caption={Generar terreno.},label={hola}]
  //Obtener el terreno activo en la escena
  terrain = Terrain.activeTerrain;
  
@@ -36,7 +36,7 @@ WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se enc
 
 \begin{center}
 \begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, caption={Generar pista}]
+\begin{lstlisting}[language=c, caption={Generar pista.}]
  float zMin = chunkIndex * chunkSize;
  float zMax = zMin + chunkSize;
  terrain.terrainData.size = new Vector3(chunkSize, maxHeight, zMax);
@@ -54,7 +54,7 @@ WorldCreator.cs es el núcleo de nuestra creación escénica. Este script se enc
 
 \begin{center}
 \begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, caption={Posicionar árboles}]    
+\begin{lstlisting}[language=c, caption={Posicionar árboles.}]    
  for (int i = 0; i < treeDensity; i++) {
     float side = Random.value > 0.5f ? 1.0f : 0.0f;
 
@@ -104,13 +104,13 @@ Descripción del algoritmo utilizado, ver figura~\ref{fig: interpolation-algorit
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.4]{images/interpolation-algorithm.png}
-    \caption{Funcionamiento del algoritmo en los primeros 200ms}
+    \caption{Funcionamiento del algoritmo en los primeros 200ms.}
     \label{fig: interpolation-algorithm}
 \end{figure}
 
 \begin{center}
 \begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[language=c, label={code: interpolation}, caption={Controlador de movimiento}]
+\begin{lstlisting}[language=c, label={code: interpolation}, caption={Controlador de movimiento.}]
 delta += Time.deltaTime;
  
 if(delta > 0.001f) {
