@@ -7,6 +7,14 @@ Según ~\cite{moyano2020arquitectura} la arquitectura cliente - servidor, es un 
     \item Servidor: Es un programa que ofrece un servicio que se puede obtener en una red. Acepta la petición desde la red, realiza el servicio y devuelve el resultado al solicitante. Al ser posible implantarlo como aplicaciones de programas, puede ejecutarse en cualquier sistema donde exista TCP/IP y junto con otros programas de aplicación. El servidor comienza su ejecución antes de comenzar la interacción con el cliente.
 \end{itemize}
 
+\subsubthesischapter{Modelo Vista Controlador}
+ El Modelo Vista Controlador (MVC), es un patrón en el diseño de software comúnmente utilizado para implementar interfaces de usuario, datos y lógica de control. Enfatiza una separación entre la lógica de negocios y su visualización. Esta "separación de preocupaciones" proporciona una mejor división del trabajo y una mejora de mantenimiento~\cite{MVCGlosa42}. 
+\begin{enumerate}
+    \item Modelo: Maneja datos y lógica de negocios.
+    \item Vista: Se encarga del diseño y presentación.
+    \item Controlador: Enruta comandos a los modelos y vistas.
+\end{enumerate}
+
 \subsubthesischapter{Motores Gráficos}
 Un motor de videojuegos es una aplicación de software que ofrece todas las herramientas necesarias para el diseño y desarrollo completo de un videojuego, disponiendo de un motor de renderizado para gráficos 2D y 3D, detector de colisiones, sonidos, scripting, animación, inteligencia artificial, redes, streaming, administración de memoria y mucho más \cite{arce2011desarrollo}.
 
@@ -21,16 +29,16 @@ Normalmente, una base de datos requiere un programa de software de bases de dato
 
 Entre los SGBD relacionales más modernos se encuentran~\cite{Losgesto13}:
 \begin{itemize}
-    \item MySQL: Es un sistema relacional de código abierto, multihilo y multiusuario. Código abierto significa que todo el mundo puede acceder al código fuente, es decir, al código de programación del SGBD, en este caso MySQL~\cite{ian2003biblia}. Presenta como ventajas principales: alta velocidad al realizar las operaciones, bajo costo en requerimientos para la elaboración de bases de datos, facilidad de configuración, instalación, usabilidad y administración. MySQL puede ejecutarse en la inmensa mayoría de sistemas operativos y tiene compatibilidad en su mayor parte con los lenguajes de programación ANSI, C y C++.
+    \item MySQL: Es un sistema relacional de código abierto, multihilo y multiusuario~\cite{ian2003biblia}. Presenta como ventajas principales: alta velocidad al realizar las operaciones, bajo costo en requerimientos para la elaboración de bases de datos, facilidad de configuración, instalación, usabilidad y administración. Puede ejecutarse en la inmensa mayoría de sistemas operativos y tiene compatibilidad en su mayor parte con los lenguajes de programación ANSI, C y C++.
     
     \item Microsoft SQL Server: Es un sistema basado en el lenguaje Transact-SQL, capaz de poner a disposición de muchos usuarios grandes cantidades de datos de manera simultánea. Es un sistema propietario de Microsoft. Sus principales características son: soporte de transacciones, alta escalabilidad, estabilidad y seguridad. Incluye también un potente entorno gráfico de administración. Su principal desventaja es el precio, aunque cuenta con una versión EXPRESS que permite usarlo en entornos pequeños.
     
-    \item Oracle: Es un sistema multiplataforma fabricado por Oracle Corporation. Tradicionalmente ha sido el SGBD por excelencia, considerado como el más completo y robusto; destacado por su soporte de transacciones, alta estabilidad y escalabilidad. También siempre ha sido considerado de los más caros, por lo que no se ha estandarizado su uso como otras aplicaciones. Al igual que SQL Server, Oracle cuenta con una versión EXPRESS gratis para pequeñas instalaciones o usuarios personales.
+    \item Oracle: Es un sistema multiplataforma fabricado por Oracle Corporation. Tradicionalmente ha sido el SGBD por excelencia, considerado como el más completo y robusto; destacado por su soporte de transacciones, alta estabilidad y escalabilidad. También, ha sido considerado de los más caros, por lo que no se ha estandarizado su uso como otras aplicaciones. Al igual que SQL Server, Oracle cuenta con una versión EXPRESS gratis para pequeñas instalaciones o usuarios personales.
     
     \item Microsoft Access: Es un sistema creado por Microsoft para uso personal de pequeñas organizaciones. Una posibilidad adicional es la de crear ficheros con bases de datos que pueden ser consultados por otros programas. Este SGBD permite crear tablas de datos indexadas, modificar tablas de datos, creación de consultas, formularios, informes, vistas de diseño y consultas referencias cruzadas.
     
     \item PostgreSQL: Es uno de los líderes de los SGBD relacionales de código abierto. Este gestor de BD es uno de los almacenes de datos más rápido y potente del mercado debido a sus características avanzadas (extensibilidad, seguridad y estabilidad). Dado a que no tiene restricción en su entrada a datos, usa multiprocesos en vez de multihilos para garantizar la seguridad del sistema, un fallo en uno de los procesos no afectará el resto y el sistema continuará funcionando. Ofrece, al igual que MySQL, un sistema
-    de contraseñas y privilegios seguros mediante verificación basada en el host, y el tráfico de contraseñas está cifrado al conectarse a un servidor. Además, este gestor de BD soporta gran cantidad y variedad de datos y tiene compatibilidad en su mayor parte con los lenguajes de programación Java, C y C++, entre otros.
+    de contraseñas y privilegios seguros mediante verificación basada en el host, y el tráfico de contraseñas está cifrado al conectarse a un servidor.
 
     \item SQLite: Es una biblioteca utilizada en multitud de aplicaciones actuales ya que es de código abierto y las consultas son muy eficientes. Las principales características de SQLite son:
     \begin{itemize}
