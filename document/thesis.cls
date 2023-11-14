@@ -52,7 +52,7 @@
       \begin{center}
          {\large Universidad de Oriente} \\ \@faculty \\ 
          \vskip 0.25cm
-         \includegraphics[width=2in, height=0.8in]{images/logo.png} \\
+         \includegraphics[width=2.06in, height=0.7in]{images/logo.png} \\
          \vskip 1cm
          \vfill
          {\large \textbf{\@title}} \\
@@ -153,11 +153,13 @@
    {}
 
 % Back section
-\newenvironment{annexes}
+\newenvironment{annexes}[1]
    {
-      \addcontentsline{toc}{section}{Anexos}
+      \addcontentsline{toc}{section}{Anexo #1}
       \pagenumbering{Roman}
-      \section*{Anexos}
+
+      \newpage
+      \section*{Anexo #1}
    }
    {}
 
